@@ -1,6 +1,5 @@
 ## Sistema Jurídico On-line para Grandes Administrações
 
-Sistema de Controle de Processos Jurídicos. Este sistema possui vários usuários com os seguintes perfis:
 <p>Sistema de Controle de Processos Jurídicos. Este sistema possui vários usuários com os seguintes perfis:</p>
 
 - Juiz
