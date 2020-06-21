@@ -4,11 +4,11 @@ import model.User;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.*;
-import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 import org.hibernate.*;
 import util.HibernateUtil;
 
-@ManagedBean(name = "userMB")
+@Named(value = "userMB")
 @RequestScoped
 public class UserMB {
     private User user;
