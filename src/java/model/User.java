@@ -17,6 +17,8 @@ import javax.persistence.SequenceGenerator;
 @SequenceGenerator(name = "seq_usr", sequenceName = "seq_usr_id")
 public class User implements Serializable {
     private Long id;
+    private String email;
+    private String password;
     private String name;
     private String cpf;
     private Address address;
@@ -34,6 +36,24 @@ public class User implements Serializable {
         this.id = id;
     }
 
+    @Column(updatable=true, name="usr_email", nullable=false, length=255)
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    @Column(updatable=true, name="usr_password", nullable=false, length=255)
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
     @Column(updatable=true, name="usr_name", nullable=false, length=255)
     public String getName() {
         return this.name;
