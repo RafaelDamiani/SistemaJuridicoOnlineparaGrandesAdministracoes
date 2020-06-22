@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -12,8 +13,8 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 @Table(name = "tb_address")
-@SequenceGenerator(name = "seq_add", sequenceName = "seq_add_id")
-public class Address {
+@SequenceGenerator(name = "seq_address", sequenceName = "seq_address_id")
+public class Address implements Serializable {
     private Long id;
     private String zipCode;
     private String street;
@@ -26,7 +27,7 @@ public class Address {
     }
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_add")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_address")
     public Long getId() {
         return id;
     }
@@ -35,7 +36,7 @@ public class Address {
         this.id = id;
     }
 
-    @Column(updatable=true, name="add_zipCode", nullable=false, length=10)
+    @Column(updatable=true, name="address_zipCode", nullable=false, length=10)
     public String getZipCode() {
         return zipCode;
     }
@@ -44,7 +45,7 @@ public class Address {
         this.zipCode = zipCode;
     }
     
-    @Column(updatable=true, name="add_street", nullable=false, length=255)
+    @Column(updatable=true, name="address_street", nullable=false, length=255)
     public String getStreet() {
         return street;
     }
@@ -53,7 +54,7 @@ public class Address {
         this.street = street;
     }
     
-    @Column(updatable=true, name="add_number", nullable=false, length=8)
+    @Column(updatable=true, name="address_number", nullable=false, length=8)
     public Integer getNumber() {
         return number;
     }
@@ -62,7 +63,7 @@ public class Address {
         this.number = number;
     }
     
-    @Column(updatable=true, name="add_city", nullable=false, length=29)
+    @Column(updatable=true, name="address_city", nullable=false, length=29)
     public String getCity() {
         return city;
     }
@@ -71,7 +72,7 @@ public class Address {
         this.city = city;
     }
     
-    @Column(updatable=true, name="add_state", nullable=false, length=2)
+    @Column(updatable=true, name="address_state", nullable=false, length=2)
     public String getState() {
         return state;
     }
