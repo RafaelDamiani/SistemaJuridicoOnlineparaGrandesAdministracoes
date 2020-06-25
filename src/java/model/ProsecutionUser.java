@@ -16,6 +16,7 @@ public class ProsecutionUser {
     private Long id;
     private Prosecution prosecution;
     private User part;
+    private User lawyer;
     private ProsecutionStatus prosecutionStatus;
     private PartType partType;
     
@@ -50,6 +51,16 @@ public class ProsecutionUser {
     
     public void setPart(User part) {
         this.part = part;
+    }
+    
+    @ManyToOne
+    @JoinColumn(name="lawyer_id")
+    public User getLawyer() {
+        return this.part;
+    }
+    
+    public void setLawyer(User lawyer) {
+        this.lawyer = lawyer;
     }
     
     @ManyToOne

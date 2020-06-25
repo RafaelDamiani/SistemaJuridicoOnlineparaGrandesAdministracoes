@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +20,11 @@ public class Phase implements Serializable {
     private Prosecution prosecution;
     private PhaseType phaseType;
     private PhaseStatus phaseStatus;
+    private Date date;
+    private String title;
+    private String description;
+    // private String file; <-- TODO pdf file
+    //private List<Document> document;  <-- TODO
     
     public Phase(){
     }
@@ -61,4 +68,34 @@ public class Phase implements Serializable {
     public void setPhaseStatus(PhaseStatus phaseStatus) {
         this.phaseStatus = phaseStatus;
     }
+
+    @Column(updatable=true, name="phase_date", nullable=false)
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    @Column(updatable=true, name="phase_title", nullable=false, length=255)
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Column(updatable=true, name="phase_title", nullable=false, length=255)
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    
+    
 }
