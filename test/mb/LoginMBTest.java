@@ -7,9 +7,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class LoginTest {
+public class LoginMBTest {
     
-    public LoginTest() {
+    public LoginMBTest() {
     }
     
     @BeforeClass
@@ -28,29 +28,13 @@ public class LoginTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of getEmail method, of class Login.
-     */
     @Test
     public void testLogin() {        
-        Login login = new Login();
+        LoginMB login = new LoginMB();
         login.setEmail("rafael.damiani@ufpr.br");
         login.setPassword("123456");
         String expResult = "";
         String result = login.logar();
         assertEquals(expResult, result);
-    }
-    
-    @Test
-    public void testSetEmail() {
-        
-        
-        System.out.println("setEmail");
-        
-        String email = "";
-        Login instance = new Login();
-        instance.setEmail(email);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 }

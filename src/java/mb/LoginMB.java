@@ -10,11 +10,11 @@ import util.HibernateUtil;
 
 @Named(value = "loginMB")
 @RequestScoped
-public class Login {
+public class LoginMB {
     private String email;
     private String password;
     
-    public Login() {
+    public LoginMB() {
     }
 
     public String getEmail() {
