@@ -7,6 +7,7 @@ import model.User;
 import org.hibernate.*;
 import util.HibernateUtil;
 import util.PasswordUtil;
+import validator.LoginValidator;
 
 @Named(value = "loginMB")
 @RequestScoped
@@ -37,13 +38,16 @@ public class LoginMB {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         
-        if(email == null || email.isEmpty()) {
-            return "Preencha o e-mail";
-        }
+        String response = "";
         
-        if(password == null || password.isEmpty()) {
-            return "Preencha a senha";
-        }
+        User user = null;
+                
+        LoginValidator loginValidator = new LoginValidator(true);
+        
+        response = loginValidator.validateLogin(email, password, user);
+        
+        if (!loginValidator.getValid())
+            return response;
         
         String encryptedPassword = new PasswordUtil().encryptPassword(password);
         
@@ -53,14 +57,13 @@ public class LoginMB {
         query.setParameter("email", email);
         query.setParameter("password", encryptedPassword);
         
-        User user = (User)query.uniqueResult();
+        user = (User)query.uniqueResult();
         
         session.getTransaction().commit();
         session.close();
         
-        if (user == null)
-            return "E-mail ou senha incorretos";
+        response = loginValidator.validateLogin(email, password, user);
         
-        return "Logando";
+        return response;
     }
 }
