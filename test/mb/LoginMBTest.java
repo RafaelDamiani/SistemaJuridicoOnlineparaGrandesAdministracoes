@@ -58,4 +58,42 @@ public class LoginMBTest {
         String result = login.logar();
         assertEquals(expResult, result);
     }
+    
+    @Test
+    public void testLoginFailedEmailNull() throws NoSuchAlgorithmException {        
+        LoginMB login = new LoginMB();
+        login.setPassword("123456");
+        String expResult = "Preencha o e-mail";
+        String result = login.logar();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testLoginFailedEmailEmpty() throws NoSuchAlgorithmException {        
+        LoginMB login = new LoginMB();
+        login.setEmail("");
+        login.setPassword("123456");
+        String expResult = "Preencha o e-mail";
+        String result = login.logar();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testLoginFailedPWDNull() throws NoSuchAlgorithmException {        
+        LoginMB login = new LoginMB();
+        login.setEmail("rafael.damiani@ufpr.com.br");
+        String expResult = "Preencha a senha";
+        String result = login.logar();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testLoginFailedPWDEmpty() throws NoSuchAlgorithmException {        
+        LoginMB login = new LoginMB();
+        login.setEmail("rafael.damiani@ufpr.com.br");
+        login.setPassword("");
+        String expResult = "Preencha a senha";
+        String result = login.logar();
+        assertEquals(expResult, result);
+    }
 }

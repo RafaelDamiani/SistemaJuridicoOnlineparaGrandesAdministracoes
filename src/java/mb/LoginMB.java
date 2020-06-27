@@ -37,6 +37,14 @@ public class LoginMB {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         
+        if(email == null || email.isEmpty()) {
+            return "Preencha o e-mail";
+        }
+        
+        if(password == null || password.isEmpty()) {
+            return "Preencha a senha";
+        }
+        
         String encryptedPassword = new PasswordUtil().encryptPassword(password);
         
         String hql = "select * from tb_user where user_email = :email and user_password = :password";
