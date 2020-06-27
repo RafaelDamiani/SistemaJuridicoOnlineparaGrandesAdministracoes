@@ -38,15 +38,18 @@ public class LoginMB {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         
+        boolean valid = true;
         String response = "";
         
         User user = null;
                 
-        LoginValidator loginValidator = new LoginValidator(true);
+        LoginValidator loginValidator = new LoginValidator(valid);
         
         response = loginValidator.validateLogin(email, password, user);
         
-        if (!loginValidator.getValid())
+        valid = loginValidator.isValid();
+        
+        if (!valid)
             return response;
         
         String encryptedPassword = new PasswordUtil().encryptPassword(password);

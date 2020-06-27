@@ -9,8 +9,8 @@ public class LoginValidator {
         this.valid = valid;
     }
     
-    public boolean getValid() {
-        return this.valid;
+    public boolean isValid() {
+        return valid;
     }
     
     public void setValid(boolean valid) {

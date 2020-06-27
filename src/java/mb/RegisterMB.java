@@ -2,8 +2,10 @@ package mb;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import model.UserType;
 import org.hibernate.Session;
 import util.HibernateUtil;
+import validator.UserTypeValidator;
 
 @Named(value = "registerMB")
 @RequestScoped
@@ -107,7 +109,28 @@ public class RegisterMB {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         
+        boolean valid = true;
+        String response = "";
         
+        UserTypeValidator userTypeValidator = new UserTypeValidator(valid);
+        response = userTypeValidator.validateId(idUserType);
+        
+        valid = userTypeValidator.isValid();
+        
+        if (!valid)
+            return response;
+
+        UserType userType = new UserType();
+        userType.setId(idUserType);
+        
+        // UserType
+        
+        // User
+        
+        // Address
+        
+        session.getTransaction().commit();
+        session.close();
         
         return "Cadastrado com sucesso!";
     }
