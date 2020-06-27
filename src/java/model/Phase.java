@@ -17,12 +17,12 @@ import javax.persistence.Table;
 @SequenceGenerator(name = "seq_phase", sequenceName = "seq_phase_id")
 public class Phase implements Serializable {
     private Long id;
-    private Prosecution prosecution;
-    private PhaseType phaseType;
-    private PhaseStatus phaseStatus;
     private Date date;
     private String title;
     private String description;
+    private Prosecution prosecution;
+    private PhaseType phaseType;
+    private PhaseStatus phaseStatus;
     // private String file; <-- TODO pdf file
     //private List<Document> document;  <-- TODO
     
@@ -37,6 +37,33 @@ public class Phase implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    @Column(updatable=true, name="phase_date", nullable=false)
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    @Column(updatable=true, name="phase_title", nullable=false, length=255)
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Column(updatable=true, name="phase_description", nullable=false, length=5000)
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
     
     @ManyToOne
@@ -68,34 +95,4 @@ public class Phase implements Serializable {
     public void setPhaseStatus(PhaseStatus phaseStatus) {
         this.phaseStatus = phaseStatus;
     }
-
-    @Column(updatable=true, name="phase_date", nullable=false)
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    @Column(updatable=true, name="phase_title", nullable=false, length=255)
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    @Column(updatable=true, name="phase_title", nullable=false, length=255)
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    
-    
-    
 }

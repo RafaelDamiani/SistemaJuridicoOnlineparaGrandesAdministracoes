@@ -1,6 +1,5 @@
 package model;
 
-import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -165,33 +164,6 @@ public class UserTest {
     }
 
     /**
-     * Test of getAddress method, of class User.
-     */
-    @Test
-    public void testGetAddress() {
-        System.out.println("getAddress");
-        User instance = new User();
-        Address expResult = null;
-        Address result = instance.getAddress();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setAddress method, of class User.
-     */
-    @Test
-    public void testSetAddress() {
-        System.out.println("setAddress");
-        Address address = null;
-        User instance = new User();
-        instance.setAddress(address);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of getUserType method, of class User.
      */
     @Test
@@ -217,32 +189,4 @@ public class UserTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of getProsecutions method, of class User.
-     */
-    @Test
-    public void testGetProsecutions() {
-        System.out.println("getProsecutions");
-        User instance = new User();
-        List<Prosecution> expResult = null;
-        List<Prosecution> result = instance.getProsecutions();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setProsecutions method, of class User.
-     */
-    @Test
-    public void testSetProsecutions() {
-        System.out.println("setProsecutions");
-        List<Prosecution> prosecutions = null;
-        User instance = new User();
-        instance.setProsecutions(prosecutions);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }

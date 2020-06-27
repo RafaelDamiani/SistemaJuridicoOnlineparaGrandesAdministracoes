@@ -1,5 +1,6 @@
 package mb;
 
+import java.security.NoSuchAlgorithmException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -29,11 +30,31 @@ public class LoginMBTest {
     }
 
     @Test
-    public void testLogin() {        
+    public void testLoginSuccess() throws NoSuchAlgorithmException {        
         LoginMB login = new LoginMB();
         login.setEmail("rafael.damiani@ufpr.br");
         login.setPassword("123456");
-        String expResult = "";
+        String expResult = "Logando";
+        String result = login.logar();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testLoginFailedPWD() throws NoSuchAlgorithmException {        
+        LoginMB login = new LoginMB();
+        login.setEmail("rafael.damiani@ufpr.br");
+        login.setPassword("1234567");
+        String expResult = "E-mail ou senha incorretos";
+        String result = login.logar();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testLoginFailedEmail() throws NoSuchAlgorithmException {        
+        LoginMB login = new LoginMB();
+        login.setEmail("rafael.damiani@ufpr.com.br");
+        login.setPassword("123456");
+        String expResult = "E-mail ou senha incorretos";
         String result = login.logar();
         assertEquals(expResult, result);
     }

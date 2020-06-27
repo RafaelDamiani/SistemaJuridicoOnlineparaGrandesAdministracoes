@@ -1,12 +1,12 @@
 package mb;
 
-import model.User;
-import java.util.List;
-import javax.annotation.PostConstruct;
+import java.security.NoSuchAlgorithmException;
 import javax.enterprise.context.*;
 import javax.inject.Named;
+import model.User;
 import org.hibernate.*;
 import util.HibernateUtil;
+import util.PasswordUtil;
 
 @Named(value = "loginMB")
 @RequestScoped
@@ -33,21 +33,26 @@ public class LoginMB {
         this.password = password;
     }
     
-    public String logar() {
+    public String logar() throws NoSuchAlgorithmException {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         
-        String hql = "select * from user where email = :email and password = :password";
-        Query query = session.createQuery(hql);
+        String encryptedPassword = new PasswordUtil().encryptPassword(password);
+        
+        String hql = "select * from tb_user where user_email = :email and user_password = :password";
+        
+        Query query = session.createSQLQuery(hql).addEntity(User.class);
         query.setParameter("email", email);
+        query.setParameter("password", encryptedPassword);
         
+        User user = (User)query.uniqueResult();
         
-        
-        query.setParameter("password", password);        
-                
         session.getTransaction().commit();
         session.close();
         
-        return "salvar";
+        if (user == null)
+            return "E-mail ou senha incorretos";
+        
+        return "Logando";
     }
 }

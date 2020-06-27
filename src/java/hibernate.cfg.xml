@@ -7,9 +7,15 @@
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">*damiani*tech*</property>
-    <mapping class="model.User"/>
     <mapping class="model.Address"/>
-    <property name="hibernate.hbm2ddl.auto">create</property>
-    <property name="hibernate.hbm2ddl.auto">update</property>
+    <mapping class="model.PartType"/>
+    <mapping class="model.Phase"/>
+    <mapping class="model.PhaseStatus"/>
+    <mapping class="model.PhaseType"/>
+    <mapping class="model.Prosecution"/>
+    <mapping class="model.ProsecutionStatus"/>
+    <mapping class="model.ProsecutionUser"/>
+    <mapping class="model.User"/>
+    <mapping class="model.UserType"/>
   </session-factory>
 </hibernate-configuration>

@@ -56,7 +56,7 @@ public class ProsecutionUser {
     @ManyToOne
     @JoinColumn(name="lawyer_id")
     public User getLawyer() {
-        return this.part;
+        return this.lawyer;
     }
     
     public void setLawyer(User lawyer) {

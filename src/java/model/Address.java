@@ -1,12 +1,14 @@
 package model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -18,7 +20,7 @@ public class Address implements Serializable {
     private Long id;
     private String zipCode;
     private String street;
-    private Integer number;
+    private Short number;
     private String city;
     private String state;
     private User user;
@@ -55,11 +57,11 @@ public class Address implements Serializable {
     }
     
     @Column(updatable=true, name="address_number", nullable=false, length=8)
-    public Integer getNumber() {
+    public Short getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(Short number) {
         this.number = number;
     }
     
@@ -81,7 +83,8 @@ public class Address implements Serializable {
         this.state = state;
     }
     
-    @OneToOne(mappedBy = "address")
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="user_id", updatable=true)
     public User getUser() {
         return this.user;
     }

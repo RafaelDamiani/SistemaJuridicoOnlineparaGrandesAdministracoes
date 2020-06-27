@@ -1,15 +1,11 @@
 package model;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -19,7 +15,6 @@ import javax.persistence.Table;
 public class PartType implements Serializable {
     private Integer id;
     private String name;
-    private List<ProsecutionUser> prosecutionUsers;
     
     public PartType() {
     }
@@ -34,21 +29,12 @@ public class PartType implements Serializable {
         this.id = id;
     }
 
-    @Column(updatable=true, name="part_name", nullable=false, length=255)
+    @Column(updatable=true, name="part_type_name", nullable=false, length=255)
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-    
-    @OneToMany(mappedBy="partType", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    public List<ProsecutionUser> getProsecutionUser() {
-        return this.prosecutionUsers;
-    }
-    
-    public void setProsecutionUsers(List<ProsecutionUser> prosecutionUsers) {
-        this.prosecutionUsers = prosecutionUsers;
     }
 }
