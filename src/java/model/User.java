@@ -24,6 +24,14 @@ public class User implements Serializable {
     
     public User() {
     }
+    
+    public User(String email, String password, String name, String cpf, UserType userType) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.cpf = cpf;
+        this.userType = userType;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_user")

@@ -1,11 +1,17 @@
 package mb;
 
+import java.security.NoSuchAlgorithmException;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import model.Address;
+import model.User;
 import model.UserType;
 import org.hibernate.Session;
 import util.HibernateUtil;
+import util.PasswordUtil;
+import validator.AddressValidator;
 import validator.UserTypeValidator;
+import validator.UserValidator;
 
 @Named(value = "registerMB")
 @RequestScoped
@@ -105,7 +111,7 @@ public class RegisterMB {
         this.state = state;
     }
     
-    public String registeruser() {
+    public String registeruser() throws NoSuchAlgorithmException {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         
@@ -123,11 +129,30 @@ public class RegisterMB {
         UserType userType = new UserType();
         userType.setId(idUserType);
         
-        // UserType
-        
         // User
+        User user = new User(email, password, name, cpf, userType);
         
-        // Address
+        UserValidator userValidator = new UserValidator(valid);
+        response = userValidator.validateUser(user);
+        
+        if (!valid)
+            return response;
+        
+        String encryptedPassword = new PasswordUtil().encryptPassword(password);
+        user.setPassword(encryptedPassword);
+        
+        //session.save(user);        
+        //session.getTransaction().commit();        
+        
+        Address address = new Address(zipCode, street, number, city, state, user);
+        AddressValidator addressValidator = new AddressValidator(valid);
+        response = addressValidator.validateAddress(address);
+        
+        if (!valid)
+            return response;
+        
+        session.save(user);
+        session.save(address);
         
         session.getTransaction().commit();
         session.close();

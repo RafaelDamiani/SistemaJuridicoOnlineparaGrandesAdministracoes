@@ -28,6 +28,15 @@ public class Address implements Serializable {
     public Address() {
     }
     
+    public Address(String zipCode, String street, Short number, String city, String state, User user) {
+        this.zipCode = zipCode;
+        this.street = street;
+        this.number = number;
+        this.city = city;
+        this.state = state;
+        this.user = user;
+    }
+    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_address")
     public Long getId() {
