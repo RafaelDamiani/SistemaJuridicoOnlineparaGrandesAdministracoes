@@ -6,12 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_part_type")
-@SequenceGenerator(name = "seq_part_type", sequenceName = "seq_part_type_id")
 public class PartType implements Serializable {
     private Integer id;
     private String name;
@@ -20,7 +18,7 @@ public class PartType implements Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_part_type")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }

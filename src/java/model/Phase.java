@@ -9,12 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_phase")
-@SequenceGenerator(name = "seq_phase", sequenceName = "seq_phase_id")
 public class Phase implements Serializable {
     private Long id;
     private Date date;
@@ -30,7 +28,7 @@ public class Phase implements Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_phase")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }

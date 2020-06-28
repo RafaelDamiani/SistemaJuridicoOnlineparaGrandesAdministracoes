@@ -1,7 +1,5 @@
 package validator;
 
-import model.User;
-
 public class UserValidator {
     private boolean valid;
     
@@ -17,25 +15,40 @@ public class UserValidator {
         this.valid = valid;
     }
     
-    public String validateUser(User user) {
-        if (user.getEmail() == null || user.getEmail().isEmpty()) {
+    public String validateUser(String email, String password, String name, String cpf) { 
+        if (email == null || email.isEmpty()) {
             setValid(false);
             return "Preencha o e-mail";
         }
         
-        if (user.getPassword() == null || user.getPassword().isEmpty()) {
+        if (!email.contains("@")) {
+            setValid(false);
+            return "O e-mail está em um formato incorreto";
+        }
+        
+        if (password == null || password.isEmpty()) {
             setValid(false);
             return "Preencha a senha";
         }
         
-        if (user.getName() == null || user.getName().isEmpty()) {
+        if (password.length() < 6) {
+            setValid(false);
+            return "A senha deve ter no mínimo 6 caracteres";
+        }
+        
+        if (name == null || name.isEmpty()) {
             setValid(false);
             return "Preencha o nome";
         }
         
-        if (user.getCpf() == null || user.getCpf().isEmpty()) {
+        if (cpf == null || cpf.isEmpty()) {
             setValid(false);
             return "Preencha o CPF";
+        }
+        
+        if (cpf.length() < 11) {
+            setValid(false);
+            return "O CPF deve ter 11 caracteres";
         }
         
         return "ok";

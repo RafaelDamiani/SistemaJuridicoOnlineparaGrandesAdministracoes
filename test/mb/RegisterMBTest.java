@@ -1,5 +1,6 @@
 package mb;
 
+import java.security.NoSuchAlgorithmException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -28,288 +29,361 @@ public class RegisterMBTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of getEmail method, of class RegisterMB.
-     */
     @Test
-    public void testGetEmail() {
-        System.out.println("getEmail");
-        RegisterMB instance = new RegisterMB();
-        String expResult = "";
-        String result = instance.getEmail();
+    public void testRegisterUserSuccess() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("teste@teste.com");
+        register.setPassword("abc123");
+        register.setName("Teste da Silva");
+        register.setCpf("26850493043");
+        
+        register.setIdUserType(2);
+        
+        register.setZipCode("94955205");
+        register.setStreet("Rua Doze de Outubro");
+        register.setNumber((short)578);
+        register.setCity("Cachoeirinha");
+        register.setState("RS");
+        
+        String expResult = "Cadastrado com sucesso!";
+        String result = register.registerUser();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setEmail method, of class RegisterMB.
-     */
-    @Test
-    public void testSetEmail() {
-        System.out.println("setEmail");
-        String email = "";
-        RegisterMB instance = new RegisterMB();
-        instance.setEmail(email);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getPassword method, of class RegisterMB.
-     */
-    @Test
-    public void testGetPassword() {
-        System.out.println("getPassword");
-        RegisterMB instance = new RegisterMB();
-        String expResult = "";
-        String result = instance.getPassword();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setPassword method, of class RegisterMB.
-     */
-    @Test
-    public void testSetPassword() {
-        System.out.println("setPassword");
-        String password = "";
-        RegisterMB instance = new RegisterMB();
-        instance.setPassword(password);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getName method, of class RegisterMB.
-     */
-    @Test
-    public void testGetName() {
-        System.out.println("getName");
-        RegisterMB instance = new RegisterMB();
-        String expResult = "";
-        String result = instance.getName();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setName method, of class RegisterMB.
-     */
-    @Test
-    public void testSetName() {
-        System.out.println("setName");
-        String name = "";
-        RegisterMB instance = new RegisterMB();
-        instance.setName(name);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getCpf method, of class RegisterMB.
-     */
-    @Test
-    public void testGetCpf() {
-        System.out.println("getCpf");
-        RegisterMB instance = new RegisterMB();
-        String expResult = "";
-        String result = instance.getCpf();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setCpf method, of class RegisterMB.
-     */
-    @Test
-    public void testSetCpf() {
-        System.out.println("setCpf");
-        String cpf = "";
-        RegisterMB instance = new RegisterMB();
-        instance.setCpf(cpf);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getIdUserType method, of class RegisterMB.
-     */
-    @Test
-    public void testGetIdUserType() {
-        System.out.println("getIdUserType");
-        RegisterMB instance = new RegisterMB();
-        Integer expResult = null;
-        Integer result = instance.getIdUserType();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setIdUserType method, of class RegisterMB.
-     */
-    @Test
-    public void testSetIdUserType() {
-        System.out.println("setIdUserType");
-        Integer idUserType = null;
-        RegisterMB instance = new RegisterMB();
-        instance.setIdUserType(idUserType);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getZipCode method, of class RegisterMB.
-     */
-    @Test
-    public void testGetZipCode() {
-        System.out.println("getZipCode");
-        RegisterMB instance = new RegisterMB();
-        String expResult = "";
-        String result = instance.getZipCode();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setZipCode method, of class RegisterMB.
-     */
-    @Test
-    public void testSetZipCode() {
-        System.out.println("setZipCode");
-        String zipCode = "";
-        RegisterMB instance = new RegisterMB();
-        instance.setZipCode(zipCode);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getStreet method, of class RegisterMB.
-     */
-    @Test
-    public void testGetStreet() {
-        System.out.println("getStreet");
-        RegisterMB instance = new RegisterMB();
-        String expResult = "";
-        String result = instance.getStreet();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setStreet method, of class RegisterMB.
-     */
-    @Test
-    public void testSetStreet() {
-        System.out.println("setStreet");
-        String street = "";
-        RegisterMB instance = new RegisterMB();
-        instance.setStreet(street);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getNumber method, of class RegisterMB.
-     */
-    @Test
-    public void testGetNumber() {
-        System.out.println("getNumber");
-        RegisterMB instance = new RegisterMB();
-        Short expResult = null;
-        Short result = instance.getNumber();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setNumber method, of class RegisterMB.
-     */
-    @Test
-    public void testSetNumber() {
-        System.out.println("setNumber");
-        Short number = null;
-        RegisterMB instance = new RegisterMB();
-        instance.setNumber(number);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getCity method, of class RegisterMB.
-     */
-    @Test
-    public void testGetCity() {
-        System.out.println("getCity");
-        RegisterMB instance = new RegisterMB();
-        String expResult = "";
-        String result = instance.getCity();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setCity method, of class RegisterMB.
-     */
-    @Test
-    public void testSetCity() {
-        System.out.println("setCity");
-        String city = "";
-        RegisterMB instance = new RegisterMB();
-        instance.setCity(city);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getState method, of class RegisterMB.
-     */
-    @Test
-    public void testGetState() {
-        System.out.println("getState");
-        RegisterMB instance = new RegisterMB();
-        String expResult = "";
-        String result = instance.getState();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setState method, of class RegisterMB.
-     */
-    @Test
-    public void testSetState() {
-        System.out.println("setState");
-        String state = "";
-        RegisterMB instance = new RegisterMB();
-        instance.setState(state);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of registeruser method, of class RegisterMB.
-     */
-    @Test
-    public void testRegisteruser() {
-        System.out.println("registeruser");
-        RegisterMB instance = new RegisterMB();
-        String expResult = "";
-        String result = instance.registeruser();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
+    @Test
+    public void testRegisterUserFailedUserTypeAdmin() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        
+        register.setIdUserType(1);
+        
+        String expResult = "Não é permitido cadastrar um Admin";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedUserTypeIsZero() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        
+        register.setIdUserType(0);
+        
+        String expResult = "Preencha o tipo do usuário";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedUserTypeIsNull() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        
+        String expResult = "Preencha o tipo do usuário";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedEmailIsNull() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        
+        register.setIdUserType(2);
+        
+        String expResult = "Preencha o e-mail";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedEmailIsEmpty() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("");
+        register.setIdUserType(2);
+        
+        String expResult = "Preencha o e-mail";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedEmailIcorrectFormat() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("erro.com");
+        register.setIdUserType(2);
+        
+        String expResult = "O e-mail está em um formato incorreto";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedPasswordNull() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("pwd@teste.com");
+        register.setIdUserType(2);
+        
+        String expResult = "Preencha a senha";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedPasswordIsEmpty() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("pwd@teste.com");
+        register.setPassword("");
+        register.setIdUserType(2);
+        
+        String expResult = "Preencha a senha";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedPasswordMinCaracters() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("pwd@teste.com");
+        register.setPassword("12345");
+        register.setIdUserType(2);
+        
+        String expResult = "A senha deve ter no mínimo 6 caracteres";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedNameNull() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("pwd@teste.com");
+        register.setPassword("123456");
+        register.setIdUserType(2);
+        
+        String expResult = "Preencha o nome";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedNameIsEmpty() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("pwd@teste.com");
+        register.setPassword("123456");
+        register.setName("");
+        register.setIdUserType(2);
+        
+        String expResult = "Preencha o nome";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedCPFNull() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("pwd@teste.com");
+        register.setPassword("123456");
+        register.setName("Teste da Silva");
+        register.setIdUserType(2);
+        
+        String expResult = "Preencha o CPF";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedCPFIsEmpty() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("pwd@teste.com");
+        register.setPassword("123456");
+        register.setName("Teste da Silva");
+        register.setCpf("");
+        register.setIdUserType(2);
+        
+        String expResult = "Preencha o CPF";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedCPFMinCaracters() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("pwd@teste.com");
+        register.setPassword("123456");
+        register.setName("Teste da Silva");
+        register.setCpf("1234567891");
+        register.setIdUserType(2);
+        
+        String expResult = "O CPF deve ter 11 caracteres";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedCEPNull() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("pwd@teste.com");
+        register.setPassword("123456");
+        register.setName("Teste da Silva");
+        register.setCpf("12345678910");
+        register.setIdUserType(2);                
+        
+        String expResult = "Preencha o CEP";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedCEPIsEmpty() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("pwd@teste.com");
+        register.setPassword("123456");
+        register.setName("Teste da Silva");
+        register.setCpf("12345678910");
+        register.setIdUserType(2);  
+        
+        register.setZipCode("");
+        
+        String expResult = "Preencha o CEP";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedCEPMinCaracters() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("pwd@teste.com");
+        register.setPassword("123456");
+        register.setName("Teste da Silva");
+        register.setCpf("12345678910");
+        register.setIdUserType(2);  
+        
+        register.setZipCode("1234567");
+        
+        String expResult = "O CEP deve ter 8 caracteres";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedStreetNull() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("pwd@teste.com");
+        register.setPassword("123456");
+        register.setName("Teste da Silva");
+        register.setCpf("12345678910");
+        register.setIdUserType(2);  
+        
+        register.setZipCode("12345678");
+        
+        String expResult = "Preencha a rua";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedStreetIsEmpty() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("pwd@teste.com");
+        register.setPassword("123456");
+        register.setName("Teste da Silva");
+        register.setCpf("12345678910");
+        register.setIdUserType(2);  
+        
+        register.setZipCode("12345678");
+        register.setStreet("");
+        
+        String expResult = "Preencha a rua";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+   
+    @Test
+    public void testRegisterUserFailedNumberNull() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("pwd@teste.com");
+        register.setPassword("123456");
+        register.setName("Teste da Silva");
+        register.setCpf("12345678910");
+        register.setIdUserType(2);  
+        
+        register.setZipCode("12345678");
+        register.setStreet("Rua Teste");
+        
+        String expResult = "Preencha o número";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedCityNull() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("pwd@teste.com");
+        register.setPassword("123456");
+        register.setName("Teste da Silva");
+        register.setCpf("12345678910");
+        register.setIdUserType(2);  
+        
+        register.setZipCode("12345678");
+        register.setStreet("Rua Teste");
+        register.setNumber((short)123);
+        
+        String expResult = "Preencha a cidade";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedCityIsEmpty() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("pwd@teste.com");
+        register.setPassword("123456");
+        register.setName("Teste da Silva");
+        register.setCpf("12345678910");
+        register.setIdUserType(2);  
+        
+        register.setZipCode("12345678");
+        register.setStreet("Rua Teste");
+        register.setNumber((short)123);
+        register.setCity("");
+        
+        String expResult = "Preencha a cidade";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedStateNull() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("pwd@teste.com");
+        register.setPassword("123456");
+        register.setName("Teste da Silva");
+        register.setCpf("12345678910");
+        register.setIdUserType(2);  
+        
+        register.setZipCode("12345678");
+        register.setStreet("Rua Teste");
+        register.setNumber((short)123);
+        register.setCity("City Teste");
+        
+        String expResult = "Preencha o estado";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRegisterUserFailedStateIsEmpty() throws NoSuchAlgorithmException {
+        RegisterMB register = new RegisterMB();
+        register.setEmail("pwd@teste.com");
+        register.setPassword("123456");
+        register.setName("Teste da Silva");
+        register.setCpf("12345678910");
+        register.setIdUserType(2);  
+        
+        register.setZipCode("12345678");
+        register.setStreet("Rua Teste");
+        register.setNumber((short)123);
+        register.setCity("City Teste");
+        register.setState("");
+        
+        String expResult = "Preencha o estado";
+        String result = register.registerUser();
+        assertEquals(expResult, result);
+    }
 }

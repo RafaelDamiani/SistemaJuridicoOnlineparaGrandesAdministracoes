@@ -1,7 +1,5 @@
 package validator;
 
-import model.Address;
-
 public class AddressValidator {
     private boolean valid;
     
@@ -17,33 +15,33 @@ public class AddressValidator {
         this.valid = valid;
     }
     
-    private String street;
-    private Short number;
-    private String city;
-    private String state;
-    
-    public String validateAddress(Address address) {
-        if (address.getZipCode() == null || address.getZipCode().isEmpty()) {
+    public String validateAddress(String zipCode, String street, Short number, String city, String state) {
+        if (zipCode == null || zipCode.isEmpty()) {
             setValid(false);
             return "Preencha o CEP";
         }
+
+        if (zipCode.length() < 8) {
+            setValid(false);
+            return "O CEP deve ter 8 caracteres";
+        }
         
-        if (address.getStreet() == null || address.getStreet().isEmpty()) {
+        if (street == null || street.isEmpty()) {
             setValid(false);
             return "Preencha a rua";
         }
         
-        if (address.getNumber() == null) {
+        if (number == null) {
             setValid(false);
             return "Preencha o número";
         }
         
-        if (address.getCity() == null || address.getCity().isEmpty()) {
+        if (city == null || city.isEmpty()) {
             setValid(false);
             return "Preencha a cidade";
         }
         
-        if (address.getState() == null || address.getState().isEmpty()) {
+        if (state == null || state.isEmpty()) {
             setValid(false);
             return "Preencha o estado";
         }

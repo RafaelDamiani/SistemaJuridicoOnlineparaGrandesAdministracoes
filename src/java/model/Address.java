@@ -10,12 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 
 
 @Entity
 @Table(name = "tb_address")
-@SequenceGenerator(name = "seq_address", sequenceName = "seq_address_id")
 public class Address implements Serializable {
     private Long id;
     private String zipCode;
@@ -38,7 +36,7 @@ public class Address implements Serializable {
     }
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_address")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -47,7 +45,7 @@ public class Address implements Serializable {
         this.id = id;
     }
 
-    @Column(updatable=true, name="address_zipCode", nullable=false, length=10)
+    @Column(updatable=true, name="address_zip_code", nullable=false, length=10)
     public String getZipCode() {
         return zipCode;
     }

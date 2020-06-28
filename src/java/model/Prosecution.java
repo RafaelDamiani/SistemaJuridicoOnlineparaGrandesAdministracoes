@@ -9,12 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_prosecution")
-@SequenceGenerator(name = "seq_prosecution", sequenceName = "seq_prosecution_id")
 public class Prosecution implements Serializable {
     private Long id;
     private Date date;
@@ -24,7 +22,7 @@ public class Prosecution implements Serializable {
     }
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_prosecution")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }

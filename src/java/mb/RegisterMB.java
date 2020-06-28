@@ -111,7 +111,7 @@ public class RegisterMB {
         this.state = state;
     }
     
-    public String registeruser() throws NoSuchAlgorithmException {
+    public String registerUser() throws NoSuchAlgorithmException {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         
@@ -120,7 +120,6 @@ public class RegisterMB {
         
         UserTypeValidator userTypeValidator = new UserTypeValidator(valid);
         response = userTypeValidator.validateId(idUserType);
-        
         valid = userTypeValidator.isValid();
         
         if (!valid)
@@ -129,27 +128,25 @@ public class RegisterMB {
         UserType userType = new UserType();
         userType.setId(idUserType);
         
-        // User
-        User user = new User(email, password, name, cpf, userType);
-        
         UserValidator userValidator = new UserValidator(valid);
-        response = userValidator.validateUser(user);
+        response = userValidator.validateUser(email, password, name, cpf);
+        valid = userValidator.isValid();
         
         if (!valid)
             return response;
         
         String encryptedPassword = new PasswordUtil().encryptPassword(password);
-        user.setPassword(encryptedPassword);
         
-        //session.save(user);        
-        //session.getTransaction().commit();        
+        User user = new User(email, encryptedPassword, name, cpf, userType);
         
-        Address address = new Address(zipCode, street, number, city, state, user);
         AddressValidator addressValidator = new AddressValidator(valid);
-        response = addressValidator.validateAddress(address);
+        response = addressValidator.validateAddress(zipCode, street, number, city, state);
+        valid = addressValidator.isValid();
         
         if (!valid)
             return response;
+        
+        Address address = new Address(zipCode, street, number, city, state, user);
         
         session.save(user);
         session.save(address);

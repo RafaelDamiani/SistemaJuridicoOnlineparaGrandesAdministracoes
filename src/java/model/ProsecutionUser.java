@@ -6,12 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_prosecution_user")
-@SequenceGenerator(name = "seq_prosecution_user", sequenceName = "seq_prosecution_user_id")
 public class ProsecutionUser {
     private Long id;
     private Prosecution prosecution;
@@ -24,7 +22,7 @@ public class ProsecutionUser {
     }
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_prosecution_user")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return this.id;
     }

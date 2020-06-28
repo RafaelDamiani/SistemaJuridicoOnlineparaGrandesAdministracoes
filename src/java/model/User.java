@@ -9,11 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 
 @Entity
 @Table(name = "tb_user")
-@SequenceGenerator(name = "seq_user", sequenceName = "seq_user_id")
 public class User implements Serializable {
     private Long id;
     private String email;
@@ -34,7 +32,7 @@ public class User implements Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_user")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return this.id;
     }

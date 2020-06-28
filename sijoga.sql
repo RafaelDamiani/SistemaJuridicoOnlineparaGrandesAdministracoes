@@ -2,7 +2,6 @@ create table tb_user_type (
 	id serial not null primary key,
 	user_type_name varchar(8) not null unique
 );
-CREATE SEQUENCE seq_user_type_id;
 
 insert into tb_user_type (user_type_name) values 
 ('Admin'),
@@ -18,7 +17,6 @@ create table tb_user(
 	user_cpf varchar(11) not null unique,
 	user_type_id integer not null REFERENCES tb_user_type(id)
 );
-CREATE SEQUENCE seq_user_id;
 
 create table tb_address(
 	id bigserial not null primary key,
@@ -28,21 +26,18 @@ create table tb_address(
 	address_city varchar(255) not null,
 	address_state varchar(2) not null,
 	user_id bigint not null REFERENCES tb_user(id)
-);
-CREATE SEQUENCE seq_address_id;
+);	
 
 create table tb_prosecution(
 	id bigserial not null primary key,
 	prosecution_date timestamp not null,
 	judge_id bigint not null REFERENCES tb_user(id)
 );
-CREATE SEQUENCE seq_prosecution_id;
 
 create table tb_prosecution_status(
 	id serial not null primary key,
 	prosecution_status_name varchar(9) not null unique
 );
-CREATE SEQUENCE seq_prosecution_status_id;
 
 insert into tb_prosecution_status (prosecution_status_name) values
 ('Aberto'),
@@ -54,7 +49,6 @@ create table tb_part_type(
 	id serial not null primary key,
 	part_type_name varchar(10) not null unique
 );
-CREATE SEQUENCE seq_part_type_id;
 
 insert into tb_part_type(part_type_name) values 
 ('Promovente'),
@@ -68,24 +62,20 @@ create table tb_prosecution_user(
 	prosecution_status_id integer not null REFERENCES tb_prosecution_status(id),
 	part_type_id integer not null REFERENCES tb_part_type(id)
 );
-CREATE SEQUENCE seq_prosecution_user_id;
 
 create table tb_phase_type(
 	id serial not null primary key,
 	phase_type_name varchar(12) not null unique
 );
-CREATE SEQUENCE seq_phase_type_id;
 
 insert into tb_phase_type(phase_type_name) values
 ('Informativa'),
 ('Deliberativa');
 
-
 create table tb_phase_status(
 	id serial not null primary key,
 	phase_status_name varchar(13) not null unique
 );
-CREATE SEQUENCE seq_phase_status_id;
 
 insert into tb_phase_status(phase_status_name) values
 ('Pedido Aceito'),
@@ -101,4 +91,3 @@ create table tb_phase(
 	phase_type_id integer not null REFERENCES tb_phase_type(id),
 	phase_status_id integer not null REFERENCES tb_phase_status(id)
 );
-CREATE SEQUENCE seq_phase_id;
