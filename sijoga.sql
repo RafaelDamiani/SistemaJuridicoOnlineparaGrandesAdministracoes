@@ -1,8 +1,8 @@
 create table tb_user_type (
 	id serial not null primary key,
-	user_type_name varchar(8) not null
+	user_type_name varchar(8) not null unique
 );
-CREATE SEQUENCE seq_user_type;
+CREATE SEQUENCE seq_user_type_id;
 
 insert into tb_user_type (user_type_name) values 
 ('Admin'),
@@ -12,10 +12,10 @@ insert into tb_user_type (user_type_name) values
 
 create table tb_user(
 	id bigserial not null primary key,
-	user_email varchar(255) not null,
+	user_email varchar(255) not null unique,
 	user_password varchar(255) not null,
 	user_name varchar(255) not null,
-	user_cpf varchar(11) not null,
+	user_cpf varchar(11) not null unique,
 	user_type_id integer not null REFERENCES tb_user_type(id)
 );
 CREATE SEQUENCE seq_user_id;
@@ -40,7 +40,7 @@ CREATE SEQUENCE seq_prosecution_id;
 
 create table tb_prosecution_status(
 	id serial not null primary key,
-	prosecution_status_name varchar(9) not null
+	prosecution_status_name varchar(9) not null unique
 );
 CREATE SEQUENCE seq_prosecution_status_id;
 
@@ -52,7 +52,7 @@ insert into tb_prosecution_status (prosecution_status_name) values
 
 create table tb_part_type(
 	id serial not null primary key,
-	part_type_name varchar(10) not null
+	part_type_name varchar(10) not null unique
 );
 CREATE SEQUENCE seq_part_type_id;
 
@@ -72,7 +72,7 @@ CREATE SEQUENCE seq_prosecution_user_id;
 
 create table tb_phase_type(
 	id serial not null primary key,
-	phase_type_name varchar(12) not null
+	phase_type_name varchar(12) not null unique
 );
 CREATE SEQUENCE seq_phase_type_id;
 
@@ -83,7 +83,7 @@ insert into tb_phase_type(phase_type_name) values
 
 create table tb_phase_status(
 	id serial not null primary key,
-	phase_status_name varchar(13) not null
+	phase_status_name varchar(13) not null unique
 );
 CREATE SEQUENCE seq_phase_status_id;
 
