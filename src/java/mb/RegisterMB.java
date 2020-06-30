@@ -1,8 +1,10 @@
 package mb;
 
+import java.lang.reflect.InvocationTargetException;
 import java.security.NoSuchAlgorithmException;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import javax.validation.ConstraintViolationException;
 import model.Address;
 import model.User;
 import model.UserType;
@@ -147,8 +149,15 @@ public class RegisterMB {
             return response;
         
         Address address = new Address(zipCode, street, number, city, state, user);
+        try {
+            session.save(user);    
+        }
+        catch(RuntimeException rex) {
+            if (rex.getClass().getCanonicalName().contains("ConstraintViolationException"))
+                return "Já existe um usuário cadastrado com este e-mail";
+            return "Ocorreu um erro ao salvar o usuário. Entre em contato com o Administrador";
+        }
         
-        session.save(user);
         session.save(address);
         
         session.getTransaction().commit();

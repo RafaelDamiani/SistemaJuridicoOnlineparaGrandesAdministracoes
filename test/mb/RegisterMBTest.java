@@ -1,6 +1,8 @@
 package mb;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -45,9 +47,17 @@ public class RegisterMBTest {
         register.setCity("Cachoeirinha");
         register.setState("RS");
         
-        String expResult = "Cadastrado com sucesso!";
+        String expResultSuccess = "Cadastrado com sucesso!";
+        String expResultConstraint = "Já existe um usuário cadastrado com este e-mail";
+        
+        List<String> expResult = new ArrayList<>();
+        expResult.add(expResultSuccess);
+        expResult.add(expResultConstraint);
+        
         String result = register.registerUser();
-        assertEquals(expResult, result);
+        
+        assertTrue(expResult.contains((result)));
+
     }
     
     @Test
