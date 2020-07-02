@@ -57,7 +57,6 @@ public class RegisterMBTest {
         String result = register.registerUser();
         
         assertTrue(expResult.contains((result)));
-
     }
     
     @Test
