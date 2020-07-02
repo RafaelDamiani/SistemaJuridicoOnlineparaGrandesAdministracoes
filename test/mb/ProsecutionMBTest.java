@@ -32,8 +32,10 @@ public class ProsecutionMBTest {
     public void testProsecutionSuccess() {
         ProsecutionMB prosecution = new ProsecutionMB();
         prosecution.setIdJudge((long)2);
-        prosecution.setPromovente("Promovente");
-        prosecution.setPromovido("Promovido");
+        prosecution.setIdPromovente((long)3);
+        prosecution.setIdPromoventeLawyer((long)4);
+        prosecution.setIdPromovido((long)5);
+        prosecution.setIdPromovidoLawyer((long)6);
         
         String expResult = "Processo cadastrado com sucesso!";
 
@@ -77,11 +79,42 @@ public class ProsecutionMBTest {
     }
     
     @Test
-    public void testProsecutionFailedPromoventeIsEmpty() {
+    public void testProsecutionFailedPromoventeIsZero() {
         ProsecutionMB prosecution = new ProsecutionMB();
         prosecution.setIdJudge((long)2);
         
+        prosecution.setIdPromovente((long)0);
+        
         String expResult = "Preencha o promovente";
+
+        String result = prosecution.insertProsecution();
+
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testProsecutionFailedPromoventeLawyerIsNull() {
+        ProsecutionMB prosecution = new ProsecutionMB();
+        prosecution.setIdJudge((long)2);        
+        
+        prosecution.setIdPromovente((long)3);
+        
+        String expResult = "Preencha o advogado do promovente";
+
+        String result = prosecution.insertProsecution();
+
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testProsecutionFailedPromoventeLawyerIsZero() {
+        ProsecutionMB prosecution = new ProsecutionMB();
+        prosecution.setIdJudge((long)2);
+        
+        prosecution.setIdPromovente((long)3);
+        prosecution.setIdPromoventeLawyer((long)0);
+        
+        String expResult = "Preencha o advogado do promovente";
 
         String result = prosecution.insertProsecution();
 
@@ -93,7 +126,8 @@ public class ProsecutionMBTest {
         ProsecutionMB prosecution = new ProsecutionMB();
         prosecution.setIdJudge((long)2);
         
-        prosecution.setPromovente("promovente");
+        prosecution.setIdPromovente((long)3);
+        prosecution.setIdPromoventeLawyer((long)4);
         
         String expResult = "Preencha o promovido";
 
@@ -103,13 +137,48 @@ public class ProsecutionMBTest {
     }
     
     @Test
-    public void testProsecutionFailedPromovidoIsEmpty() {
+    public void testProsecutionFailedPromovidoIsZero() {
         ProsecutionMB prosecution = new ProsecutionMB();
         prosecution.setIdJudge((long)2);
         
-        prosecution.setPromovente("promovente");
+        prosecution.setIdPromovente((long)3);
+        prosecution.setIdPromoventeLawyer((long)4);
+        prosecution.setIdPromovido((long)0);
         
         String expResult = "Preencha o promovido";
+
+        String result = prosecution.insertProsecution();
+
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testProsecutionFailedPromovidoLawyerIsNull() {
+        ProsecutionMB prosecution = new ProsecutionMB();
+        prosecution.setIdJudge((long)2);
+        
+        prosecution.setIdPromovente((long)3);
+        prosecution.setIdPromoventeLawyer((long)4);
+        prosecution.setIdPromovido((long)5);
+        
+        String expResult = "Preencha o advogado do promovido";
+
+        String result = prosecution.insertProsecution();
+
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testProsecutionFailedPromovidoLawyerIsZero() {
+        ProsecutionMB prosecution = new ProsecutionMB();
+        prosecution.setIdJudge((long)2);
+        
+        prosecution.setIdPromovente((long)3);
+        prosecution.setIdPromoventeLawyer((long)4);
+        prosecution.setIdPromovido((long)5);
+        prosecution.setIdPromovidoLawyer((long)0);
+        
+        String expResult = "Preencha o advogado do promovido";
 
         String result = prosecution.insertProsecution();
 

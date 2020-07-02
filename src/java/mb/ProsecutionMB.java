@@ -13,8 +13,10 @@ import validator.ProsecutionValidator;
 public class ProsecutionMB {
     private final Date date = new Date();
     private Long idJudge;
-    private String promovente;
-    private String promovido;
+    private Long idPromovente;
+    private Long idPromoventeLawyer;
+    private Long idPromovido;
+    private Long idPromovidoLawyer;
     
     public ProsecutionMB() {
     }
@@ -27,20 +29,36 @@ public class ProsecutionMB {
         this.idJudge = idJudge;
     }
 
-    public String getPromovente() {
-        return promovente;
+    public Long getIdPromovente() {
+        return idPromovente;
     }
 
-    public void setPromovente(String promovente) {
-        this.promovente = promovente;
+    public void setIdPromovente(Long idPromovente) {
+        this.idPromovente = idPromovente;
+    }
+    
+    public Long getIdPromoventeLawyer() {
+        return idPromoventeLawyer;
     }
 
-    public String getPromovido() {
-        return promovido;
+    public void setIdPromoventeLawyer(Long idPromoventeLawyer) {
+        this.idPromoventeLawyer = idPromoventeLawyer;
     }
 
-    public void setPromovido(String promovido) {
-        this.promovido = promovido;
+    public Long getIdPromovido() {
+        return idPromovido;
+    }
+
+    public void setIdPromovido(Long idPromovido) {
+        this.idPromovido = idPromovido;
+    }
+    
+    public Long getIdPromovidoLawyer() {
+        return idPromovidoLawyer;
+    }
+
+    public void setIdPromovidoLawyer(Long idPromovidoLawyer) {
+        this.idPromovidoLawyer = idPromovidoLawyer;
     }
     
     public String insertProsecution() {
@@ -58,7 +76,7 @@ public class ProsecutionMB {
             return response;
         
         ProsecutionUserValidator prosecutionUserValidator = new ProsecutionUserValidator(valid);
-        response = prosecutionUserValidator.validateProsecutionUser(promovente, promovido);
+        response = prosecutionUserValidator.validateProsecutionUser(idPromovente, idPromoventeLawyer , idPromovido, idPromovidoLawyer);
         valid = prosecutionUserValidator.isValid();
         
         if (!valid)
