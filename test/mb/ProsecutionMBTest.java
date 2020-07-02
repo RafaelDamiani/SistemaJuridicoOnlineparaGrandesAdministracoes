@@ -32,7 +32,9 @@ public class ProsecutionMBTest {
     public void testProsecutionSuccess() {
         ProsecutionMB prosecution = new ProsecutionMB();
         prosecution.setIdJudge((long)2);
-
+        prosecution.setPromovente("Promovente");
+        prosecution.setPromovido("Promovido");
+        
         String expResult = "Processo cadastrado com sucesso!";
 
         String result = prosecution.insertProsecution();
@@ -43,7 +45,6 @@ public class ProsecutionMBTest {
     @Test
     public void testProsecutionFailedIdJudIsZero() {
         ProsecutionMB prosecution = new ProsecutionMB();
-        prosecution.setIdJudge((long)0);
 
         String expResult = "Preencha o juiz";
 
@@ -53,10 +54,62 @@ public class ProsecutionMBTest {
     }
     
     @Test
-    public void testProsecutionFailedIdJudIsNull() {
+    public void testProsecutionFailedIdJudgeIsNull() {
         ProsecutionMB prosecution = new ProsecutionMB();
-
+        
         String expResult = "Preencha o juiz";
+
+        String result = prosecution.insertProsecution();
+
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testProsecutionFailedPromoventeIsNull() {
+        ProsecutionMB prosecution = new ProsecutionMB();
+        prosecution.setIdJudge((long)2);        
+        
+        String expResult = "Preencha o promovente";
+
+        String result = prosecution.insertProsecution();
+
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testProsecutionFailedPromoventeIsEmpty() {
+        ProsecutionMB prosecution = new ProsecutionMB();
+        prosecution.setIdJudge((long)2);
+        
+        String expResult = "Preencha o promovente";
+
+        String result = prosecution.insertProsecution();
+
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testProsecutionFailedPromovidoIsNull() {
+        ProsecutionMB prosecution = new ProsecutionMB();
+        prosecution.setIdJudge((long)2);
+        
+        prosecution.setPromovente("promovente");
+        
+        String expResult = "Preencha o promovido";
+
+        String result = prosecution.insertProsecution();
+
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testProsecutionFailedPromovidoIsEmpty() {
+        ProsecutionMB prosecution = new ProsecutionMB();
+        prosecution.setIdJudge((long)2);
+        
+        prosecution.setPromovente("promovente");
+        
+        String expResult = "Preencha o promovido";
 
         String result = prosecution.insertProsecution();
 

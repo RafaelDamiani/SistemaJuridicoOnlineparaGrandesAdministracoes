@@ -3,10 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/test/mb/RegisterMBTest.java</file>
             <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/model/Prosecution.java</file>
-            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/model/ProsecutionStatus.java</file>
             <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/model/Phase.java</file>
+            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/test/mb/ProsecutionMBTest.java</file>
+            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/model/User.java</file>
+            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/validator/UserTypeValidator.java</file>
+            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/validator/ProsecutionValidator.java</file>
+            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/mb/RegisterMB.java</file>
+            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/validator/AddressValidator.java</file>
+            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/test/mb/RegisterMBTest.java</file>
+            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/model/ProsecutionStatus.java</file>
+            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/validator/UserValidator.java</file>
+            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/mb/ProsecutionMB.java</file>
             <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/model/ProsecutionUser.java</file>
         </group>
     </open-files>

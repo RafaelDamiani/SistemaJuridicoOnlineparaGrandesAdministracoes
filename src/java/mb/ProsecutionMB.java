@@ -5,6 +5,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import org.hibernate.Session;
 import util.HibernateUtil;
+import validator.ProsecutionUserValidator;
 import validator.ProsecutionValidator;
 
 @Named(value = "prosecutionMB")
@@ -12,7 +13,12 @@ import validator.ProsecutionValidator;
 public class ProsecutionMB {
     private final Date date = new Date();
     private Long idJudge;
-
+    private String promovente;
+    private String promovido;
+    
+    public ProsecutionMB() {
+    }
+    
     public Long getIdJudge() {
         return idJudge;
     }
@@ -20,8 +26,21 @@ public class ProsecutionMB {
     public void setIdJudge(Long idJudge) {
         this.idJudge = idJudge;
     }
-    
-    public ProsecutionMB() {
+
+    public String getPromovente() {
+        return promovente;
+    }
+
+    public void setPromovente(String promovente) {
+        this.promovente = promovente;
+    }
+
+    public String getPromovido() {
+        return promovido;
+    }
+
+    public void setPromovido(String promovido) {
+        this.promovido = promovido;
     }
     
     public String insertProsecution() {
@@ -34,6 +53,13 @@ public class ProsecutionMB {
         ProsecutionValidator prosecutionValidator = new ProsecutionValidator(valid);
         response = prosecutionValidator.validateProsecution(idJudge);
         valid = prosecutionValidator.isValid();
+        
+        if (!valid)
+            return response;
+        
+        ProsecutionUserValidator prosecutionUserValidator = new ProsecutionUserValidator(valid);
+        response = prosecutionUserValidator.validateProsecutionUser(promovente, promovido);
+        valid = prosecutionUserValidator.isValid();
         
         if (!valid)
             return response;
