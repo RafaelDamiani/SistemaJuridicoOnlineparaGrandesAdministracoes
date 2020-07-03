@@ -1,7 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +19,11 @@ public class Prosecution implements Serializable {
     private User judge;
     
     public Prosecution() {
+    }
+    
+    public Prosecution(Date date, User judge) {
+        this.date = date;
+        this.judge = judge;
     }
     
     @Id

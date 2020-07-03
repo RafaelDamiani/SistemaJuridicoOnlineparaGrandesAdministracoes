@@ -16,6 +16,10 @@ public class PartType implements Serializable {
     
     public PartType() {
     }
+    
+    public PartType(Integer id) {
+        this.id = id;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

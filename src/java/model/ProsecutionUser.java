@@ -21,6 +21,14 @@ public class ProsecutionUser {
     public ProsecutionUser() {
     }
     
+    public ProsecutionUser(Prosecution prosecution, User part, User lawyer, ProsecutionStatus prosecutionStatus, PartType partType) {
+        this.prosecution = prosecution;
+        this.part = part;
+        this.lawyer = lawyer;
+        this.prosecutionStatus = prosecutionStatus;
+        this.partType = partType;
+    }
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {

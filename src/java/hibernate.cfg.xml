@@ -17,5 +17,6 @@
     <mapping class="model.ProsecutionUser"/>
     <mapping class="model.User"/>
     <mapping class="model.UserType"/>
+    <mapping class="model.Judge"/>
   </session-factory>
 </hibernate-configuration>

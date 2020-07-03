@@ -17,6 +17,10 @@ public class ProsecutionStatus implements Serializable {
     public ProsecutionStatus() {
     }
     
+    public ProsecutionStatus(Integer id) {
+        this.id = id;
+    }
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
