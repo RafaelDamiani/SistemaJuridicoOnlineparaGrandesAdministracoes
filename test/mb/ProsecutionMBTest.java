@@ -155,18 +155,4 @@ public class ProsecutionMBTest {
 
         assertEquals(expResult, result);
     }
-    
-    @Test
-    public void testListProsecutionWithoutFilter() {
-        ProsecutionMB prosecution = new ProsecutionMB();
-        
-        prosecution.setIdLawyer((long)14);
-        prosecution.setFilter(0);
-        
-        int expResult = 2;
-
-        List<ProsecutionTable> result = prosecution.indexProsecution();
-
-        assertEquals(expResult, result.size());
-    }
 }
