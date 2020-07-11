@@ -91,5 +91,5 @@ create table tb_phase(
 	prosecution_id bigint not null REFERENCES tb_prosecution(id),
 	lawyer_id bigint not null REFERENCES tb_user(id)
 	phase_type_id integer not null REFERENCES tb_phase_type(id),
-	phase_status_id integer not null REFERENCES tb_phase_status(id)
+	phase_status_id integer REFERENCES tb_phase_status(id)
 );
