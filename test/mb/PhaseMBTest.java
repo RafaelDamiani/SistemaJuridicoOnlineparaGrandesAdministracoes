@@ -29,12 +29,32 @@ public class PhaseMBTest {
     }
 
     @Test
-    public void testPhaseSuccess() {
+    public void testPhaseSuccessAccepted() {
         PhaseMB prosecution = new PhaseMB();
         prosecution.setIdProsecution((long)15);
         prosecution.setIdlawyer((long)2);
         prosecution.setTitle("Fase 1");
         prosecution.setDescription("Lorem ipsum dolor sit ame");
+        prosecution.setIdPhaseType(1);
+        prosecution.setIdPhaseStatus(1);
+        
+        String expResult = "Fase cadastrada com sucesso!";
+
+        String result = prosecution.insertPhase();
+
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testPhaseSuccessDenied() {
+        PhaseMB prosecution = new PhaseMB();
+        prosecution.setIdProsecution((long)15);
+        prosecution.setIdlawyer((long)2);
+        prosecution.setTitle("Fase 1");
+        prosecution.setDescription("Lorem ipsum dolor sit ame");
+        prosecution.setIdPhaseType(1);
+        prosecution.setIdPhaseStatus(2);
+        prosecution.setJustification("Lorem ipsum dolor sit ame");
         
         String expResult = "Fase cadastrada com sucesso!";
 
@@ -179,6 +199,130 @@ public class PhaseMBTest {
         prosecution.setDescription("Lorem ipsum dolor sit am");
         
         String expResult = "A descrição deve ter no mínimo 25 caracteres";
+
+        String result = prosecution.insertPhase();
+
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testPhaseFailedPhaseTypeIsNull() {
+        PhaseMB prosecution = new PhaseMB();
+        
+        prosecution.setIdProsecution((long)15);
+        prosecution.setIdlawyer((long)2);
+        prosecution.setTitle("abcde");
+        prosecution.setDescription("Lorem ipsum dolor sit ame");
+        
+        String expResult = "Defina o tipo da fase";
+
+        String result = prosecution.insertPhase();
+
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testPhaseFailedPhaseTypeIsZero() {
+        PhaseMB prosecution = new PhaseMB();
+        
+        prosecution.setIdProsecution((long)15);
+        prosecution.setIdlawyer((long)2);
+        prosecution.setTitle("abcde");
+        prosecution.setDescription("Lorem ipsum dolor sit ame");
+        prosecution.setIdPhaseType(0);
+        
+        String expResult = "Defina o tipo da fase";
+
+        String result = prosecution.insertPhase();
+
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testPhaseFailedPhaseStatusIsNull() {
+        PhaseMB prosecution = new PhaseMB();
+        
+        prosecution.setIdProsecution((long)15);
+        prosecution.setIdlawyer((long)2);
+        prosecution.setTitle("abcde");
+        prosecution.setDescription("Lorem ipsum dolor sit ame");
+        prosecution.setIdPhaseType(1);
+        
+        String expResult = "Escolha o status da fase";
+
+        String result = prosecution.insertPhase();
+
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testPhaseFailedPhaseStatusIsZero() {
+        PhaseMB prosecution = new PhaseMB();
+        
+        prosecution.setIdProsecution((long)15);
+        prosecution.setIdlawyer((long)2);
+        prosecution.setTitle("abcde");
+        prosecution.setDescription("Lorem ipsum dolor sit ame");
+        prosecution.setIdPhaseType(1);
+        prosecution.setIdPhaseStatus(0);
+        
+        String expResult = "Escolha o status da fase";
+
+        String result = prosecution.insertPhase();
+
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testPhaseFailedJustificationIsNull() {
+        PhaseMB prosecution = new PhaseMB();
+        
+        prosecution.setIdProsecution((long)15);
+        prosecution.setIdlawyer((long)2);
+        prosecution.setTitle("abcde");
+        prosecution.setDescription("Lorem ipsum dolor sit ame");
+        prosecution.setIdPhaseType(1);
+        prosecution.setIdPhaseStatus(2);
+        
+        String expResult = "Preencha a justificativa";
+
+        String result = prosecution.insertPhase();
+
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testPhaseFailedJustificationIsEmpty() {
+        PhaseMB prosecution = new PhaseMB();
+        
+        prosecution.setIdProsecution((long)15);
+        prosecution.setIdlawyer((long)2);
+        prosecution.setTitle("abcde");
+        prosecution.setDescription("Lorem ipsum dolor sit ame");
+        prosecution.setIdPhaseType(1);
+        prosecution.setIdPhaseStatus(2);
+        prosecution.setJustification("");
+        
+        String expResult = "Preencha a justificativa";
+
+        String result = prosecution.insertPhase();
+
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testPhaseFailedJustificationIsLessThanTwentyFiveCaracteres() {
+        PhaseMB prosecution = new PhaseMB();
+        
+        prosecution.setIdProsecution((long)15);
+        prosecution.setIdlawyer((long)2);
+        prosecution.setTitle("abcde");
+        prosecution.setDescription("Lorem ipsum dolor sit ame");
+        prosecution.setIdPhaseType(1);
+        prosecution.setIdPhaseStatus(2);
+        prosecution.setJustification("Lorem ipsum dolor sit am");
+        
+        String expResult = "A justificativa deve ter no mínimo 25 caracteres";
 
         String result = prosecution.insertPhase();
 

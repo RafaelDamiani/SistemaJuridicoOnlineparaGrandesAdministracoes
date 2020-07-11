@@ -46,6 +46,27 @@ public class PhaseValidator {
             return "A descrição deve ter no mínimo 25 caracteres";
         }
         
+        if (idPhaseType == null || idPhaseType == 0) {
+            setValid(false);
+            return "Defina o tipo da fase";
+        }
+        
+        if (idPhaseStatus == null || idPhaseStatus == 0) {
+            setValid(false);
+            return "Escolha o status da fase";
+        }
+        
+        if (idPhaseStatus == 2){
+            if (justification == null || justification.isEmpty()) {
+                setValid(false);
+                return "Preencha a justificativa";
+            }
+            if (justification.length() < 25) {
+                setValid(false);
+                return "A justificativa deve ter no mínimo 25 caracteres";
+            }
+        }
+        
         return "ok";
     }
 }
