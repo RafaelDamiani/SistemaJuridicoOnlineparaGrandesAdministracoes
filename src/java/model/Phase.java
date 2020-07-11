@@ -18,11 +18,12 @@ public class Phase implements Serializable {
     private Date date;
     private String title;
     private String description;
+    private String justification;
     private Prosecution prosecution;
+    private User lawyer;
     private PhaseType phaseType;
     private PhaseStatus phaseStatus;
-    // private String file; <-- TODO pdf file
-    //private List<Document> document;  <-- TODO
+    // private String file; <-- TODO pdf file (pesquisar)
     
     public Phase(){
     }
@@ -64,6 +65,15 @@ public class Phase implements Serializable {
         this.description = description;
     }
     
+    @Column(updatable=true, name="phase_justification", length=5000)
+    public String getJustification() {
+        return justification;
+    }
+
+    public void setJustification(String justification) {
+        this.justification = justification;
+    }
+    
     @ManyToOne
     @JoinColumn(name="prosecution_id")
     public Prosecution getProsecution() {
@@ -72,6 +82,16 @@ public class Phase implements Serializable {
     
     public void setProsecution(Prosecution prosecution) {
         this.prosecution = prosecution;
+    }
+    
+    @ManyToOne
+    @JoinColumn(name="lawyer_id")
+    public User getLawyer() {
+        return this.lawyer;
+    }
+    
+    public void setLawyer(User lawyer) {
+        this.lawyer = lawyer;
     }
     
     @ManyToOne

@@ -3,98 +3,96 @@ package mb;
 import java.util.Date;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import model.Judge;
-import model.PartType;
-import model.Prosecution;
-import model.ProsecutionStatus;
-import model.ProsecutionUser;
-import model.User;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import util.HibernateUtil;
-import validator.ProsecutionUserValidator;
-import validator.ProsecutionValidator;
+import validator.PhaseValidator;
 
-@Named(value = "prosecutionMB")
+@Named(value = "phaseMB")
 @RequestScoped
-public class ProsecutionMB {
+public class PhaseMB {
     private final Date date = new Date();
-    private Long idPromovente;
-    private Long idPromoventeLawyer;
-    private Long idPromovido;
-    private Long idPromovidoLawyer;
+    private String title;
+    private String description;
+    private String justification;
+    private Long idProsecution;
+    private Long idlawyer;
+    private Integer idPhaseType;
+    private Integer idPhaseStatus;
     
-    public ProsecutionMB() {
-    }
-    
-    public Long getIdPromovente() {
-        return idPromovente;
+    public PhaseMB() {
     }
 
-    public void setIdPromovente(Long idPromovente) {
-        this.idPromovente = idPromovente;
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getJustification() {
+        return justification;
+    }
+
+    public void setJustification(String justification) {
+        this.justification = justification;
+    }
+
+    public Long geIdProsecution() {
+        return idProsecution;
+    }
+
+    public void setIdProsecution(Long idProsecution) {
+        this.idProsecution = idProsecution;
     }
     
-    public Long getIdPromoventeLawyer() {
-        return idPromoventeLawyer;
+    public Long getIdlawyer() {
+        return idlawyer;
     }
 
-    public void setIdPromoventeLawyer(Long idPromoventeLawyer) {
-        this.idPromoventeLawyer = idPromoventeLawyer;
+    public void setIdlawyer(Long idlawyer) {
+        this.idlawyer = idlawyer;
     }
 
-    public Long getIdPromovido() {
-        return idPromovido;
+    public Integer getIdPhaseType() {
+        return idPhaseType;
     }
 
-    public void setIdPromovido(Long idPromovido) {
-        this.idPromovido = idPromovido;
+    public void setIdPhaseType(Integer idPhaseType) {
+        this.idPhaseType = idPhaseType;
+    }
+
+    public Integer getIdPhaseStatus() {
+        return idPhaseStatus;
+    }
+
+    public void setIdPhaseStatus(Integer idPhaseStatus) {
+        this.idPhaseStatus = idPhaseStatus;
     }
     
-    public Long getIdPromovidoLawyer() {
-        return idPromovidoLawyer;
-    }
-
-    public void setIdPromovidoLawyer(Long idPromovidoLawyer) {
-        this.idPromovidoLawyer = idPromovidoLawyer;
-    }
-    
-    public String insertProsecution() {
+    public String insertPhase() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         
         boolean valid = true;
         String response = "";
         
-        String hql = "select us.id, count(prs.id) as qtdPros from tb_user us left join tb_prosecution prs on prs.judge_id = us.id where us.user_type_id = 3 group by us.id LIMIT 1";
-
-        Query query = session.createSQLQuery(hql).addEntity(Judge.class);
-        
-        Judge judge = (Judge)query.uniqueResult();
-        
-        long idJudge = judge.getId();
-        
-        ProsecutionValidator prosecutionValidator = new ProsecutionValidator(valid);
-        response = prosecutionValidator.validateProsecution(idJudge);
-        valid = prosecutionValidator.isValid();
+        PhaseValidator phaseValidator = new PhaseValidator(valid);
+        response = phaseValidator.validatePhase(idProsecution, idlawyer, title, description, justification, idPhaseType, idPhaseStatus);
+        valid = phaseValidator.isValid();
         
         if (!valid)
             return response;
         
-        User newJudge = new User(idJudge);
-        
-        Prosecution prosecution = new Prosecution(date,newJudge);
-        
-        session.save(prosecution);
-        
-        ProsecutionUserValidator prosecutionUserValidator = new ProsecutionUserValidator(valid);
-        response = prosecutionUserValidator.validateProsecutionUser(idPromovente, idPromoventeLawyer , idPromovido, idPromovidoLawyer);
-        valid = prosecutionUserValidator.isValid();
-        
-        if (!valid)
-            return response;
-        
-        User partPromovente = new User(idPromovente);
+        /*User partPromovente = new User(idPromovente);
         User promoventeLawyer = new User(idPromoventeLawyer);
         User partPromovido = new User(idPromovido);
         User promovidoLawyer = new User(idPromovidoLawyer);
@@ -108,10 +106,10 @@ public class ProsecutionMB {
         
         session.save(prosecutionUserPromovente);
         session.save(prosecutionUserPromovido);
-        
+        */
         session.getTransaction().commit();
         session.close();
         
-        return "Processo cadastrado com sucesso!";
+        return "Fase cadastrada com sucesso!";
     }
 }
