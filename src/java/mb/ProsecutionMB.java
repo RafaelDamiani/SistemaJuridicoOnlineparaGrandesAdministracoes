@@ -1,12 +1,14 @@
 package mb;
 
 import java.util.Date;
+import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import model.Judge;
 import model.PartType;
 import model.Prosecution;
 import model.ProsecutionStatus;
+import model.ProsecutionTable;
 import model.ProsecutionUser;
 import model.User;
 import org.hibernate.Query;
@@ -23,6 +25,8 @@ public class ProsecutionMB {
     private Long idPromoventeLawyer;
     private Long idPromovido;
     private Long idPromovidoLawyer;
+    private Long idLawyer;
+    private int filter;
     
     public ProsecutionMB() {
     }
@@ -57,6 +61,22 @@ public class ProsecutionMB {
 
     public void setIdPromovidoLawyer(Long idPromovidoLawyer) {
         this.idPromovidoLawyer = idPromovidoLawyer;
+    }
+
+    public Long getIdLawyer() {
+        return idLawyer;
+    }
+
+    public void setIdLawyer(Long idLawyer) {
+        this.idLawyer = idLawyer;
+    }
+
+    public int getFilter() {
+        return filter;
+    }
+
+    public void setFilter(int filter) {
+        this.filter = filter;
     }
     
     public String insertProsecution() {
@@ -113,5 +133,79 @@ public class ProsecutionMB {
         session.close();
         
         return "Processo cadastrado com sucesso!";
+    }
+    
+    public List<ProsecutionTable> indexProsecution() {
+        /* filter: 
+            0 -> todos | 
+            1 -> aberto | 
+            2 -> encerrados | 
+            3 -> ganho/perdido como promovido
+            4 -> ganho/perdido como promovente
+        */
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        
+        String hql = 
+                "select \n" +
+                "   prs.id as idProsecution, \n" +
+                "   prs.prosecution_date as date, \n" +
+                "   jdg.user_name as judge, \n" +
+                "   prs_sts.prosecution_status_name as status,\n" +
+                "   prt.user_name as part,\n" +
+                "   prt_type.part_type_name as category\n" +
+                "from tb_prosecution prs \n" +
+                "inner join tb_user jdg\n" +
+                "   on jdg.id = prs.judge_id\n" +
+                "inner join tb_prosecution_user prs_usr\n" +
+                "   on prs_usr.prosecution_id = prs.id\n" +
+                "inner join tb_prosecution_status prs_sts\n" +
+                "   on prs_sts.id = prs_usr.prosecution_status_id\n" +
+                "inner join tb_user prt\n" +
+                "   on prt.id = prs_usr.part_id\n" +
+                "inner join tb_part_type prt_type\n" +
+                "   on prt_type.id = prs_usr.part_type_id\n" +
+                "where\n" +
+                "   prs_usr.lawyer_id = :idLawyer and\n" +
+                "   (\n" +
+                "       0 = :filter or \n" +
+                "       (\n" +
+                "           1 = :filter and  \n" +
+                "           prs_sts.id = 1\n" +
+                "	) or \n" +
+                "	(\n" +
+                "           2 = :filter and  \n" +
+                "           prs_sts.id = 2\n" +
+                "	) or \n" +
+                "	(\n" +
+                "           3 = :filter and\n" +
+                "           prt_type.id = 2 and\n" +
+                "           (\n" +
+                "              prs_sts.id = 3 or \n" +
+                "              prs_sts.id = 4\n" +
+                "           )\n" +
+                "	) or\n" +
+                "	(\n" +
+                "           4 = :filter and  \n" +
+                "           prt_type.id = 1 and\n" +
+                "           (\n" +
+                "              prs_sts.id = 3 or \n" +
+                "              prs_sts.id = 4\n" +
+                "           )\n" +
+                "       )\n" +
+                "   )\n" +
+                "   order by prs.id";
+
+        Query query = session.createSQLQuery(hql);
+        query.setParameter("idLawyer", idLawyer);
+        query.setParameter("filter", filter);
+
+        List<ProsecutionTable> prosecutions = query.list();
+        
+        session.getTransaction().commit();
+        session.close();
+        
+        return prosecutions;
     }
 }

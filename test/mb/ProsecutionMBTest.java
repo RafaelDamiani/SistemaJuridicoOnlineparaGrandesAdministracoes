@@ -1,5 +1,7 @@
 package mb;
 
+import java.util.List;
+import model.ProsecutionTable;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -152,5 +154,19 @@ public class ProsecutionMBTest {
         String result = prosecution.insertProsecution();
 
         assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testListProsecutionWithoutFilter() {
+        ProsecutionMB prosecution = new ProsecutionMB();
+        
+        prosecution.setIdLawyer((long)14);
+        prosecution.setFilter(0);
+        
+        int expResult = 2;
+
+        List<ProsecutionTable> result = prosecution.indexProsecution();
+
+        assertEquals(expResult, result.size());
     }
 }
