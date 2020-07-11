@@ -31,7 +31,7 @@ public class PhaseMBTest {
     @Test
     public void testPhaseSuccessAccepted() {
         PhaseMB prosecution = new PhaseMB();
-        prosecution.setIdProsecution((long)15);
+        prosecution.setIdProsecution((long)10);
         prosecution.setIdlawyer((long)2);
         prosecution.setTitle("Fase 1");
         prosecution.setDescription("Lorem ipsum dolor sit ame");
@@ -48,7 +48,7 @@ public class PhaseMBTest {
     @Test
     public void testPhaseSuccessDenied() {
         PhaseMB prosecution = new PhaseMB();
-        prosecution.setIdProsecution((long)15);
+        prosecution.setIdProsecution((long)10);
         prosecution.setIdlawyer((long)2);
         prosecution.setTitle("Fase 1");
         prosecution.setDescription("Lorem ipsum dolor sit ame");
@@ -91,7 +91,7 @@ public class PhaseMBTest {
     public void testPhaseFailedLawyerIsNull() {
         PhaseMB prosecution = new PhaseMB();
         
-        prosecution.setIdProsecution((long)15);
+        prosecution.setIdProsecution((long)10);
         
         String expResult = "A fase não possui nenhum advogado atrelado à ela. Entre em contato com o Adminstrador.";
 
@@ -104,7 +104,7 @@ public class PhaseMBTest {
     public void testPhaseFailedLawyerIsZero() {
         PhaseMB prosecution = new PhaseMB();
         
-        prosecution.setIdProsecution((long)15);
+        prosecution.setIdProsecution((long)10);
         prosecution.setIdlawyer((long)0);
         
         String expResult = "A fase não possui nenhum advogado atrelado à ela. Entre em contato com o Adminstrador.";
@@ -118,7 +118,7 @@ public class PhaseMBTest {
     public void testPhaseFailedTitleIsNull() {
         PhaseMB prosecution = new PhaseMB();
         
-        prosecution.setIdProsecution((long)15);
+        prosecution.setIdProsecution((long)10);
         prosecution.setIdlawyer((long)2);
         
         String expResult = "Preencha o título";
@@ -132,7 +132,7 @@ public class PhaseMBTest {
     public void testPhaseFailedTitleIsEmpty() {
         PhaseMB prosecution = new PhaseMB();
 
-        prosecution.setIdProsecution((long)15);
+        prosecution.setIdProsecution((long)10);
         prosecution.setIdlawyer((long)2);
         prosecution.setTitle("");
         
@@ -147,7 +147,7 @@ public class PhaseMBTest {
     public void testPhaseFailedTitleIsLessThanFiveCaracteres() {
         PhaseMB prosecution = new PhaseMB();
         
-        prosecution.setIdProsecution((long)15);
+        prosecution.setIdProsecution((long)10);
         prosecution.setIdlawyer((long)2);
         prosecution.setTitle("abcd");
         
@@ -162,7 +162,7 @@ public class PhaseMBTest {
     public void testPhaseFailedDescriptionIsNull() {
         PhaseMB prosecution = new PhaseMB();
         
-        prosecution.setIdProsecution((long)15);
+        prosecution.setIdProsecution((long)10);
         prosecution.setIdlawyer((long)2);
         prosecution.setTitle("abcde");
         
@@ -177,7 +177,7 @@ public class PhaseMBTest {
     public void testPhaseFailedDescriptionIsEmpty() {
         PhaseMB prosecution = new PhaseMB();
 
-        prosecution.setIdProsecution((long)15);
+        prosecution.setIdProsecution((long)10);
         prosecution.setIdlawyer((long)2);
         prosecution.setTitle("abcde");
         prosecution.setDescription("");
@@ -193,7 +193,7 @@ public class PhaseMBTest {
     public void testPhaseFailedDescriptionIsLessThanTwentyFiveCaracteres() {
         PhaseMB prosecution = new PhaseMB();
         
-        prosecution.setIdProsecution((long)15);
+        prosecution.setIdProsecution((long)10);
         prosecution.setIdlawyer((long)2);
         prosecution.setTitle("abcde");
         prosecution.setDescription("Lorem ipsum dolor sit am");
@@ -209,7 +209,7 @@ public class PhaseMBTest {
     public void testPhaseFailedPhaseTypeIsNull() {
         PhaseMB prosecution = new PhaseMB();
         
-        prosecution.setIdProsecution((long)15);
+        prosecution.setIdProsecution((long)10);
         prosecution.setIdlawyer((long)2);
         prosecution.setTitle("abcde");
         prosecution.setDescription("Lorem ipsum dolor sit ame");
@@ -225,7 +225,7 @@ public class PhaseMBTest {
     public void testPhaseFailedPhaseTypeIsZero() {
         PhaseMB prosecution = new PhaseMB();
         
-        prosecution.setIdProsecution((long)15);
+        prosecution.setIdProsecution((long)10);
         prosecution.setIdlawyer((long)2);
         prosecution.setTitle("abcde");
         prosecution.setDescription("Lorem ipsum dolor sit ame");
@@ -242,7 +242,7 @@ public class PhaseMBTest {
     public void testPhaseFailedPhaseStatusIsNull() {
         PhaseMB prosecution = new PhaseMB();
         
-        prosecution.setIdProsecution((long)15);
+        prosecution.setIdProsecution((long)10);
         prosecution.setIdlawyer((long)2);
         prosecution.setTitle("abcde");
         prosecution.setDescription("Lorem ipsum dolor sit ame");
@@ -259,7 +259,7 @@ public class PhaseMBTest {
     public void testPhaseFailedPhaseStatusIsZero() {
         PhaseMB prosecution = new PhaseMB();
         
-        prosecution.setIdProsecution((long)15);
+        prosecution.setIdProsecution((long)10);
         prosecution.setIdlawyer((long)2);
         prosecution.setTitle("abcde");
         prosecution.setDescription("Lorem ipsum dolor sit ame");
@@ -277,7 +277,7 @@ public class PhaseMBTest {
     public void testPhaseFailedJustificationIsNull() {
         PhaseMB prosecution = new PhaseMB();
         
-        prosecution.setIdProsecution((long)15);
+        prosecution.setIdProsecution((long)10);
         prosecution.setIdlawyer((long)2);
         prosecution.setTitle("abcde");
         prosecution.setDescription("Lorem ipsum dolor sit ame");
@@ -295,7 +295,7 @@ public class PhaseMBTest {
     public void testPhaseFailedJustificationIsEmpty() {
         PhaseMB prosecution = new PhaseMB();
         
-        prosecution.setIdProsecution((long)15);
+        prosecution.setIdProsecution((long)10);
         prosecution.setIdlawyer((long)2);
         prosecution.setTitle("abcde");
         prosecution.setDescription("Lorem ipsum dolor sit ame");
@@ -314,7 +314,7 @@ public class PhaseMBTest {
     public void testPhaseFailedJustificationIsLessThanTwentyFiveCaracteres() {
         PhaseMB prosecution = new PhaseMB();
         
-        prosecution.setIdProsecution((long)15);
+        prosecution.setIdProsecution((long)10);
         prosecution.setIdlawyer((long)2);
         prosecution.setTitle("abcde");
         prosecution.setDescription("Lorem ipsum dolor sit ame");

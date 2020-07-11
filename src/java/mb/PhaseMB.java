@@ -3,6 +3,11 @@ package mb;
 import java.util.Date;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import model.Phase;
+import model.PhaseStatus;
+import model.PhaseType;
+import model.Prosecution;
+import model.User;
 import org.hibernate.Session;
 import util.HibernateUtil;
 import validator.PhaseValidator;
@@ -92,24 +97,18 @@ public class PhaseMB {
         if (!valid)
             return response;
         
-        /*User partPromovente = new User(idPromovente);
-        User promoventeLawyer = new User(idPromoventeLawyer);
-        User partPromovido = new User(idPromovido);
-        User promovidoLawyer = new User(idPromovidoLawyer);
+        Prosecution prosecution = new Prosecution(idProsecution);
+        User lawyer = new User(idlawyer);
+        PhaseType phaseType = new PhaseType(idPhaseType);
+        PhaseStatus phaseStatus = new PhaseStatus(idPhaseStatus);
         
-        ProsecutionStatus prosecutionStatus = new ProsecutionStatus(1);
-        PartType partPromoventeType = new PartType(1);
-        PartType partPromovidoType = new PartType(2);
+        Phase phase = new Phase(date, prosecution, lawyer, title, description, justification, phaseType, phaseStatus);
         
-        ProsecutionUser prosecutionUserPromovente = new ProsecutionUser(prosecution, partPromovente, promoventeLawyer, prosecutionStatus, partPromoventeType);
-        ProsecutionUser prosecutionUserPromovido = new ProsecutionUser(prosecution, partPromovido, promovidoLawyer, prosecutionStatus, partPromovidoType);
-        
-        session.save(prosecutionUserPromovente);
-        session.save(prosecutionUserPromovido);
-        */
+        session.save(phase);
+
         session.getTransaction().commit();
         session.close();
         
-        return "Fase cadastrada com sucesso!";
+        return response;
     }
 }

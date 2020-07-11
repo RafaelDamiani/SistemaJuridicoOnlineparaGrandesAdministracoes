@@ -1,7 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,6 +26,17 @@ public class Phase implements Serializable {
     // private String file; <-- TODO pdf file (pesquisar)
     
     public Phase(){
+    }
+    
+    public Phase (Date date, Prosecution prosecution, User lawyer, String title, String description, String justification, PhaseType phaseType, PhaseStatus phaseStatus) {
+        this.date = date;
+        this.prosecution = prosecution;
+        this.lawyer = lawyer;
+        this.title = title;
+        this.description = description;
+        this.justification = justification;
+        this.phaseType = phaseType;
+        this.phaseStatus = phaseStatus;
     }
 
     @Id

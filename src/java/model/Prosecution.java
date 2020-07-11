@@ -21,6 +21,10 @@ public class Prosecution implements Serializable {
     public Prosecution() {
     }
     
+    public Prosecution(Long id) {
+        this.id = id;
+    }
+    
     public Prosecution(Date date, User judge) {
         this.date = date;
         this.judge = judge;

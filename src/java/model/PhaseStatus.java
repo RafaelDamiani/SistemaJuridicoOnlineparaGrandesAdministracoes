@@ -16,6 +16,10 @@ public class PhaseStatus implements Serializable {
     
     public PhaseStatus() {
     }
+    
+    public PhaseStatus(Integer id) {
+        this.id = id;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

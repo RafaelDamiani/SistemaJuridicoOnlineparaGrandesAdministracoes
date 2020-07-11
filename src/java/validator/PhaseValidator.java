@@ -67,6 +67,6 @@ public class PhaseValidator {
             }
         }
         
-        return "ok";
+        return "Fase cadastrada com sucesso!";
     }
 }

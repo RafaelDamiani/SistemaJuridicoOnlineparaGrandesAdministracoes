@@ -83,7 +83,7 @@ public class ProsecutionMB {
         
         User newJudge = new User(idJudge);
         
-        Prosecution prosecution = new Prosecution(date,newJudge);
+        Prosecution prosecution = new Prosecution(date, newJudge);
         
         session.save(prosecution);
         

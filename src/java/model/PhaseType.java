@@ -16,6 +16,10 @@ public class PhaseType implements Serializable {
     
     public PhaseType() {
     }
+    
+    public PhaseType(Integer id) {
+        this.id = id;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
