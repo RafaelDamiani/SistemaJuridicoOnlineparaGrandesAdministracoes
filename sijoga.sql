@@ -89,6 +89,7 @@ create table tb_phase(
 	phase_description varchar(5000) not null,
 	phase_justification varchar(5000),
 	prosecution_id bigint not null REFERENCES tb_prosecution(id),
+	lawyer_id bigint not null REFERENCES tb_user(id)
 	phase_type_id integer not null REFERENCES tb_phase_type(id),
 	phase_status_id integer not null REFERENCES tb_phase_status(id)
 );
