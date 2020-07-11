@@ -87,6 +87,7 @@ create table tb_phase(
 	phase_date timestamp not null,
 	phase_title varchar(255) not null,
 	phase_description varchar(5000) not null,
+	phase_justification varchar(5000),
 	prosecution_id bigint not null REFERENCES tb_prosecution(id),
 	phase_type_id integer not null REFERENCES tb_phase_type(id),
 	phase_status_id integer not null REFERENCES tb_phase_status(id)
