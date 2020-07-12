@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <b:well>-
+            <h:form>
+                <p:growl id="msgs1" showDetail="true" />
+                <b:panelGrid colSpans="5,7">
+                    <b:inputText label="Enter a number" value="#{barcodeBean.code39}">
+                        <f:facet name="prepend">
+                            <h:outputText value="Code39" />
+                        </f:facet>
+                        <p:ajax event="keyup" update="code39" />
+                    </b:inputText>
+                    <p:barcode value="#{barcodeBean.code39}" type="code39" id="code39"/>
+
+                    <b:inputText label="Enter your internet address" value="#{barcodeBean.url2}">
+                        <p:ajax event="keyup" update="@next" />
+                    </b:inputText>
+                    <p:barcode value="#{barcodeBean.url2}" type="qr" id="qr1" style="width:90px;height:90px;"/>
+
+                    <b:inputText label="Enter another internet address" value="#{barcodeBean.url}"
+                                 onkeyup="ajax:barcodeBean.doNothing()" update="@next">
+                        <f:facet name="prepend">
+                            <b:selectOneMenu value="#{barcodeBean.protocol}">
+                                <f:selectItem itemLabel="http://"/>
+                                <f:selectItem itemLabel="https://"/>
+                            </b:selectOneMenu>
+                            <h:outputText value="www." />
+                        </f:facet>
+                    </b:inputText>
+                    <p:barcode value="#{barcodeBean.completeURL}" type="qr" id="qr2" style="width:90px;height:90px;"/>
+                </b:panelGrid>
+            </h:form>
+        </b:well>
+    </h:body>
+</html>
+
