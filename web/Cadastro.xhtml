@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">     
+    <h:head>
+        <title>Cadastro</title>
+        <link rel="StyleSheet" type="text/css" href="css/estilos.css" media="screen" />
+    </h:head>
+    <h:body>
+        <b:row styleClass="box-cadastro">
+            <span styleClass="titlecadast"><b>Cadastro</b></span>
+            <hr/>
+            <b:form >
+                <b:panelGrid columns="2">
+                    <b:inputText label="Nome Completo" render-label="true"/>
+                    <b:inputText styleClass="inputcadast" mask="999.999.999-99" label="CPF " />
+                    <b:inputText mask="dd.mm.yyyy" label="Data de Nascimento" render-label="true"/>
+                    <b:inputText mask="email" label="E-mail " render-label="true"/>
+                    <b:inputSecret label="Senha" ></b:inputSecret>
+                    <b:inputSecret label="Confirmar Senha" ></b:inputSecret>
+                    <b:selectOneMenu value="#{selectOneMenuBean.type}" label="Cargo:" >
+                        <f:selectItem itemLabel="Selecionar" itemValue="" />
+                        <f:selectItem itemLabel="Admin" itemValue="1" />
+                        <f:selectItem itemLabel="Advogado" itemValue="2" />
+                        <f:selectItem itemLabel="Juiz" itemValue="3" />
+                        <f:selectItem itemLabel="Parte" itemValue="4" />
+                    </b:selectOneMenu>
+                    <b:inputText styleClass="inputcadast" mask="integer" label="CEP" render-label="true"/>  
+                    <b:inputText label="Estado" render-label="true"/>   
+                    <b:inputText label="Endereço" render-label="true"/>  
+                    <b:inputText styleClass="inputcadast" mask="integer" label="Numero Residencial" render-label="true"/>   
+                    <b:inputText label="Cidade" render-label="true"/>  
+                </b:panelGrid>
+                <b:button outcome="index" styleClass="btn-voltar" style="float: left;" value="Voltar" size="sm"/>
+                <b:button styleClass="btn-salvar" style="float: right;" value="Salvar" size="sm"/>
+            </b:form>
+        </b:row>
+    </h:body>
+</html>
+
