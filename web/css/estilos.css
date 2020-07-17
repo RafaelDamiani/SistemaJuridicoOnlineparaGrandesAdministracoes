@@ -72,3 +72,18 @@ and open the template in the editor.
 }
 /*Fim*/
 
+/*home*/
+.dropmenu{
+    float: right !important;
+}
+
+#j_idt5 {
+    width: 90%;
+}
+/*Fim*/
+/*Senha*/
+.box-cadastroaltsenha{
+    margin: 50px;
+}
+/*Fim*/
+

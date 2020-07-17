@@ -5,7 +5,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Cadastro Processos</title>
+        <title>Alterar Senha</title>
         <link rel="StyleSheet" type="text/css" href="css/estilos.css" media="screen" />
     </h:head>
     <h:body>
@@ -21,30 +21,19 @@
                 </b:dropMenu>
             </b:navbarLinks>
         </b:navBar>
-        <b:row styleClass="box-cadastroproc">
-            <span styleClass="titlecadast"><b>Cadastro Processos</b></span>
+        <b:row styleClass="box-cadastroaltsenha">
+            <span styleClass="titlecadast"><b>Alterar Senha</b></span>
             <hr/>
             <b:form >
                 <b:panelGrid columns="1">
-                    <b:inputText label="Título do Processo" render-label="true"/>
+                    <b:inputText label="Senha Atual" render-label="true"/>
                 </b:panelGrid>
                 <b:panelGrid columns="2">
-                    <b:inputText mask="dd.mm.yyyy" label="Data do Processo" render-label="true"/>
-                    <b:inputText label="Justificativa" render-label="true"/> ou  
-                    <b:selectOneMenu value="#{selectOneMenuBean.type}" label="Cargo:" >
-                        <f:selectItem itemLabel="Selecionar" itemValue="" />
-                        <f:selectItem itemLabel="Admin" itemValue="1" />
-                        <f:selectItem itemLabel="Advogado" itemValue="2" />
-                        <f:selectItem itemLabel="Juiz" itemValue="3" />
-                        <f:selectItem itemLabel="Parte" itemValue="4" />
-                    </b:selectOneMenu>  
+                    <b:inputText label="Nova Senha" render-label="true"/>
+                    <b:inputText label="Confirmar Senha" render-label="true"/>
                 </b:panelGrid>
-                <b:panelGrid columns="1">
-                    <b:inputTextarea placeholder="Aqui você escreve as descrilçoes basicas do seu processo." label="Descrição">
-                    </b:inputTextarea>
-                </b:panelGrid>
-                <b:button styleClass="btn-voltar" style="float: left;" value="Voltar" size="sm"/>
-                <b:button styleClass="btn-salvar" style="float: right;" look="#c2c2c2" value="Cadastrar Processo" size="sm"/>
+                <b:button styleClass="btn-voltar" href="#" style="float: left;" value="Voltar" size="sm"/>
+                <b:button styleClass="btn-salvar" style="float: right;" value="Alterar Senha" size="sm"/>
             </b:form>
         </b:row>
     </h:body>
