@@ -45,7 +45,7 @@ public class Address implements Serializable {
         this.id = id;
     }
 
-    @Column(updatable=true, name="address_zip_code", nullable=false, length=10)
+    @Column(updatable=true, name="address_zip_code", nullable=false, length=8)
     public String getZipCode() {
         return zipCode;
     }

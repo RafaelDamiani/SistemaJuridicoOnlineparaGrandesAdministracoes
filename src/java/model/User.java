@@ -72,7 +72,7 @@ public class User implements Serializable {
         this.name = name;
     }
     
-    @Column(updatable=true, name="user_cpf", nullable=false, length=14)
+    @Column(updatable=true, name="user_cpf", nullable=false, length=11)
     public String getCpf() {
         return this.cpf;
     }
