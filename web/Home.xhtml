@@ -5,7 +5,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Lista de Processos</title>
+        <title>Home</title>
         <link rel="StyleSheet" type="text/css" href="css/estilos.css" media="screen" />
     </h:head>
     <h:body>
@@ -22,16 +22,23 @@
             </b:navbarLinks>
         </b:navBar>
         <b:row styleClass="box-cadastroproc">
-            <span styleClass="titlecadast"><b>Processos</b></span>
-            <hr/>
-            <b:dataTable value="title" var="processos">
-                <b:dataTableColumn value="title" width="100"/>
-                <b:dataTableColumn value="date" width="100"/>
-                <b:dataTableColumn value="advogado" width="100"/>
-                <b:dataTableColumn value="phase status" width="10rem"/>
-                <b:dataTableColumn width="10rem"><b:navLink value="Editar" href="./EditarFases.xhtml"></b:navLink></b:dataTableColumn>
-            </b:dataTable>
-            <b:button styleClass="btn-cadast" href="./CadastroProcesso.xhtml" style="float: right;" value="Cadastrar Processo" size="sm"/>
+            <span styleClass="titlecadast"><b></b></span>
+            <h:form>
+                <b:panelGrid colSpans="6,6" size="sm">
+                    <b:navLink styleClass="process" value="" href="./listar.xhtml">
+                        <b:row styleClass="boxhome">
+                            <b style="padding: 10px; font-size: 20px">Processos</b><br/>
+                            <b:image styleClass="img" name="Processos" value="./imagens/processos-juridicos.jpg"  tooltip="Processos" tooltipPosition="right"/>
+                        </b:row>
+                    </b:navLink>
+                    <b:navLink styleClass="process" value="" href="./CadastroProcesso.xhtml">
+                        <b:row styleClass="boxhome">
+                            <b style="padding: 10px; font-size: 20px">Novo Processo</b><br/>
+                            <b:image styleClass="img" name="Novo Processo" value="./imagens/cadast-de-processos.jpg"  tooltip="Novo Processo" tooltipPosition="right"/>
+                        </b:row>
+                    </b:navLink>
+                </b:panelGrid>
+            </h:form>
         </b:row>
     </h:body>
 </html>

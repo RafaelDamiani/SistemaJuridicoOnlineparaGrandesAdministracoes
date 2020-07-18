@@ -1,43 +1,32 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:b="http://bootsfaces.net/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>SIJOGA</title>
+        <meta name="author" content="Lucas Moroski - Damiani"></meta>
+        <link rel="StyleSheet" type="text/css" href="css/estilos.css" media="screen" />
     </h:head>
-    <h:body>
-        <b:well>-
-            <h:form>
-                <p:growl id="msgs1" showDetail="true" />
-                <b:panelGrid colSpans="5,7">
-                    <b:inputText label="Enter a number" value="#{barcodeBean.code39}">
-                        <f:facet name="prepend">
-                            <h:outputText value="Code39" />
-                        </f:facet>
-                        <p:ajax event="keyup" update="code39" />
-                    </b:inputText>
-                    <p:barcode value="#{barcodeBean.code39}" type="code39" id="code39"/>
+    <h:body style="background-color: #c2c2c259;">
+        <hr/>
+        <b:form styleClass="painelog" horizontal="true">
+            <span ><h2><b styleClass="titlelog">Login</b></h2></span>
 
-                    <b:inputText label="Enter your internet address" value="#{barcodeBean.url2}">
-                        <p:ajax event="keyup" update="@next" />
-                    </b:inputText>
-                    <p:barcode value="#{barcodeBean.url2}" type="qr" id="qr1" style="width:90px;height:90px;"/>
-
-                    <b:inputText label="Enter another internet address" value="#{barcodeBean.url}"
-                                 onkeyup="ajax:barcodeBean.doNothing()" update="@next">
-                        <f:facet name="prepend">
-                            <b:selectOneMenu value="#{barcodeBean.protocol}">
-                                <f:selectItem itemLabel="http://"/>
-                                <f:selectItem itemLabel="https://"/>
-                            </b:selectOneMenu>
-                            <h:outputText value="www." />
-                        </f:facet>
-                    </b:inputText>
-                    <p:barcode value="#{barcodeBean.completeURL}" type="qr" id="qr2" style="width:90px;height:90px;"/>
-                </b:panelGrid>
-            </h:form>
-        </b:well>
+            <b:inputText styleClass="inputcss" value="#{loginMB.email}" placeholder="email@gmail.com" label="E-mail:" colMd="10" labelColMd="2">
+                <f:facet name="prepend">
+                    <b:icon name="user" />
+                </f:facet>
+            </b:inputText>
+            <b:inputSecret placeholder="" value="#{loginMB.password}" label="Senha:" colMd="10" labelColMd="2">
+                <f:facet name="prepend">
+                    <b:iconAwesome name="key" />
+                </f:facet>
+            </b:inputSecret>
+            <b:message for="passwordDiv" />
+            <a href="./Cadastro.xhtml" style="float: left;">Cadastrar-se</a>
+            <b:commandButton styleClass="btn-entrar" action="#{loginMB.logar()}" style="float: right;" look="#c2c2c2" value="Entrar" size="sm" ></b:commandButton>
+        </b:form>
     </h:body>
 </html>
-

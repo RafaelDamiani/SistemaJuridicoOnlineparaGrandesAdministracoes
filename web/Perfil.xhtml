@@ -5,7 +5,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Lista de Processos</title>
+        <title>Perfil</title>
         <link rel="StyleSheet" type="text/css" href="css/estilos.css" media="screen" />
     </h:head>
     <h:body>
@@ -22,16 +22,9 @@
             </b:navbarLinks>
         </b:navBar>
         <b:row styleClass="box-cadastroproc">
-            <span styleClass="titlecadast"><b>Processos</b></span>
+            <span styleClass="titlecadast"><b>Perfil</b></span>
             <hr/>
-            <b:dataTable value="title" var="processos">
-                <b:dataTableColumn value="title" width="100"/>
-                <b:dataTableColumn value="date" width="100"/>
-                <b:dataTableColumn value="advogado" width="100"/>
-                <b:dataTableColumn value="phase status" width="10rem"/>
-                <b:dataTableColumn width="10rem"><b:navLink value="Editar" href="./EditarFases.xhtml"></b:navLink></b:dataTableColumn>
-            </b:dataTable>
-            <b:button styleClass="btn-cadast" href="./CadastroProcesso.xhtml" style="float: right;" value="Cadastrar Processo" size="sm"/>
+
         </b:row>
     </h:body>
 </html>

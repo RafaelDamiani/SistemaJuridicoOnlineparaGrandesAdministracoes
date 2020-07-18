@@ -1,0 +1,115 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 12/07/2020, 00:42:10
+    Author     : Lucas
+*/
+
+/*Login*/
+.inputcss{
+    width: 100%;
+}
+
+.painelog{
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 33%;
+    width: 500px;
+    height: 255px;
+    border: solid 2px;
+    padding: 20px;
+    background-color: #fbfbfb;
+    border-radius: 5px;
+}
+
+.btn-entrar{
+    float: right;
+    font-size: 14px;
+    background-color: #15f163;
+    color: #fff;
+    font-weight: 600;
+}
+
+.titlelog{
+    padding: 20px;
+}
+/*Fim*/
+
+/*Cadastro*/
+.box-cadastro{
+    margin: 60px;
+}
+#j_idt5 > span > b{
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.inputcadast{
+    text-align: left !important;
+}
+
+.btn-voltar{
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+}
+.btn-salvar{
+    background-color: #27ad44;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 15px;
+    margin-right: 0px;
+}
+
+.btn-cadast{
+    background-color: #345578;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+/*Fim*/
+
+/*Cadastro Processos*/
+.box-cadastroproc{
+    margin: 50px;
+}
+/*Fim*/
+
+/*home*/
+.dropmenu{
+    float: right !important;
+}
+
+.process{
+    text-align: center;
+    margin: 10px;
+}
+
+.boxhome{
+    border: solid 2px #352f23;
+    border-radius: 5px;
+    padding: 20px;
+    margin-left: auto;
+}
+
+.img{
+    width: 540px;
+    height: 290px;
+}
+
+#j_idt5 {
+    width: 90%;
+}
+/*Fim*/
+/*Senha*/
+.box-cadastroaltsenha{
+    margin: 50px;
+}
+/*Fim*/
+
