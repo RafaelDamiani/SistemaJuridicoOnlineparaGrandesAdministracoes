@@ -14,7 +14,7 @@ create table tb_user(
 	user_email varchar(255) not null unique,
 	user_password varchar(255) not null,
 	user_name varchar(255) not null,
-	user_cpf varchar(11) not null unique,
+	user_cpf varchar(14) not null unique,
 	user_type_id integer not null REFERENCES tb_user_type(id)
 );
 
