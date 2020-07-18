@@ -24,22 +24,14 @@
         <b:row styleClass="box-cadastroproc">
             <span styleClass="titlecadast"><b>Processos</b></span>
             <hr/>
+            <b:dataTable value="title" var="processos">
+                <b:dataTableColumn value="title" width="100"/>
+                <b:dataTableColumn value="date" width="100"/>
+                <b:dataTableColumn value="advogado" width="100"/>
+                <b:dataTableColumn value="phase status" width="10rem"/>
+                <b:dataTableColumn width="10rem"><b:navLink value="Editar" href="./EditarFases.xhtml"></b:navLink></b:dataTableColumn>
+            </b:dataTable>
             <b:button styleClass="btn-cadast" href="./CadastroProcesso.xhtml" style="float: right;" value="Cadastrar Processo" size="sm"/>
-            <h:dataTable value="" var="a">
-                <f:facet name="header" >
-                    <h:outputText value="Lista dos processos" />
-                </f:facet>
-                <h:column>
-                    <f:facet name="header" >
-                        <h:outputText value="ID" />
-                    </f:facet>
-                </h:column>
-                <h:column>
-                    <f:facet name="header" >
-                        <h:outputText value="NOME" />
-                    </f:facet>
-                </h:column>
-            </h:dataTable>
         </b:row>
     </h:body>
 </html>

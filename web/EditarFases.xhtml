@@ -22,7 +22,7 @@
             </b:navbarLinks>
         </b:navBar>
         <b:row styleClass="box-cadastroproc">
-            <span styleClass="titlecadast"><b>Cadastro Processos</b></span>
+            <span styleClass="titlecadast"><b>Editar Processo</b></span>
             <hr/>
             <b:form >
                 <b:panelGrid columns="1">
@@ -44,9 +44,19 @@
                     <b:inputTextarea placeholder="Descrilção basicas do seu processo." label="Descrição">
                     </b:inputTextarea>
                 </b:panelGrid>
-                <b:button styleClass="btn-voltar" style="float: left;" value="Voltar" size="sm"/>
-                <b:button styleClass="btn-salvar" style="float: right;" look="#c2c2c2" value="Cadastrar Processo" size="sm"/>
+                <b:button styleClass="btn-salvar" style="float: right;" look="#c2c2c2" value="Salvar" size="sm"/>
             </b:form>
+            <b:dataTable value="title" var="fase">
+                <b:dataTableColumn value="fase.title" width="100"/>
+                <b:dataTableColumn value="date" width="100"/>
+                <b:dataTableColumn value="descricao" width="100"/>
+                <b:dataTableColumn value="justificativa" width="100"/>
+                <b:dataTableColumn value="processo" width="100"/>
+                <b:dataTableColumn value="advogado" width="100"/>
+                <b:dataTableColumn value="tipo fase" width="10vw"/>
+                <b:dataTableColumn value="phase status" width="10rem"/>
+                <b:dataTableColumn value="status fase" width="10%"/>
+            </b:dataTable>
         </b:row>
     </h:body>
 </html>

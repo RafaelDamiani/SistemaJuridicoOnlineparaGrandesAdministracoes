@@ -52,7 +52,6 @@ and open the template in the editor.
 }
 
 .btn-voltar{
-    background-color: #ff0000bd;
     color: #fff;
     font-size: 14px;
     font-weight: 700;
@@ -62,6 +61,16 @@ and open the template in the editor.
     color: #fff;
     font-size: 14px;
     font-weight: 700;
+    margin: 15px;
+    margin-right: 0px;
+}
+
+.btn-cadast{
+    background-color: #345578;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 15px;
 }
 
 /*Fim*/
@@ -75,6 +84,16 @@ and open the template in the editor.
 /*home*/
 .dropmenu{
     float: right !important;
+}
+
+.process{
+    border: solid 2px #c2c2c2;
+    border-radius: 5px;
+    text-align: center;
+}
+.img{
+    width: 540px;
+    height: 290px;
 }
 
 #j_idt5 {
