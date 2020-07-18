@@ -14,19 +14,19 @@
         <b:form styleClass="painelog" horizontal="true">
             <span ><h2><b styleClass="titlelog">Login</b></h2></span>
 
-            <b:inputText styleClass="inputcss" placeholder="email@gmail.com" label="E-mail:" colMd="10" labelColMd="2">
+            <b:inputText styleClass="inputcss" value="#{loginMB.email}" placeholder="email@gmail.com" label="E-mail:" colMd="10" labelColMd="2">
                 <f:facet name="prepend">
                     <b:icon name="user" />
                 </f:facet>
             </b:inputText>
-            <b:inputSecret placeholder="" label="Senha:" colMd="10" labelColMd="2">
+            <b:inputSecret placeholder="" value="#{loginMB.password}" label="Senha:" colMd="10" labelColMd="2">
                 <f:facet name="prepend">
                     <b:iconAwesome name="key" />
                 </f:facet>
             </b:inputSecret>
             <b:message for="passwordDiv" />
             <a href="./Cadastro.xhtml" style="float: left;">Cadastrar-se</a>
-            <b:button styleClass="btn-entrar" style="float: right;" look="#c2c2c2" value="Entrar" size="sm"/>
+            <b:commandButton styleClass="btn-entrar" action="#{loginMB.logar()}" style="float: right;" look="#c2c2c2" value="Entrar" size="sm" ></b:commandButton>
         </b:form>
     </h:body>
 </html>

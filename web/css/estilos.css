@@ -87,10 +87,17 @@ and open the template in the editor.
 }
 
 .process{
-    border: solid 2px #c2c2c2;
-    border-radius: 5px;
     text-align: center;
+    margin: 10px;
 }
+
+.boxhome{
+    border: solid 2px #352f23;
+    border-radius: 5px;
+    padding: 20px;
+    margin-left: auto;
+}
+
 .img{
     width: 540px;
     height: 290px;
