@@ -80,7 +80,8 @@ create table tb_phase_status(
 insert into tb_phase_status(phase_status_name) values
 ('Pedido Aceito'),
 ('Pedido Negado'),
-('Intimação');
+('Intimação'),
+('Intimação Executada');
 
 create table tb_phase(
 	id bigserial not null primary key,
