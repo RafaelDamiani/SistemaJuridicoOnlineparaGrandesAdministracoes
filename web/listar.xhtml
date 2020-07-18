@@ -24,12 +24,17 @@
         <b:row styleClass="box-cadastroproc">
             <span styleClass="titlecadast"><b>Processos</b></span>
             <hr/>
-            <b:dataTable value="title" var="processos">
-                <b:dataTableColumn value="title" width="100"/>
-                <b:dataTableColumn value="date" width="100"/>
-                <b:dataTableColumn value="advogado" width="100"/>
-                <b:dataTableColumn value="phase status" width="10rem"/>
-                <b:dataTableColumn width="10rem"><b:navLink value="Editar" href="./EditarFases.xhtml"></b:navLink></b:dataTableColumn>
+            <b:dataTable value="#{prosecutionMB.indexProsecution()}" var="prosecutions">
+                <b:dataTableColumn value="#{prosecutions[0]}" label="Id" width="100"/>
+                <b:dataTableColumn value="#{prosecutions[1]}" label="Data" width="100"/>
+                <b:dataTableColumn value="#{prosecutions[2]}" label="Juiz" width="100"/>
+                <b:dataTableColumn value="#{prosecutions[3]}" label="Status" width="10rem"/>
+                <b:dataTableColumn value="#{prosecutions[4]}" label="Parte" width="10rem"/>
+                <b:dataTableColumn value="#{prosecutions[5]}" label="Categoria" width="10rem"/>
+                <b:dataTableColumn width="10rem" label="#">
+                    <b:navLink action="#{prosecutionMB.editProsecution()}" value="Editar" href="./EditarFases.xhtml">
+                    </b:navLink>
+                </b:dataTableColumn>
             </b:dataTable>
             <b:button styleClass="btn-cadast" href="./CadastroProcesso.xhtml" style="float: right;" value="Cadastrar Processo" size="sm"/>
         </b:row>

@@ -25,14 +25,10 @@
             <span styleClass="titlecadast"><b>Editar Processo</b></span>
             <hr/>
             <b:form >
-                <b:panelGrid columns="1">
-                    <b:inputText label="Título do Processo" render-label="true"/>
-                </b:panelGrid>
                 <b:panelGrid columns="2">
-                    <b:inputText mask="dd.mm.yyyy" label="Data do Processo" render-label="true"/>
-                    <b:selectOneMenu value="#{selectOneMenuBean.type}" label="Cargo:" >
+                    <b:inputText value="#{prosecutionMB.prosecutionDTO.date}" mask="dd.mm.yyyy" label="Data do Processo" render-label="true"/>
+                    <b:selectOneMenu value="#{selectOneMenuBean.type}" label="Categoria:" >
                         <f:selectItem itemLabel="Selecionar" itemValue="" />
-                        <f:selectItem itemLabel="Admin" itemValue="1" />
                         <f:selectItem itemLabel="Advogado" itemValue="2" />
                         <f:selectItem itemLabel="Juiz" itemValue="3" />
                         <f:selectItem itemLabel="Parte" itemValue="4" />

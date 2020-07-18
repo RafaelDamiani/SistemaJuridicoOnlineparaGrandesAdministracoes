@@ -34,7 +34,7 @@ public class LoginMBTest {
         LoginMB login = new LoginMB();
         login.setEmail("rafael.damiani@ufpr.br");
         login.setPassword("123456");
-        String expResult = "Logando";
+        String expResult = "./Home.xhtml";
         String result = login.logar();
         assertEquals(expResult, result);
     }

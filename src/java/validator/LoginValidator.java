@@ -31,6 +31,6 @@ public class LoginValidator {
         if (user == null)
             return "E-mail ou senha incorretos";
         
-        return "./Home.xhtml";
+        return "/Home.xhtml";
     }
 }

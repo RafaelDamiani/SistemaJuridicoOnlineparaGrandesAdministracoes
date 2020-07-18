@@ -1,7 +1,7 @@
 package mb;
 
 import java.util.List;
-import model.ProsecutionTable;
+import model.ProsecutionDTO;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
