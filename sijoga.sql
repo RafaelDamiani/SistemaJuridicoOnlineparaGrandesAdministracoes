@@ -74,7 +74,7 @@ insert into tb_phase_type(phase_type_name) values
 
 create table tb_phase_status(
 	id serial not null primary key,
-	phase_status_name varchar(13) not null unique
+	phase_status_name varchar(20) not null unique
 );
 
 insert into tb_phase_status(phase_status_name) values
