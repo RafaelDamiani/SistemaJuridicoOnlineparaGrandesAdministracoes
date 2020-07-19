@@ -52,8 +52,17 @@
                 <b:dataTableColumn value="#{phase[6]}" label="Status" width="10rem"/>
                 <b:dataTableColumn value="#{phase[7]}" label="Justificativa" width="10rem"/>
                 <b:dataTableColumn value="#{phase[8]}" label="Advogado criador" width="10rem"/>
+                <b:dataTableColumn rendered="#{loginMB.idUserType == 3 ? 'true' : 'false'}"  width="5rem" label="#" style="text-align: center;">
+                    <b:commandButton disabled="#{phase[6] != null && phase[6] != '' ? 'false' : 'true'}" action="#{phaseMB.
+                                                   editPhase(
+                                                        phase[0],
+                                                        phase[6],
+                                                        phase[7]
+                                                    )}" value="Editar" size="sm" />
+                    </b:commandButton>
+                </b:dataTableColumn>
             </b:dataTable>
-            <b:button disabled="#{prosecutionMB.canInsertPhase}" styleClass="btn-cadast" href="./CadastroFase.xhtml" style="float: right;" value="Cadastrar Fase" size="sm"/>
+            <b:button rendered="#{loginMB.idUserType == 3 ? 'false' : 'true'}" disabled="#{prosecutionMB.canInsertPhase ? 'false' : 'true'}" styleClass="btn-cadast" href="./CadastroFase.xhtml" style="float: right;" value="Cadastrar Fase" size="sm"/>
         </b:row>
     </h:body>
 </html>

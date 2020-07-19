@@ -21,7 +21,7 @@
                 </b:dropMenu>
             </b:navbarLinks>
         </b:navBar>
-        <b:row styleClass="box-cadastroproc">
+        <b:row rendered="#{loginMB.idUserType == 3 ? 'false' : 'true'}" styleClass="box-cadastroproc">
             <span styleClass="titlecadast"><b>Processos</b></span>
             <hr/>
             <h:form id="formId">
@@ -56,6 +56,30 @@
                 </b:dataTable>
             </h:form>
             <b:button styleClass="btn-cadast" href="./CadastroProcesso.xhtml" style="float: right;" value="Cadastrar Processo" size="sm"/>
+        </b:row>
+        
+        <b:row rendered="#{loginMB.idUserType == 3 ? 'true' : 'false'}" styleClass="box-cadastroproc">
+            <span styleClass="titlecadast"><b>Processos</b></span>
+            <hr/>
+            <h:form id="formIdJudge">
+                <b:dataTable value="#{prosecutionMB.indexProsecutionJudge()}" var="prosecutions" id="prosecutions">
+                    <b:dataTableColumn  value="#{prosecutions[0]}" label="Id" width="1rem"/>
+                    <b:dataTableColumn value="#{prosecutions[2]}" label="Data" width="10rem"/>
+                    <b:dataTableColumn width="5rem" label="#" style="text-align: center;">
+                        <b:commandButton action="#{prosecutionMB.
+                                                   editProsecution(
+                                                        prosecutions[0], 
+                                                        prosecutions[1],
+                                                        prosecutions[2],
+                                                        null,
+                                                        null,
+                                                        null,
+                                                        null,
+                                                        null
+                                                    )}" value="Editar" size="sm" />
+                    </b:dataTableColumn>
+                </b:dataTable>
+            </h:form>
         </b:row>
     </h:body>
 </html>

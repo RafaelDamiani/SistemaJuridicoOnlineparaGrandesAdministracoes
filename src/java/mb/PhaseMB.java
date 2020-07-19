@@ -37,6 +37,7 @@ public class PhaseMB implements Serializable {
     private Long idlawyer;
     private Integer idPhaseType;
     private Integer idPhaseStatus;
+    private Phase phase;
     
     public PhaseMB() {
     }
@@ -236,4 +237,40 @@ public class PhaseMB implements Serializable {
         
         return phases;
     }
+    
+    public String editPhase(Long idPhase) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();        
+        
+        String hql = 
+                "select \n" +
+                "	phs.id as idPhase,\n" +
+                "	phs.phase_date,\n" +
+                "	TO_CHAR(phs.phase_date, 'dd/mm/yyyy hh:mi') as formattedDate,\n" +
+                "	phs.phase_title,\n" +
+                "	phs.phase_description,\n" +
+                "	phs_tpe.phase_type_name as type,\n" +
+                "	phs_sts.phase_status_name as status,\n" +
+                "	phs.phase_justification,\n" +
+                "	lwr.user_name as lawyer\n" +
+                "from tb_phase phs\n" +
+                "inner join tb_phase_type phs_tpe\n" +
+                "	on phs_tpe.id = phs.phase_type_id\n" +
+                "left join tb_phase_status phs_sts\n" +
+                "	on phs_sts.id = phs.phase_status_id\n" +
+                "inner join tb_user lwr\n" +
+                "	on lwr.id= phs.lawyer_id\n" +
+                "where phs.id = :idPhase";
+        
+        Query query = session.createSQLQuery(hql).addEntity(Phase.class);
+        query.setParameter("idPhase", idPhase);
+        
+        phase = (Phase)query.uniqueResult();
+        
+        session.getTransaction().commit();
+        session.close();        
+        
+        return "/CadastroFase.xhtml";    
+    }
+    
 }

@@ -321,6 +321,33 @@ public class ProsecutionMB implements Serializable {
         return prosecutions;
     }
     
+    public List<ProsecutionDTO> indexProsecutionJudge() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+                
+        String hql = 
+            "select \n" +
+            "   prs.id as idProsecution, \n" +
+            "   prs.prosecution_date as date, \n" +
+            "   TO_CHAR(prs.prosecution_date, 'dd/mm/yyyy hh:mi') as formattedDate \n" +
+            "from tb_prosecution prs \n" +
+            "where\n" +
+            "   prs.judge_id = :idUser\n" +
+            "   order by prs.id";
+        
+        Long idUser = loginMB.getIdUser(); 
+        
+        Query query = session.createSQLQuery(hql);
+        query.setParameter("idUser", idUser);
+        
+        List<ProsecutionDTO> prosecutions = query.list();
+        
+        session.getTransaction().commit();
+        session.close();
+        
+        return prosecutions;
+    }
+    
     public ProsecutionDTO indexProsecutionById(Long idProsecution) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -362,7 +389,14 @@ public class ProsecutionMB implements Serializable {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         
+        setCanInsertPhase(true);
+        
         setIdProsecution(idProsecution);
+        
+        if (idJudge == null && loginMB.getIdUserType() == 3) {
+            idJudge = loginMB.getIdUser();
+            judge = loginMB.getName();
+        }
         
         prosecutionDTO = new ProsecutionDTO(idProsecution, date, formattedDate, idJudge, judge, status, part, category);
         
