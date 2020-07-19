@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Configurações</title>
+        <link rel="StyleSheet" type="text/css" href="css/estilos.css" media="screen" />
+    </h:head>
+    <h:body>
+        <b:navBar brand="SIJOGA" brandHref="./Home.xhtml" id="dropMenuExample" contentDisabled="#{navBarBean.navBarDisabled}">
+            <b:navbarLinks style="width: 90%;" contentDisabled="#{navBarBean.navBarLinksDisabled}">
+                <b:navLink value="Home" href="./Home.xhtml"></b:navLink>
+                <b:navLink value="Processos" href="./listar.xhtml"></b:navLink>
+                <b:dropMenu style="float: right;" iconAwesome="user" styleClass="dropmenu" value="" contentDisabled="#{navBarBean.dropMenuDisabled}">
+                    <b:navLink value="Perfil" href="./Perfil.xhtml"></b:navLink>
+                    <b:navLink value="Alterar Senha" href="./Alterarpass.xhtml"></b:navLink>
+                    <b:navLink></b:navLink>
+                    <b:navLink value="Sair" href="#"></b:navLink>
+                </b:dropMenu>
+            </b:navbarLinks>
+        </b:navBar>
+        <b:row styleClass="box-cadastroproc">
+            <span styleClass="titlecadast"><b>Configuração</b></span>
+            <hr/>
+
+        </b:row>
+    </h:body>
+</html>
+

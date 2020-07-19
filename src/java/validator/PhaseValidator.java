@@ -2,9 +2,11 @@ package validator;
 
 public class PhaseValidator {
     private boolean valid;
+    private boolean inserting;
     
-    public PhaseValidator(boolean valid) {
+    public PhaseValidator(boolean valid, boolean inserting) {
         this.valid = valid;
+        this.inserting = inserting;
     }
 
     public boolean isValid() {
@@ -13,6 +15,14 @@ public class PhaseValidator {
 
     public void setValid(boolean valid) {
         this.valid = valid;
+    }
+
+    public boolean isInserting() {
+        return inserting;
+    }
+
+    public void setInserting(boolean inserting) {
+        this.inserting = inserting;
     }
     
     public String validatePhase(Long idProsecution, Long idLawyer, String title, String description, String justification, Integer idPhaseType, Integer idPhaseStatus) {
@@ -36,6 +46,11 @@ public class PhaseValidator {
             return "O título deve ter no mínimo 5 caracteres";
         }
         
+        if (idPhaseType == null || idPhaseType == 0) {
+            setValid(false);
+            return "Defina o tipo da fase";
+        }
+        
         if (description == null || description.isEmpty()) {
             setValid(false);
             return "Preencha a descrição";
@@ -46,10 +61,8 @@ public class PhaseValidator {
             return "A descrição deve ter no mínimo 25 caracteres";
         }
         
-        if (idPhaseType == null || idPhaseType == 0) {
-            setValid(false);
-            return "Defina o tipo da fase";
-        }
+        if (inserting)
+            return "/EditarProcesso.xhtml";
         
         if (idPhaseStatus == null || idPhaseStatus == 0) {
             setValid(false);
@@ -67,6 +80,6 @@ public class PhaseValidator {
             }
         }
         
-        return "Fase cadastrada com sucesso!";
+        return "Fase atualizada com sucesso!";
     }
 }

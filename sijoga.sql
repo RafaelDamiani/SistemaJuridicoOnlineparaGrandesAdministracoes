@@ -14,7 +14,7 @@ create table tb_user(
 	user_email varchar(255) not null unique,
 	user_password varchar(255) not null,
 	user_name varchar(255) not null,
-	user_cpf varchar(11) not null unique,
+	user_cpf varchar(14) not null unique,
 	user_type_id integer not null REFERENCES tb_user_type(id)
 );
 
@@ -74,13 +74,14 @@ insert into tb_phase_type(phase_type_name) values
 
 create table tb_phase_status(
 	id serial not null primary key,
-	phase_status_name varchar(13) not null unique
+	phase_status_name varchar(20) not null unique
 );
 
 insert into tb_phase_status(phase_status_name) values
 ('Pedido Aceito'),
 ('Pedido Negado'),
-('Intimação');
+('Intimação'),
+('Intimação Executada');
 
 create table tb_phase(
 	id bigserial not null primary key,
@@ -89,7 +90,7 @@ create table tb_phase(
 	phase_description varchar(5000) not null,
 	phase_justification varchar(5000),
 	prosecution_id bigint not null REFERENCES tb_prosecution(id),
-	lawyer_id bigint not null REFERENCES tb_user(id)
+	lawyer_id bigint not null REFERENCES tb_user(id),
 	phase_type_id integer not null REFERENCES tb_phase_type(id),
 	phase_status_id integer REFERENCES tb_phase_status(id)
 );

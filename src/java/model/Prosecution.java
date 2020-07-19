@@ -30,6 +30,12 @@ public class Prosecution implements Serializable {
         this.judge = judge;
     }
     
+    public Prosecution(Long id, Date date, User judge) {
+        this.id = id;
+        this.date = date;
+        this.judge = judge;
+    }
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {

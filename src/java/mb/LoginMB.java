@@ -1,7 +1,10 @@
 package mb;
 
+import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import javax.enterprise.context.*;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import model.User;
 import org.hibernate.*;
@@ -10,10 +13,13 @@ import util.PasswordUtil;
 import validator.LoginValidator;
 
 @Named(value = "loginMB")
-@RequestScoped
-public class LoginMB {
+@SessionScoped
+public class LoginMB implements Serializable {
     private String email;
     private String password;
+    private String name;
+    private Long idUser;
+    private Integer idUserType;
     
     public LoginMB() {
     }
@@ -33,6 +39,30 @@ public class LoginMB {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
+    }
+
+    public Integer getIdUserType() {
+        return idUserType;
+    }
+
+    public void setIdUserType(Integer idUserType) {
+        this.idUserType = idUserType;
+    }
     
     public String logar() throws NoSuchAlgorithmException {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -49,8 +79,10 @@ public class LoginMB {
         
         valid = loginValidator.isValid();
         
-        if (!valid)
+        if (!valid) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(response));
             return response;
+        }
         
         String encryptedPassword = new PasswordUtil().encryptPassword(password);
         
@@ -66,6 +98,14 @@ public class LoginMB {
         session.close();
         
         response = loginValidator.validateLogin(email, password, user);
+        
+        if (response.equals("E-mail ou senha incorretos")) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(response));
+        }
+        
+        setIdUser(user.getId());
+        setIdUserType(user.getUserType().getId());
+        setName(user.getName());
         
         return response;
     }

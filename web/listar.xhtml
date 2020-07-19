@@ -1,30 +1,86 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Lista de Processos</title>
+        <link rel="StyleSheet" type="text/css" href="css/estilos.css" media="screen" />
     </h:head>
     <h:body>
-        <h:dataTable value="#{userMB.userList}" var="a">
-            <f:facet name="header" >
-                <h:outputText value="LISTA DE ALUNOS" />
-            </f:facet>
-            <h:column>
-                <f:facet name="header" >
-                    <h:outputText value="ID" />
-                </f:facet>
-                #{a.id}
-            </h:column>
-            <h:column>
-                <f:facet name="header" >
-                    <h:outputText value="NOME" />
-                </f:facet>
-                #{a.name}
-            </h:column>
-        </h:dataTable>
-        <h:link outcome="index" value="Início" />
+        <b:navBar brand="SIJOGA" brandHref="./Home.xhtml" id="dropMenuExample" contentDisabled="#{navBarBean.navBarDisabled}">
+            <b:navbarLinks style="width: 90%;" contentDisabled="#{navBarBean.navBarLinksDisabled}">
+                <b:navLink value="Home" href="./Home.xhtml"></b:navLink>
+                <b:navLink value="Processos" href="./listar.xhtml"></b:navLink>
+                <b:dropMenu style="float: right;" iconAwesome="user" styleClass="dropmenu" value="" contentDisabled="#{navBarBean.dropMenuDisabled}">
+                    <b:navLink value="Perfil" href="./Perfil.xhtml"></b:navLink>
+                    <b:navLink value="Alterar Senha" href="./Alterarpass.xhtml"></b:navLink>
+                    <b:navLink></b:navLink>
+                    <b:navLink value="Sair" href="#"></b:navLink>
+                </b:dropMenu>
+            </b:navbarLinks>
+        </b:navBar>
+        <b:row rendered="#{loginMB.idUserType == 3 ? 'false' : 'true'}" styleClass="box-cadastroproc">
+            <span styleClass="titlecadast"><b>Processos</b></span>
+            <hr/>
+            <h:form id="formId">
+                <b:selectOneMenu value="#{prosecutionMB.filter}" onchange="ajax:prosecutionMB.indexProsecution()" update="prosecutions">
+                    <f:selectItem itemLabel="Todos" itemValue="0"/>
+                    <f:selectItem itemLabel="Processos em Aberto" itemValue="1"/>
+                    <f:selectItem itemLabel="Processos encerrados" itemValue="2"/>
+                    <f:selectItem itemLabel="Processos ganhos/perdidos como promovido" itemValue="3"/>
+                    <f:selectItem itemLabel="Processos ganhos/perdidos como promovente" itemValue="4"/>
+                </b:selectOneMenu>
+                <br />
+                <b:dataTable value="#{prosecutionMB.indexProsecution()}" var="prosecutions" id="prosecutions">
+                    <b:dataTableColumn  value="#{prosecutions[0]}" label="Id" width="1rem"/>
+                    <b:dataTableColumn value="#{prosecutions[2]}" label="Data" width="10rem"/>
+                    <b:dataTableColumn value="#{prosecutions[4]}" label="Juiz" width="10rem"/>
+                    <b:dataTableColumn value="#{prosecutions[5]}" label="Status" width="10rem"/>
+                    <b:dataTableColumn value="#{prosecutions[6]}" label="Parte" width="10rem"/>
+                    <b:dataTableColumn value="#{prosecutions[7]}" label="Categoria" width="10rem"/>
+                    <b:dataTableColumn width="5rem" label="#" style="text-align: center;">
+                        <b:commandButton action="#{prosecutionMB.
+                                                   editProsecution(
+                                                        prosecutions[0], 
+                                                        prosecutions[1],
+                                                        prosecutions[2],
+                                                        prosecutions[3],
+                                                        prosecutions[4],
+                                                        prosecutions[5],
+                                                        prosecutions[6],
+                                                        prosecutions[7]
+                                                    )}" value="Editar" size="sm" />
+                    </b:dataTableColumn>
+                </b:dataTable>
+            </h:form>
+            <b:button styleClass="btn-cadast" href="./CadastroProcesso.xhtml" style="float: right;" value="Cadastrar Processo" size="sm"/>
+        </b:row>
+        
+        <b:row rendered="#{loginMB.idUserType == 3 ? 'true' : 'false'}" styleClass="box-cadastroproc">
+            <span styleClass="titlecadast"><b>Processos</b></span>
+            <hr/>
+            <h:form id="formIdJudge">
+                <b:dataTable value="#{prosecutionMB.indexProsecutionJudge()}" var="prosecutions" id="prosecutions">
+                    <b:dataTableColumn  value="#{prosecutions[0]}" label="Id" width="1rem"/>
+                    <b:dataTableColumn value="#{prosecutions[2]}" label="Data" width="10rem"/>
+                    <b:dataTableColumn width="5rem" label="#" style="text-align: center;">
+                        <b:commandButton action="#{prosecutionMB.
+                                                   editProsecution(
+                                                        prosecutions[0], 
+                                                        prosecutions[1],
+                                                        prosecutions[2],
+                                                        null,
+                                                        null,
+                                                        null,
+                                                        null,
+                                                        null
+                                                    )}" value="Editar" size="sm" />
+                    </b:dataTableColumn>
+                </b:dataTable>
+            </h:form>
+        </b:row>
     </h:body>
 </html>
 

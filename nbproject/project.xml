@@ -2,6 +2,9 @@
 <project xmlns="http://www.netbeans.org/ns/project/1">
     <type>org.netbeans.modules.web.project</type>
     <configuration>
+        <buildExtensions xmlns="http://www.netbeans.org/ns/ant-build-extender/1">
+            <extension file="rest-build.xml" id="rest.5"/>
+        </buildExtensions>
         <data xmlns="http://www.netbeans.org/ns/web-project/3">
             <name>SIJOGA</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
@@ -11,23 +14,27 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.derbyclient.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-                <library dirs="200">
-                    <file>${file.reference.derby.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-                <library dirs="200">
                     <file>${libs.PostgreSQLDriver.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${libs.PrimeFaces_8.0.classpath}</file>
+                    <file>${file.reference.BootsFaces-OSP-1.4.2.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${libs.BootsFaces-OSP-default-1.4.2.classpath}</file>
+                    <file>${file.reference.derby.jar-1}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.derbyclient.jar-1}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.BootsFaces-OSP-default-1.4.2.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.primefaces-8.0.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>

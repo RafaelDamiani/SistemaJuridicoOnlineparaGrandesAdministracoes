@@ -1,10 +1,8 @@
 package mb;
 
-import java.lang.reflect.InvocationTargetException;
 import java.security.NoSuchAlgorithmException;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import javax.validation.ConstraintViolationException;
 import model.Address;
 import model.User;
 import model.UserType;

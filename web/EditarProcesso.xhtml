@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Edição Processo</title>
+        <link rel="StyleSheet" type="text/css" href="css/estilos.css" media="screen" />
+    </h:head>
+    <h:body>
+        <b:navBar brand="SIJOGA" brandHref="./Home.xhtml" id="dropMenuExample" contentDisabled="#{navBarBean.navBarDisabled}">
+            <b:navbarLinks style="width: 90%;" contentDisabled="#{navBarBean.navBarLinksDisabled}">
+                <b:navLink value="Home" href="./Home.xhtml"></b:navLink>
+                <b:navLink value="Processos" href="./listar.xhtml"></b:navLink>
+                <b:dropMenu style="float: right;" iconAwesome="user" styleClass="dropmenu" value="" contentDisabled="#{navBarBean.dropMenuDisabled}">
+                    <b:navLink value="Perfil" href="./Perfil.xhtml"></b:navLink>
+                    <b:navLink value="Alterar Senha" href="./Alterarpass.xhtml"></b:navLink>
+                    <b:navLink></b:navLink>
+                    <b:navLink value="Sair" href="#"></b:navLink>
+                </b:dropMenu>
+            </b:navbarLinks>
+        </b:navBar>
+        <b:row styleClass="box-cadastroproc">
+            <span styleClass="titlecadast"><b>Editar Processo</b></span>
+            <hr/>
+            <b:alert rendered="#{prosecutionMB.error}" closable="true" severity="danger">#{prosecutionMB.responseMessage}</b:alert>
+            <b:alert rendered="#{prosecutionMB.success}" closable="true" severity="success">#{prosecutionMB.responseMessage}</b:alert>
+            <b:form id="formId">
+                <b:panelGrid columns="2">
+                    <b:inputText value="#{prosecutionMB.prosecutionDTO.formattedDate}" mask="dd/mm/yyyy" label="Data do Processo" render-label="true" readonly="true" />
+                    <b:inputText value="#{prosecutionMB.prosecutionDTO.judge}" label="Juiz" render-label="true" readonly="true" />
+                    <b:selectOneMenu id="idpromovente" value="#{prosecutionMB.prosecutionDTO.idPromovente}" label="Promovente" onchange="validateUser()">
+                        <f:selectItems value="#{prosecutionMB.parts}" var="promovente" itemValue="#{promovente.id}" itemLabel="#{promovente.name}" />
+                    </b:selectOneMenu>
+                    <b:inputText value="#{prosecutionMB.prosecutionDTO.promoventeLawyer}" label="Advogado do Promovente" render-label="true" readonly="true" />
+                    <b:selectOneMenu id="idpromovido" value="#{prosecutionMB.prosecutionDTO.idPromovido}" label="Promovido:" >
+                        <f:selectItems value="#{prosecutionMB.parts}" var="promovido" itemValue="#{promovido.id}" itemLabel="#{promovido.name}" />
+                    </b:selectOneMenu>
+                    <b:selectOneMenu value="#{prosecutionMB.prosecutionDTO.idPromovidoLawyer}" label="Promovido:" >
+                        <f:selectItems value="#{prosecutionMB.lawyers}" var="promovidoLawyer" itemValue="#{promovidoLawyer.id}" itemLabel="#{promovidoLawyer.name}" />
+                    </b:selectOneMenu>
+                </b:panelGrid>
+                <b:commandButton action="#{prosecutionMB.updateProsecution()}" styleClass="btn-salvar" style="float: right;" look="#c2c2c2" value="Salvar" size="sm"/>
+            </b:form>
+            <b:dataTable value="#{phaseMB.indexPhase()}" var="phase">
+                <b:dataTableColumn value="#{phase[0]}" label="Id" width="1rem"/>
+                <b:dataTableColumn value="#{phase[2]}" label="Data" width="10rem"/>
+                <b:dataTableColumn value="#{phase[3]}" label="Título" width="10rem"/>
+                <b:dataTableColumn value="#{phase[4]}" label="Descrição" width="10rem"/>
+                <b:dataTableColumn value="#{phase[5]}" label="Tipo" width="10rem"/>
+                <b:dataTableColumn value="#{phase[6]}" label="Status" width="10rem"/>
+                <b:dataTableColumn value="#{phase[7]}" label="Justificativa" width="10rem"/>
+                <b:dataTableColumn value="#{phase[8]}" label="Advogado criador" width="10rem"/>
+                <b:dataTableColumn rendered="#{loginMB.idUserType == 3 ? 'true' : 'false'}"  width="5rem" label="#" style="text-align: center;">
+                    <b:commandButton disabled="#{phase[6] != null && phase[6] != '' ? 'false' : 'true'}" action="#{phaseMB.
+                                                   editPhase(
+                                                        phase[0],
+                                                        phase[6],
+                                                        phase[7]
+                                                    )}" value="Editar" size="sm" />
+                    </b:commandButton>
+                </b:dataTableColumn>
+            </b:dataTable>
+            <b:button rendered="#{loginMB.idUserType == 3 ? 'false' : 'true'}" disabled="#{prosecutionMB.canInsertPhase ? 'false' : 'true'}" styleClass="btn-cadast" href="./CadastroFase.xhtml" style="float: right;" value="Cadastrar Fase" size="sm"/>
+        </b:row>
+    </h:body>
+</html>
+

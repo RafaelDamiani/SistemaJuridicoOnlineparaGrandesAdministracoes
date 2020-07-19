@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Cadastro Fase</title>
+        <link rel="StyleSheet" type="text/css" href="css/estilos.css" media="screen" />
+    </h:head>
+    <h:body>
+        <b:navBar brand="SIJOGA" brandHref="./Home.xhtml" id="dropMenuExample" contentDisabled="#{navBarBean.navBarDisabled}">
+            <b:navbarLinks style="width: 90%;" contentDisabled="#{navBarBean.navBarLinksDisabled}">
+                <b:navLink value="Home" href="./Home.xhtml"></b:navLink>
+                <b:navLink value="Processos" href="./listar.xhtml"></b:navLink>
+                <b:dropMenu style="float: right;" iconAwesome="user" styleClass="dropmenu" value="" contentDisabled="#{navBarBean.dropMenuDisabled}">
+                    <b:navLink value="Perfil" href="./Perfil.xhtml"></b:navLink>
+                    <b:navLink value="Alterar Senha" href="./Alterarpass.xhtml"></b:navLink>
+                    <b:navLink></b:navLink>
+                    <b:navLink value="Sair" href="#"></b:navLink>
+                </b:dropMenu>
+            </b:navbarLinks>
+        </b:navBar>
+        <b:row styleClass="box-cadastroproc">
+            <span styleClass="titlecadast"><b>Cadastro Fase</b></span>
+            <hr/>
+            <b:alert rendered="#{phaseMB.error}" closable="true" severity="danger">#{phaseMB.responseMessage}</b:alert>
+            <b:form >
+                <b:panelGrid columns="2">
+                    <b:inputText value="#{phaseMB.title}" label="Título da Fase" render-label="true"/>
+                    <b:selectOneMenu value="#{phaseMB.idPhaseType}" label="Tipo" >
+                        <f:selectItem itemLabel="Selecionar" itemValue="" />
+                        <f:selectItem itemLabel="Informativa" itemValue="1" />
+                        <f:selectItem itemLabel="Deliberativa" itemValue="2" />
+                    </b:selectOneMenu>  
+                    <b:inputTextarea value="#{phaseMB.description}" label="Descrição">
+                    </b:inputTextarea>
+                    <b:inputTextarea rendered="false" value="#{phaseMB.justification}" label="Justificativa">
+                    </b:inputTextarea>
+                </b:panelGrid>
+                <b:button outcome="EditarProcesso" styleClass="btn-voltar" style="float: left;" value="Voltar" size="sm"/>
+                <b:commandButton action="#{phaseMB.insertPhase()}" styleClass="btn-salvar" style="float: right;" look="#c2c2c2" value="Cadastrar Fase" size="sm"/>
+            </b:form>
+        </b:row>
+    </h:body>
+</html>
+

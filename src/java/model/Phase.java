@@ -28,6 +28,15 @@ public class Phase implements Serializable {
     public Phase(){
     }
     
+    public Phase (Date date, Prosecution prosecution, User lawyer, String title, String description, PhaseType phaseType) {
+        this.date = date;
+        this.prosecution = prosecution;
+        this.lawyer = lawyer;
+        this.title = title;
+        this.description = description;
+        this.phaseType = phaseType;
+    }
+    
     public Phase (Date date, Prosecution prosecution, User lawyer, String title, String description, String justification, PhaseType phaseType, PhaseStatus phaseStatus) {
         this.date = date;
         this.prosecution = prosecution;
