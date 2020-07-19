@@ -1,6 +1,7 @@
 package mb;
 
 import java.util.Date;
+import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -9,6 +10,7 @@ import model.PhaseStatus;
 import model.PhaseType;
 import model.Prosecution;
 import model.User;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import util.HibernateUtil;
 import validator.PhaseValidator;
@@ -114,5 +116,43 @@ public class PhaseMB {
         session.close();
         
         return response;
+    }
+    
+    public List<Phase> indexPhase() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        
+        String hql = 
+                "select \n" +
+                "	phs.id as idPhase,\n" +
+                "	phs.phase_date,\n" +
+                "	TO_CHAR(phs.phase_date, 'dd/mm/yyyy hh:mi') as formattedDate,\n" +
+                "	phs.phase_title,\n" +
+                "	phs.phase_description,\n" +
+                "	phs_tpe.phase_type_name as type,\n" +
+                "	phs_sts.phase_status_name as status,\n" +
+                "	phs.phase_justification,\n" +
+                "	lwr.user_name as lawyer\n" +
+                "from tb_phase phs\n" +
+                "inner join tb_phase_type phs_tpe\n" +
+                "	on phs_tpe.id = phs.phase_type_id\n" +
+                "inner join tb_phase_status phs_sts\n" +
+                "	on phs_sts.id = phs.phase_status_id\n" +
+                "inner join tb_user lwr\n" +
+                "	on lwr.id= phs.lawyer_id\n" +
+                "where phs.prosecution_id = :idProsecution\n" +
+                "order by phs.id";
+        
+        Long idProsecution = prosecutionMB.getProsecutionDTO().getIdProsecution();
+        
+        Query query = session.createSQLQuery(hql);
+        query.setParameter("idProsecution", idProsecution);
+        
+        List<Phase> phases = query.list();
+        
+        session.getTransaction().commit();
+        session.close();
+        
+        return phases;
     }
 }

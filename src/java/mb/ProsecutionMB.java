@@ -36,7 +36,6 @@ public class ProsecutionMB implements Serializable {
     private Long idPromovidoLawyer;
     private ProsecutionDTO prosecutionDTO;
     private int filter;
-    private DataModel<ProsecutionDTO> prosecutionList;
     
     public ProsecutionMB() {
     }
@@ -223,8 +222,6 @@ public class ProsecutionMB implements Serializable {
         
         session.getTransaction().commit();
         session.close();
-        
-        prosecutionList = new ListDataModel<>(prosecutions);
         
         return prosecutions;
     }

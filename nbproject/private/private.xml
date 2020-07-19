@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>web/EditarFases.xhtml</url>
+            <bookmark id="1">
+                <name/>
+                <line>27</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/web/Home.xhtml</file>
-            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/validator/LoginValidator.java</file>
-            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/web/index.xhtml</file>
+            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/web/EditarProcesso.xhtml</file>
             <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/mb/ProsecutionMB.java</file>
             <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/web/listar.xhtml</file>
-            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/mb/RegisterMB.java</file>
             <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/mb/PhaseMB.java</file>
-            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/model/Address.java</file>
-            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/mb/LoginMB.java</file>
         </group>
     </open-files>
 </project-private>

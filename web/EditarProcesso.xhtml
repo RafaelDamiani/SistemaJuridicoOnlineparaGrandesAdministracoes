@@ -45,16 +45,15 @@
                 </b:panelGrid>
                 <b:button styleClass="btn-salvar" style="float: right;" look="#c2c2c2" value="Salvar" size="sm"/>
             </b:form>
-            <b:dataTable value="title" var="fase">
-                <b:dataTableColumn value="fase.title" width="100"/>
-                <b:dataTableColumn value="date" width="100"/>
-                <b:dataTableColumn value="descricao" width="100"/>
-                <b:dataTableColumn value="justificativa" width="100"/>
-                <b:dataTableColumn value="processo" width="100"/>
-                <b:dataTableColumn value="advogado" width="100"/>
-                <b:dataTableColumn value="tipo fase" width="10vw"/>
-                <b:dataTableColumn value="phase status" width="10rem"/>
-                <b:dataTableColumn value="status fase" width="10%"/>
+            <b:dataTable value="#{phaseMB.indexPhase()}" var="phase">
+                <b:dataTableColumn value="#{phase[0]}" label="Id" width="10rem"/>
+                <b:dataTableColumn value="#{phase[2]}" label="Data" width="10rem"/>
+                <b:dataTableColumn value="#{phase[3]}" label="Título" width="10rem"/>
+                <b:dataTableColumn value="#{phase[4]}" label="Descrição" width="10rem"/>
+                <b:dataTableColumn value="#{phase[5]}" label="Tipo" width="10rem"/>
+                <b:dataTableColumn value="#{phase[6]}" label="Status" width="10rem"/>
+                <b:dataTableColumn value="#{phase[7]}" label="Justificativa" width="10rem"/>
+                <b:dataTableColumn value="#{phase[8]}" label="Advogado criador" width="10rem"/>
             </b:dataTable>
         </b:row>
     </h:body>
