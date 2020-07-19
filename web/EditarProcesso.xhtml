@@ -26,8 +26,8 @@
             <hr/>
             <b:form >
                 <b:panelGrid columns="2">
-                    <b:inputText value="#{prosecutionMB.prosecutionDTO.date}" mask="dd.mm.yyyy" label="Data do Processo" render-label="true"/>
-                    <b:selectOneMenu value="#{selectOneMenuBean.type}" label="Categoria:" >
+                    <b:inputText value="#{prosecutionMB.prosecutionDTO.formattedDate}" mask="dd/mm/yyyy" label="Data do Processo" render-label="true"/>
+                    <b:selectOneMenu label="Categoria:" >
                         <f:selectItem itemLabel="Selecionar" itemValue="" />
                         <f:selectItem itemLabel="Advogado" itemValue="2" />
                         <f:selectItem itemLabel="Juiz" itemValue="3" />
@@ -37,7 +37,7 @@
                 <b:panelGrid columns="2">
                     <b:inputTextarea placeholder="Justificativa do seu processo." label="Justificativa">
                     </b:inputTextarea>
-                    <b:inputTextarea placeholder="Descrilção basicas do seu processo." label="Descrição">
+                    <b:inputTextarea placeholder="Descrição basicas do seu processo." label="Descrição">
                     </b:inputTextarea>
                 </b:panelGrid>
                 <b:button styleClass="btn-salvar" style="float: right;" look="#c2c2c2" value="Salvar" size="sm"/>

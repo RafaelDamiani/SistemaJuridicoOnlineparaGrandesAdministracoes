@@ -3,7 +3,9 @@ package mb;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
@@ -27,7 +29,7 @@ public class ProsecutionMB implements Serializable {
     @Inject
     private LoginMB loginMB;
     
-    private Date date;
+    private final Date date = new Date();
     private Long idPromovente;
     private Long idPromoventeLawyer;
     private Long idPromovido;
@@ -43,10 +45,6 @@ public class ProsecutionMB implements Serializable {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-    
     public Long getIdPromovente() {
         return idPromovente;
     }
@@ -167,11 +165,12 @@ public class ProsecutionMB implements Serializable {
                 "select \n" +
                 "   prs.id as idProsecution, \n" +
                 "   prs.prosecution_date as date, \n" +
+                "   TO_CHAR(prs.prosecution_date, 'dd/mm/yyyy hh:mi') as formattedDate, \n" +
                 "   jdg.id as idJudge, \n" +
                 "   jdg.user_name as judge, \n" +
                 "   prs_sts.prosecution_status_name as status,\n" +
                 "   prt.user_name as part,\n" +
-                "   prt_type.part_type_name as category\n" +
+                "   prt_type.part_type_name as category \n" +
                 "from tb_prosecution prs \n" +
                 "inner join tb_user jdg\n" +
                 "   on jdg.id = prs.judge_id\n" +
@@ -267,38 +266,38 @@ public class ProsecutionMB implements Serializable {
         return prosecution;
     }
     
-    public void editProsecution() {
+    public String editProsecution(Long idProsecution, Date date, String formattedDate, Long idJudge, String judge, String status, String part, String category) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         
-        Long idProsecution = prosecutionList.getRowData().getIdProsecution();
+        prosecutionDTO = new ProsecutionDTO(idProsecution, date, formattedDate, idJudge, judge, status, part, category);
         
         String hql = "select * from tb_prosecution_user where prosecution_id = :idProsecution and part_type_id = 1";
-        Query query = session.createSQLQuery(hql);
+        Query query = session.createSQLQuery(hql).addEntity(ProsecutionUser.class);
         query.setParameter("idProsecution", idProsecution);
         
-        ProsecutionUser prosecutionUser = (ProsecutionUser) query.uniqueResult();
+        ProsecutionUser promovente = (ProsecutionUser) query.uniqueResult();
         
-        prosecutionList.getRowData().setIdPromovente(prosecutionUser.getPart().getId());
-        prosecutionList.getRowData().setPromovente(prosecutionUser.getPart().getName());
-        prosecutionList.getRowData().setIdPromoventeLawyer(prosecutionUser.getLawyer().getId());
-        prosecutionList.getRowData().setPromoventeLawyer(prosecutionUser.getLawyer().getName());
+        prosecutionDTO.setIdPromovente(promovente.getPart().getId());
+        prosecutionDTO.setPromovente(promovente.getPart().getName());
+        prosecutionDTO.setIdPromoventeLawyer(promovente.getLawyer().getId());
+        prosecutionDTO.setPromoventeLawyer(promovente.getLawyer().getName());
         
         hql = "select * from tb_prosecution_user where prosecution_id = :idProsecution and part_type_id = 2";
-        query = session.createSQLQuery(hql);
+        query = session.createSQLQuery(hql).addEntity(ProsecutionUser.class);
         query.setParameter("idProsecution", idProsecution);
         
-        prosecutionUser = (ProsecutionUser) query.uniqueResult();
+        ProsecutionUser promovido = (ProsecutionUser) query.uniqueResult();
         
-        prosecutionList.getRowData().setIdPromovido(prosecutionUser.getPart().getId());
-        prosecutionList.getRowData().setPromovido(prosecutionUser.getPart().getName());
-        prosecutionList.getRowData().setIdPromovidoLawyer(prosecutionUser.getLawyer().getId());
-        prosecutionList.getRowData().setPromovidoLawyer(prosecutionUser.getLawyer().getName());
+        prosecutionDTO.setIdPromovido(promovido.getPart().getId());
+        prosecutionDTO.setPromovido(promovido.getPart().getName());
+        prosecutionDTO.setIdPromovidoLawyer(promovido.getLawyer().getId());
+        prosecutionDTO.setPromovidoLawyer(promovido.getLawyer().getName());
         
         session.getTransaction().commit();
         session.close();
         
-        setProsecutionDTO(prosecutionList.getRowData());
+        return "/EditarProcesso.xhtml";
     }
     
     public String updateProsecution() {

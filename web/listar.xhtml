@@ -24,18 +24,29 @@
         <b:row styleClass="box-cadastroproc">
             <span styleClass="titlecadast"><b>Processos</b></span>
             <hr/>
-            <b:dataTable value="#{prosecutionMB.indexProsecution()}" var="prosecutions">
-                <b:dataTableColumn value="#{prosecutions[0]}" label="Id" width="100"/>
-                <b:dataTableColumn value="#{prosecutions[1]}" label="Data" width="100"/>
-                <b:dataTableColumn value="#{prosecutions[2]}" label="Juiz" width="100"/>
-                <b:dataTableColumn value="#{prosecutions[3]}" label="Status" width="10rem"/>
-                <b:dataTableColumn value="#{prosecutions[4]}" label="Parte" width="10rem"/>
-                <b:dataTableColumn value="#{prosecutions[5]}" label="Categoria" width="10rem"/>
-                <b:dataTableColumn width="10rem" label="#">
-                    <b:navLink action="#{prosecutionMB.editProsecution()}" value="Editar" href="./EditarFases.xhtml">
-                    </b:navLink>
-                </b:dataTableColumn>
-            </b:dataTable>
+            <h:form>
+                <b:dataTable value="#{prosecutionMB.indexProsecution()}" var="prosecutions">
+                    <b:dataTableColumn  value="#{prosecutions[0]}" label="Id" width="1rem"/>
+                    <b:dataTableColumn value="#{prosecutions[2]}" label="Data" width="10rem"/>
+                    <b:dataTableColumn value="#{prosecutions[4]}" label="Juiz" width="10rem"/>
+                    <b:dataTableColumn value="#{prosecutions[5]}" label="Status" width="10rem"/>
+                    <b:dataTableColumn value="#{prosecutions[6]}" label="Parte" width="10rem"/>
+                    <b:dataTableColumn value="#{prosecutions[7]}" label="Categoria" width="10rem"/>
+                    <b:dataTableColumn width="5rem" label="#" style="text-align: center;">
+                        <b:commandButton action="#{prosecutionMB.
+                                                   editProsecution(
+                                                        prosecutions[0], 
+                                                        prosecutions[1],
+                                                        prosecutions[2],
+                                                        prosecutions[3],
+                                                        prosecutions[4],
+                                                        prosecutions[5],
+                                                        prosecutions[6],
+                                                        prosecutions[7]
+                                                    )}" value="Editar" size="sm" />
+                    </b:dataTableColumn>
+                </b:dataTable>
+            </h:form>
             <b:button styleClass="btn-cadast" href="./CadastroProcesso.xhtml" style="float: right;" value="Cadastrar Processo" size="sm"/>
         </b:row>
     </h:body>

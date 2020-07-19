@@ -5,6 +5,7 @@ import java.util.Date;
 public class ProsecutionDTO {
     private Long idProsecution;
     private Date date;
+    private String formattedDate;
     private Long idJudge;
     private String judge;
     private String status;
@@ -23,6 +24,17 @@ public class ProsecutionDTO {
     public ProsecutionDTO() {
     }
     
+    public ProsecutionDTO(Long idProsecution, Date date, String formattedDate, Long idJudge, String judge, String status, String part, String category) {
+        this.idProsecution = idProsecution;
+        this.date = date;
+        this.formattedDate = formattedDate;
+        this.idJudge = idJudge;
+        this.judge = judge;
+        this.status = status;
+        this.part = part;
+        this.category = category;
+    }
+    
     public Long getIdProsecution() {
         return idProsecution;
     }
@@ -39,6 +51,14 @@ public class ProsecutionDTO {
         this.date = date;
     }
 
+    public String getFormattedDate() {
+        return formattedDate;
+    }
+
+    public void setFormattedDate(String formattedDate) {
+        this.formattedDate = formattedDate;
+    }
+    
     public Long getIdJudge() {
         return idJudge;
     }
