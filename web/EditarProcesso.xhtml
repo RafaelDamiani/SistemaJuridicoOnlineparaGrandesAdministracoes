@@ -26,13 +26,16 @@
             <hr/>
             <b:form >
                 <b:panelGrid columns="2">
-                    <b:inputText value="#{prosecutionMB.prosecutionDTO.formattedDate}" mask="dd/mm/yyyy" label="Data do Processo" render-label="true"/>
-                    <b:selectOneMenu label="Categoria:" >
-                        <f:selectItem itemLabel="Selecionar" itemValue="" />
-                        <f:selectItem itemLabel="Advogado" itemValue="2" />
-                        <f:selectItem itemLabel="Juiz" itemValue="3" />
-                        <f:selectItem itemLabel="Parte" itemValue="4" />
-                    </b:selectOneMenu>  
+                    <b:inputText value="#{prosecutionMB.prosecutionDTO.formattedDate}" mask="dd/mm/yyyy" label="Data do Processo" render-label="true" readonly="true" />
+                    <b:inputText value="#{prosecutionMB.prosecutionDTO.judge}" label="Juiz" render-label="true" readonly="true" />
+                </b:panelGrid>
+                <b:panelGrid columns="2">
+                    <b:inputText value="#{prosecutionMB.prosecutionDTO.promovente}" label="Promovente" render-label="true" />
+                    <b:inputText value="#{prosecutionMB.prosecutionDTO.promoventeLawyer}" label="Advogado do Promovente" render-label="true" readonly="true" />
+                </b:panelGrid>
+                <b:panelGrid columns="2">
+                    <b:inputText value="#{prosecutionMB.prosecutionDTO.promovido}" label="Promovido" render-label="true" />
+                    <b:inputText value="#{prosecutionMB.prosecutionDTO.promovidoLawyer}" label="Advogado do Promovido" render-label="true" />
                 </b:panelGrid>
                 <b:panelGrid columns="2">
                     <b:inputTextarea placeholder="Justificativa do seu processo." label="Justificativa">

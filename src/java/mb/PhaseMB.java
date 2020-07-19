@@ -2,6 +2,7 @@ package mb;
 
 import java.util.Date;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import model.Phase;
 import model.PhaseStatus;
@@ -15,6 +16,9 @@ import validator.PhaseValidator;
 @Named(value = "phaseMB")
 @RequestScoped
 public class PhaseMB {
+    @Inject
+    private ProsecutionMB prosecutionMB;
+    
     private final Date date = new Date();
     private String title;
     private String description;
