@@ -2,9 +2,11 @@ package validator;
 
 public class PhaseValidator {
     private boolean valid;
+    private boolean inserting;
     
-    public PhaseValidator(boolean valid) {
+    public PhaseValidator(boolean valid, boolean inserting) {
         this.valid = valid;
+        this.inserting = inserting;
     }
 
     public boolean isValid() {
@@ -13,6 +15,14 @@ public class PhaseValidator {
 
     public void setValid(boolean valid) {
         this.valid = valid;
+    }
+
+    public boolean isInserting() {
+        return inserting;
+    }
+
+    public void setInserting(boolean inserting) {
+        this.inserting = inserting;
     }
     
     public String validatePhase(Long idProsecution, Long idLawyer, String title, String description, String justification, Integer idPhaseType, Integer idPhaseStatus) {
@@ -51,6 +61,9 @@ public class PhaseValidator {
             return "Defina o tipo da fase";
         }
         
+        if (inserting)
+            return "Fase cadastrada com sucesso!";
+        
         if (idPhaseStatus == null || idPhaseStatus == 0) {
             setValid(false);
             return "Escolha o status da fase";
@@ -67,6 +80,6 @@ public class PhaseValidator {
             }
         }
         
-        return "Fase cadastrada com sucesso!";
+        return "Fase atualizada com sucesso!";
     }
 }

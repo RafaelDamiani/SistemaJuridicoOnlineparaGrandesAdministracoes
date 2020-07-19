@@ -5,7 +5,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Cadastro Processo</title>
+        <title>Cadastro Fase</title>
         <link rel="StyleSheet" type="text/css" href="css/estilos.css" media="screen" />
     </h:head>
     <h:body>
@@ -22,18 +22,27 @@
             </b:navbarLinks>
         </b:navBar>
         <b:row styleClass="box-cadastroproc">
-            <span styleClass="titlecadast"><b>Cadastrar Processo</b></span>
+            <span styleClass="titlecadast"><b>Cadastro Fase</b></span>
             <hr/>
             <b:form >
-                <b:panelGrid columns="2">
-                    <b:inputText value="#{prosecutionMB.idPromovente}" label="Promovente" render-label="true" />
-                    <b:inputText value="#{loginMB.name}" label="Advogado do Promovente" render-label="true" readonly="true" />
+                <b:panelGrid columns="1">
+                    <b:inputText value="#{phaseMB.title}" label="Título da Fase" render-label="true"/>
                 </b:panelGrid>
                 <b:panelGrid columns="2">
-                    <b:inputText value="#{prosecutionMB.idPromovido}" label="Promovido" render-label="true" />
-                    <b:inputText value="#{prosecutionMB.idPromovidoLawyer}" label="Advogado do Promovido" render-label="true" />
+                    <b:selectOneMenu value="#{phaseMB.idPhaseType}" label="Cargo:" >
+                        <f:selectItem itemLabel="Selecionar" itemValue="" />
+                        <f:selectItem itemLabel="Informativa" itemValue="1" />
+                        <f:selectItem itemLabel="Deliberativa" itemValue="2" />
+                    </b:selectOneMenu>  
                 </b:panelGrid>
-                <b:commandButton action="#{prosecutionMB.insertProsecution()}" styleClass="btn-salvar" style="float: right;" look="#c2c2c2" value="Salvar" size="sm"/>
+                <b:panelGrid columns="2">
+                    <b:inputTextarea value="#{phaseMB.justification}" placeholder="Justificativa da sua fase." label="Justificativa">
+                    </b:inputTextarea>
+                    <b:inputTextarea value="#{phaseMB.description}" placeholder="Descrição da sua fase." label="Descrição">
+                    </b:inputTextarea>
+                </b:panelGrid>
+                <b:button styleClass="btn-voltar" style="float: left;" value="Voltar" size="sm"/>
+                <b:button styleClass="btn-salvar" style="float: right;" look="#c2c2c2" value="Cadastrar Fase" size="sm"/>
             </b:form>
         </b:row>
     </h:body>

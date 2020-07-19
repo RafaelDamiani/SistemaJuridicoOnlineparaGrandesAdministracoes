@@ -5,7 +5,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Cadastro Processos</title>
+        <title>Edição Processo</title>
         <link rel="StyleSheet" type="text/css" href="css/estilos.css" media="screen" />
     </h:head>
     <h:body>
@@ -37,13 +37,7 @@
                     <b:inputText value="#{prosecutionMB.prosecutionDTO.promovido}" label="Promovido" render-label="true" />
                     <b:inputText value="#{prosecutionMB.prosecutionDTO.promovidoLawyer}" label="Advogado do Promovido" render-label="true" />
                 </b:panelGrid>
-                <b:panelGrid columns="2">
-                    <b:inputTextarea placeholder="Justificativa do seu processo." label="Justificativa">
-                    </b:inputTextarea>
-                    <b:inputTextarea placeholder="Descrição basicas do seu processo." label="Descrição">
-                    </b:inputTextarea>
-                </b:panelGrid>
-                <b:button styleClass="btn-salvar" style="float: right;" look="#c2c2c2" value="Salvar" size="sm"/>
+                <b:commandButton action="#{prosecutionMB.updateProsecution()}" styleClass="btn-salvar" style="float: right;" look="#c2c2c2" value="Salvar" size="sm"/>
             </b:form>
             <b:dataTable value="#{phaseMB.indexPhase()}" var="phase">
                 <b:dataTableColumn value="#{phase[0]}" label="Id" width="10rem"/>
@@ -55,6 +49,7 @@
                 <b:dataTableColumn value="#{phase[7]}" label="Justificativa" width="10rem"/>
                 <b:dataTableColumn value="#{phase[8]}" label="Advogado criador" width="10rem"/>
             </b:dataTable>
+            <b:button styleClass="btn-cadast" href="./CadastroFase.xhtml" style="float: right;" value="Cadastrar Fase" size="sm"/>
         </b:row>
     </h:body>
 </html>

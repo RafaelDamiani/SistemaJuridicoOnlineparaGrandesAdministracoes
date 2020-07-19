@@ -96,8 +96,8 @@ public class PhaseMB {
         boolean valid = true;
         String response = "";
         
-        PhaseValidator phaseValidator = new PhaseValidator(valid);
-        response = phaseValidator.validatePhase(idProsecution, idlawyer, title, description, justification, idPhaseType, idPhaseStatus);
+        PhaseValidator phaseValidator = new PhaseValidator(valid, true);
+        response = phaseValidator.validatePhase(idProsecution, idlawyer, title, description, null, idPhaseType, null);
         valid = phaseValidator.isValid();
         
         if (!valid)
@@ -111,6 +111,35 @@ public class PhaseMB {
         Phase phase = new Phase(date, prosecution, lawyer, title, description, justification, phaseType, phaseStatus);
         
         session.save(phase);
+
+        session.getTransaction().commit();
+        session.close();
+        
+        return response;
+    }
+    
+    public String updatePhase() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        
+        boolean valid = true;
+        String response = "";
+        
+        PhaseValidator phaseValidator = new PhaseValidator(valid, false);
+        response = phaseValidator.validatePhase(idProsecution, idlawyer, title, description, justification, idPhaseType, idPhaseStatus);
+        valid = phaseValidator.isValid();
+        
+        if (!valid)
+            return response;
+        
+        Prosecution prosecution = new Prosecution(idProsecution);
+        User lawyer = new User(idlawyer);
+        PhaseType phaseType = new PhaseType(idPhaseType);
+        PhaseStatus phaseStatus = new PhaseStatus(idPhaseStatus);
+        
+        Phase phase = new Phase(date, prosecution, lawyer, title, description, justification, phaseType, phaseStatus);
+        
+        session.update(phase);
 
         session.getTransaction().commit();
         session.close();

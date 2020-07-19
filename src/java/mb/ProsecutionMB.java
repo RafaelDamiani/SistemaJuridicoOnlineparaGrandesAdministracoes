@@ -3,11 +3,7 @@ package mb;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 import model.Judge;
@@ -119,6 +115,8 @@ public class ProsecutionMB implements Serializable {
         Prosecution prosecution = new Prosecution(date, newJudge);
         
         session.save(prosecution);
+        
+        setIdPromoventeLawyer(loginMB.getIdUser());
         
         ProsecutionUserValidator prosecutionUserValidator = new ProsecutionUserValidator(valid);
         response = prosecutionUserValidator.validateProsecutionUser(idPromovente, idPromoventeLawyer , idPromovido, idPromovidoLawyer);
