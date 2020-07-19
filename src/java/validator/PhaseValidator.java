@@ -46,6 +46,11 @@ public class PhaseValidator {
             return "O título deve ter no mínimo 5 caracteres";
         }
         
+        if (idPhaseType == null || idPhaseType == 0) {
+            setValid(false);
+            return "Defina o tipo da fase";
+        }
+        
         if (description == null || description.isEmpty()) {
             setValid(false);
             return "Preencha a descrição";
@@ -56,13 +61,8 @@ public class PhaseValidator {
             return "A descrição deve ter no mínimo 25 caracteres";
         }
         
-        if (idPhaseType == null || idPhaseType == 0) {
-            setValid(false);
-            return "Defina o tipo da fase";
-        }
-        
         if (inserting)
-            return "Fase cadastrada com sucesso!";
+            return "/EditarProcesso.xhtml";
         
         if (idPhaseStatus == null || idPhaseStatus == 0) {
             setValid(false);

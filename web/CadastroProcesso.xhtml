@@ -31,8 +31,6 @@
                         <f:selectItems value="#{prosecutionMB.parts}" var="promovente" itemValue="#{promovente.id}" itemLabel="#{promovente.name}" />
                     </b:selectOneMenu>
                     <b:inputText value="#{loginMB.name}" label="Advogado do Promovente" render-label="true" readonly="true" />
-                </b:panelGrid>
-                <b:panelGrid columns="2">
                     <b:selectOneMenu id="idpromovido" value="#{prosecutionMB.idPromovido}" label="Promovido:" >
                         <f:selectItems value="#{prosecutionMB.parts}" var="promovido" itemValue="#{promovido.id}" itemLabel="#{promovido.name}" />
                     </b:selectOneMenu>

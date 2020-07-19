@@ -24,25 +24,22 @@
         <b:row styleClass="box-cadastroproc">
             <span styleClass="titlecadast"><b>Cadastro Fase</b></span>
             <hr/>
+            <b:alert rendered="#{phaseMB.error}" closable="true" severity="danger">#{phaseMB.responseMessage}</b:alert>
             <b:form >
-                <b:panelGrid columns="1">
-                    <b:inputText value="#{phaseMB.title}" label="Título da Fase" render-label="true"/>
-                </b:panelGrid>
                 <b:panelGrid columns="2">
-                    <b:selectOneMenu value="#{phaseMB.idPhaseType}" label="Cargo:" >
+                    <b:inputText value="#{phaseMB.title}" label="Título da Fase" render-label="true"/>
+                    <b:selectOneMenu value="#{phaseMB.idPhaseType}" label="Tipo" >
                         <f:selectItem itemLabel="Selecionar" itemValue="" />
                         <f:selectItem itemLabel="Informativa" itemValue="1" />
                         <f:selectItem itemLabel="Deliberativa" itemValue="2" />
                     </b:selectOneMenu>  
-                </b:panelGrid>
-                <b:panelGrid columns="2">
-                    <b:inputTextarea value="#{phaseMB.justification}" placeholder="Justificativa da sua fase." label="Justificativa">
+                    <b:inputTextarea value="#{phaseMB.description}" label="Descrição">
                     </b:inputTextarea>
-                    <b:inputTextarea value="#{phaseMB.description}" placeholder="Descrição da sua fase." label="Descrição">
+                    <b:inputTextarea rendered="false" value="#{phaseMB.justification}" label="Justificativa">
                     </b:inputTextarea>
                 </b:panelGrid>
-                <b:button styleClass="btn-voltar" style="float: left;" value="Voltar" size="sm"/>
-                <b:button styleClass="btn-salvar" style="float: right;" look="#c2c2c2" value="Cadastrar Fase" size="sm"/>
+                <b:button outcome="EditarProcesso" styleClass="btn-voltar" style="float: left;" value="Voltar" size="sm"/>
+                <b:commandButton action="#{phaseMB.insertPhase()}" styleClass="btn-salvar" style="float: right;" look="#c2c2c2" value="Cadastrar Fase" size="sm"/>
             </b:form>
         </b:row>
     </h:body>

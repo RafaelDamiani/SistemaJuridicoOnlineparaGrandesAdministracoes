@@ -30,14 +30,10 @@
                 <b:panelGrid columns="2">
                     <b:inputText value="#{prosecutionMB.prosecutionDTO.formattedDate}" mask="dd/mm/yyyy" label="Data do Processo" render-label="true" readonly="true" />
                     <b:inputText value="#{prosecutionMB.prosecutionDTO.judge}" label="Juiz" render-label="true" readonly="true" />
-                </b:panelGrid>
-                <b:panelGrid columns="2">
                     <b:selectOneMenu id="idpromovente" value="#{prosecutionMB.prosecutionDTO.idPromovente}" label="Promovente" onchange="validateUser()">
                         <f:selectItems value="#{prosecutionMB.parts}" var="promovente" itemValue="#{promovente.id}" itemLabel="#{promovente.name}" />
                     </b:selectOneMenu>
                     <b:inputText value="#{prosecutionMB.prosecutionDTO.promoventeLawyer}" label="Advogado do Promovente" render-label="true" readonly="true" />
-                </b:panelGrid>
-                <b:panelGrid columns="2">
                     <b:selectOneMenu id="idpromovido" value="#{prosecutionMB.prosecutionDTO.idPromovido}" label="Promovido:" >
                         <f:selectItems value="#{prosecutionMB.parts}" var="promovido" itemValue="#{promovido.id}" itemLabel="#{promovido.name}" />
                     </b:selectOneMenu>
@@ -48,7 +44,7 @@
                 <b:commandButton action="#{prosecutionMB.updateProsecution()}" styleClass="btn-salvar" style="float: right;" look="#c2c2c2" value="Salvar" size="sm"/>
             </b:form>
             <b:dataTable value="#{phaseMB.indexPhase()}" var="phase">
-                <b:dataTableColumn value="#{phase[0]}" label="Id" width="10rem"/>
+                <b:dataTableColumn value="#{phase[0]}" label="Id" width="1rem"/>
                 <b:dataTableColumn value="#{phase[2]}" label="Data" width="10rem"/>
                 <b:dataTableColumn value="#{phase[3]}" label="Título" width="10rem"/>
                 <b:dataTableColumn value="#{phase[4]}" label="Descrição" width="10rem"/>
@@ -57,7 +53,7 @@
                 <b:dataTableColumn value="#{phase[7]}" label="Justificativa" width="10rem"/>
                 <b:dataTableColumn value="#{phase[8]}" label="Advogado criador" width="10rem"/>
             </b:dataTable>
-            <b:button styleClass="btn-cadast" href="./CadastroFase.xhtml" style="float: right;" value="Cadastrar Fase" size="sm"/>
+            <b:button disabled="#{prosecutionMB.canInsertPhase}" styleClass="btn-cadast" href="./CadastroFase.xhtml" style="float: right;" value="Cadastrar Fase" size="sm"/>
         </b:row>
     </h:body>
 </html>

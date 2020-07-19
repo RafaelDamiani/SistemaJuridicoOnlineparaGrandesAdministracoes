@@ -24,8 +24,16 @@
         <b:row styleClass="box-cadastroproc">
             <span styleClass="titlecadast"><b>Processos</b></span>
             <hr/>
-            <h:form>
-                <b:dataTable value="#{prosecutionMB.indexProsecution()}" var="prosecutions">
+            <h:form id="formId">
+                <b:selectOneMenu value="#{prosecutionMB.filter}" onchange="ajax:prosecutionMB.indexProsecution()" update="prosecutions">
+                    <f:selectItem itemLabel="Todos" itemValue="0"/>
+                    <f:selectItem itemLabel="Processos em Aberto" itemValue="1"/>
+                    <f:selectItem itemLabel="Processos encerrados" itemValue="2"/>
+                    <f:selectItem itemLabel="Processos ganhos/perdidos como promovido" itemValue="3"/>
+                    <f:selectItem itemLabel="Processos ganhos/perdidos como promovente" itemValue="4"/>
+                </b:selectOneMenu>
+                <br />
+                <b:dataTable value="#{prosecutionMB.indexProsecution()}" var="prosecutions" id="prosecutions">
                     <b:dataTableColumn  value="#{prosecutions[0]}" label="Id" width="1rem"/>
                     <b:dataTableColumn value="#{prosecutions[2]}" label="Data" width="10rem"/>
                     <b:dataTableColumn value="#{prosecutions[4]}" label="Juiz" width="10rem"/>

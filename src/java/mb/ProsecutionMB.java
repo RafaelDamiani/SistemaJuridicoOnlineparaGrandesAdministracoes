@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import model.Judge;
 import model.PartType;
+import model.Phase;
 import model.Prosecution;
 import model.ProsecutionStatus;
 import model.ProsecutionDTO;
@@ -29,7 +30,9 @@ public class ProsecutionMB implements Serializable {
     private boolean success;
     private boolean error;
     private String responseMessage;
-    
+    private boolean canInsertPhase;
+
+    private Long idProsecution;
     private final Date date = new Date();
     private Long idPromovente;
     private Long idPromoventeLawyer;
@@ -72,7 +75,7 @@ public class ProsecutionMB implements Serializable {
     public void setSuccess(boolean success) {
         this.success = success;
     }
-
+    
     public boolean isError() {
         return error;
     }
@@ -89,6 +92,22 @@ public class ProsecutionMB implements Serializable {
         this.responseMessage = responseMessage;
     }
 
+    public boolean isCanInsertPhase() {
+        return canInsertPhase;
+    }
+
+    public void setCanInsertPhase(boolean canInsertPhase) {
+        this.canInsertPhase = canInsertPhase;
+    }
+    
+    public Long getIdProsecution() {
+        return idProsecution;
+    }
+
+    public void setIdProsecution(Long idProsecution) {
+        this.idProsecution = idProsecution;
+    }
+    
     public Date getDate() {
         return date;
     }
@@ -258,7 +277,7 @@ public class ProsecutionMB implements Serializable {
                 "inner join tb_part_type prt_type\n" +
                 "   on prt_type.id = prs_usr.part_type_id\n" +
                 "where\n" +
-                "   prs_usr.lawyer_id = :idUser or prs.judge_id = :idUser or prs_usr.part_id = :idUser and\n" +
+                "   (prs_usr.lawyer_id = :idUser or prs_usr.part_id = :idUser) and\n" +
                 "   (\n" + 
                 "       0 = :filter or \n" +
                 "       (\n" +
@@ -343,6 +362,8 @@ public class ProsecutionMB implements Serializable {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         
+        setIdProsecution(idProsecution);
+        
         prosecutionDTO = new ProsecutionDTO(idProsecution, date, formattedDate, idJudge, judge, status, part, category);
         
         String hql = "select * from tb_prosecution_user where prosecution_id = :idProsecution and part_type_id = 1";
@@ -368,6 +389,15 @@ public class ProsecutionMB implements Serializable {
         prosecutionDTO.setPromovido(promovido.getPart().getName());
         prosecutionDTO.setIdPromovidoLawyer(promovido.getLawyer().getId());
         prosecutionDTO.setPromovidoLawyer(promovido.getLawyer().getName());
+        
+        hql = "select * from tb_phase where prosecution_id = :idProsecution order by id desc limit 1";
+        query = session.createSQLQuery(hql).addEntity(Phase.class);
+        query.setParameter("idProsecution", idProsecution);
+        
+        Phase phase = (Phase) query.uniqueResult();
+        
+        if (phase != null && (phase.getPhaseStatus() == null || phase.getPhaseStatus().getId() != 1))
+            setCanInsertPhase(false);
         
         session.getTransaction().commit();
         session.close();
