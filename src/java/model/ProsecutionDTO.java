@@ -12,8 +12,10 @@ public class ProsecutionDTO {
     private String part;
     private String category;
     
+    private Long idProsecutionUserPromovente;
     private Long idPromovente;
     private String promovente;
+    private Long idProsecutionUserPromovido;
     private Long idPromovido;
     private String promovido;
     private Long idPromoventeLawyer;
@@ -99,6 +101,14 @@ public class ProsecutionDTO {
         this.category = category;
     }
 
+    public Long getIdProsecutionUserPromovente() {
+        return idProsecutionUserPromovente;
+    }
+
+    public void setIdProsecutionUserPromovente(Long idProsecutionUserPromovente) {
+        this.idProsecutionUserPromovente = idProsecutionUserPromovente;
+    }
+
     public Long getIdPromovente() {
         return idPromovente;
     }
@@ -113,6 +123,14 @@ public class ProsecutionDTO {
 
     public void setPromovente(String promovente) {
         this.promovente = promovente;
+    }
+
+    public Long getIdProsecutionUserPromovido() {
+        return idProsecutionUserPromovido;
+    }
+
+    public void setIdProsecutionUserPromovido(Long idProsecutionUserPromovido) {
+        this.idProsecutionUserPromovido = idProsecutionUserPromovido;
     }
 
     public Long getIdPromovido() {

@@ -3,6 +3,7 @@ package mb;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -25,6 +26,10 @@ public class ProsecutionMB implements Serializable {
     @Inject
     private LoginMB loginMB;
     
+    private boolean success;
+    private boolean error;
+    private String responseMessage;
+    
     private final Date date = new Date();
     private Long idPromovente;
     private Long idPromoventeLawyer;
@@ -32,8 +37,56 @@ public class ProsecutionMB implements Serializable {
     private Long idPromovidoLawyer;
     private ProsecutionDTO prosecutionDTO;
     private int filter;
+    private List<User> parts;
+    private List<User> lawyers;
     
     public ProsecutionMB() {
+    }
+    
+    @PostConstruct
+    public void init() {
+        setSuccess(false);
+        setError(false);
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        
+        String hql = "select * from tb_user where user_type_id = 4";
+        Query query = session.createSQLQuery(hql).addEntity(User.class);
+        
+        parts = query.list();
+        
+        hql = "select * from tb_user where user_type_id = 2";
+        query = session.createSQLQuery(hql).addEntity(User.class);;
+        
+        lawyers = query.list();
+        
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    public boolean isError() {
+        return error;
+    }
+
+    public void setError(boolean error) {
+        this.error = error;
+    }
+
+    public String getResponseMessage() {
+        return responseMessage;
+    }
+
+    public void setResponseMessage(String responseMessage) {
+        this.responseMessage = responseMessage;
     }
 
     public Date getDate() {
@@ -87,6 +140,22 @@ public class ProsecutionMB implements Serializable {
     public void setFilter(int filter) {
         this.filter = filter;
     }
+
+    public List<User> getParts() {
+        return parts;
+    }
+
+    public void setParts(List<User> parts) {
+        this.parts = parts;
+    }
+
+    public List<User> getLawyers() {
+        return lawyers;
+    }
+
+    public void setLawyers(List<User> lawyers) {
+        this.lawyers = lawyers;
+    }
     
     public String insertProsecution() {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -94,6 +163,9 @@ public class ProsecutionMB implements Serializable {
         
         boolean valid = true;
         String response = "";
+        
+        setError(false);
+        setSuccess(false);
         
         String hql = "select us.id, count(prs.id) as qtdPros from tb_user us left join tb_prosecution prs on prs.judge_id = us.id where us.user_type_id = 3 group by us.id LIMIT 1";
 
@@ -107,8 +179,11 @@ public class ProsecutionMB implements Serializable {
         response = prosecutionValidator.validateProsecution(idJudge);
         valid = prosecutionValidator.isValid();
         
-        if (!valid)
+        if (!valid) {
+            setError(true);
+            setResponseMessage(response);
             return response;
+        }
         
         User newJudge = new User(idJudge);
         
@@ -122,9 +197,12 @@ public class ProsecutionMB implements Serializable {
         response = prosecutionUserValidator.validateProsecutionUser(idPromovente, idPromoventeLawyer , idPromovido, idPromovidoLawyer);
         valid = prosecutionUserValidator.isValid();
         
-        if (!valid)
+        if (!valid) {
+            setError(true);
+            setResponseMessage(response);
             return response;
-        
+        }
+            
         User partPromovente = new User(idPromovente);
         User promoventeLawyer = new User(idPromoventeLawyer);
         User partPromovido = new User(idPromovido);
@@ -143,7 +221,7 @@ public class ProsecutionMB implements Serializable {
         session.getTransaction().commit();
         session.close();
         
-        return "Processo cadastrado com sucesso!";
+        return "/listar.xhtml";
     }
     
     public List<ProsecutionDTO> indexProsecution() {
@@ -273,6 +351,7 @@ public class ProsecutionMB implements Serializable {
         
         ProsecutionUser promovente = (ProsecutionUser) query.uniqueResult();
         
+        prosecutionDTO.setIdProsecutionUserPromovente(promovente.getId());
         prosecutionDTO.setIdPromovente(promovente.getPart().getId());
         prosecutionDTO.setPromovente(promovente.getPart().getName());
         prosecutionDTO.setIdPromoventeLawyer(promovente.getLawyer().getId());
@@ -284,6 +363,7 @@ public class ProsecutionMB implements Serializable {
         
         ProsecutionUser promovido = (ProsecutionUser) query.uniqueResult();
         
+        prosecutionDTO.setIdProsecutionUserPromovido(promovido.getId());
         prosecutionDTO.setIdPromovido(promovido.getPart().getId());
         prosecutionDTO.setPromovido(promovido.getPart().getName());
         prosecutionDTO.setIdPromovidoLawyer(promovido.getLawyer().getId());
@@ -302,17 +382,28 @@ public class ProsecutionMB implements Serializable {
         boolean valid = true;
         String response = "";
         
+        setError(false);
+        setSuccess(false);
+        
+        setIdPromovente(prosecutionDTO.getIdPromovente());
+        setIdPromoventeLawyer(prosecutionDTO.getIdPromoventeLawyer());
+        setIdPromovido(prosecutionDTO.getIdPromovido());
+        setIdPromovidoLawyer(prosecutionDTO.getIdPromovidoLawyer());
+        
         ProsecutionUserValidator prosecutionUserValidator = new ProsecutionUserValidator(valid);
-        response = prosecutionUserValidator.validateProsecutionUser(idPromovente, idPromoventeLawyer , idPromovido, idPromovidoLawyer);
+        response = prosecutionUserValidator.validateProsecutionUser(idPromovente, idPromoventeLawyer, idPromovido, idPromovidoLawyer);
         valid = prosecutionUserValidator.isValid();
         
-        if (!valid)
+        if (!valid) {
+            setResponseMessage(response);
+            setError(true);
             return response;
+        }
         
-        User partPromovente = new User(prosecutionDTO.getIdPromovente());
-        User promoventeLawyer = new User(prosecutionDTO.getIdPromoventeLawyer());
-        User partPromovido = new User(prosecutionDTO.getIdPromovido());
-        User promovidoLawyer = new User(prosecutionDTO.getIdPromovidoLawyer());
+        User partPromovente = new User(idPromovente);
+        User promoventeLawyer = new User(idPromoventeLawyer);
+        User partPromovido = new User(idPromovido);
+        User promovidoLawyer = new User(idPromovidoLawyer);
         
         ProsecutionStatus prosecutionStatus = new ProsecutionStatus(1);
         PartType partPromoventeType = new PartType(1);
@@ -323,7 +414,10 @@ public class ProsecutionMB implements Serializable {
         Prosecution prosecution = new Prosecution(prosecutionDTO.getIdProsecution(), prosecutionDTO.getDate(), judge);
         
         ProsecutionUser prosecutionUserPromovente = new ProsecutionUser(prosecution, partPromovente, promoventeLawyer, prosecutionStatus, partPromoventeType);
+        prosecutionUserPromovente.setId(prosecutionDTO.getIdProsecutionUserPromovente());
+        
         ProsecutionUser prosecutionUserPromovido = new ProsecutionUser(prosecution, partPromovido, promovidoLawyer, prosecutionStatus, partPromovidoType);
+        prosecutionUserPromovido.setId(prosecutionDTO.getIdProsecutionUserPromovido());
         
         session.update(prosecutionUserPromovente);
         session.update(prosecutionUserPromovido);
@@ -331,6 +425,10 @@ public class ProsecutionMB implements Serializable {
         session.getTransaction().commit();
         session.close();
         
-        return "Processo atualizado com sucesso!";
+        response = "Processo atualizado com sucesso!";
+        
+        setResponseMessage(response);
+        setSuccess(true);
+        return response;
     }
 }

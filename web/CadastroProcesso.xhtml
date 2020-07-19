@@ -24,14 +24,21 @@
         <b:row styleClass="box-cadastroproc">
             <span styleClass="titlecadast"><b>Cadastrar Processo</b></span>
             <hr/>
+            <b:alert rendered="#{prosecutionMB.error}" closable="true" severity="danger">#{prosecutionMB.responseMessage}</b:alert>
             <b:form >
                 <b:panelGrid columns="2">
-                    <b:inputText value="#{prosecutionMB.idPromovente}" label="Promovente" render-label="true" />
+                    <b:selectOneMenu id="idpromovente" value="#{prosecutionMB.idPromovente}" label="Promovente" onchange="validateUser()">
+                        <f:selectItems value="#{prosecutionMB.parts}" var="promovente" itemValue="#{promovente.id}" itemLabel="#{promovente.name}" />
+                    </b:selectOneMenu>
                     <b:inputText value="#{loginMB.name}" label="Advogado do Promovente" render-label="true" readonly="true" />
                 </b:panelGrid>
                 <b:panelGrid columns="2">
-                    <b:inputText value="#{prosecutionMB.idPromovido}" label="Promovido" render-label="true" />
-                    <b:inputText value="#{prosecutionMB.idPromovidoLawyer}" label="Advogado do Promovido" render-label="true" />
+                    <b:selectOneMenu id="idpromovido" value="#{prosecutionMB.idPromovido}" label="Promovido:" >
+                        <f:selectItems value="#{prosecutionMB.parts}" var="promovido" itemValue="#{promovido.id}" itemLabel="#{promovido.name}" />
+                    </b:selectOneMenu>
+                    <b:selectOneMenu value="#{prosecutionMB.idPromovidoLawyer}" label="Promovido:" >
+                        <f:selectItems value="#{prosecutionMB.lawyers}" var="promovidoLawyer" itemValue="#{promovidoLawyer.id}" itemLabel="#{promovidoLawyer.name}" />
+                    </b:selectOneMenu>
                 </b:panelGrid>
                 <b:commandButton action="#{prosecutionMB.insertProsecution()}" styleClass="btn-salvar" style="float: right;" look="#c2c2c2" value="Salvar" size="sm"/>
             </b:form>
