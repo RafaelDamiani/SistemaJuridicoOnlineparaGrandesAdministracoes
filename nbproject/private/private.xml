@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>web/EditarFases.xhtml</url>
+            <bookmark id="1">
+                <name/>
+                <line>27</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/web/listar.xhtml</file>
-            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/web/CadastroFase.xhtml</file>
-=======
-            <file>file:/C:/Users/Lucas/Documents/TADS%202020_1/DAC/SIJOGA/src/java/mb/ProsecutionMB.java</file>
-            <file>file:/C:/Users/Lucas/Documents/TADS%202020_1/DAC/SIJOGA/web/Home.xhtml</file>
-            <file>file:/C:/Users/Lucas/Documents/TADS%202020_1/DAC/SIJOGA/src/java/mb/LoginMB.java</file>
-            <file>file:/C:/Users/Lucas/Documents/TADS%202020_1/DAC/SIJOGA/web/listar.xhtml</file>
-            <file>file:/C:/Users/Lucas/Documents/TADS%202020_1/DAC/SIJOGA/web/Perfil.xhtml</file>
-            <file>file:/C:/Users/Lucas/Documents/TADS%202020_1/DAC/SIJOGA/src/java/mb/UserMB.java</file>
-            <file>file:/C:/Users/Lucas/Documents/TADS%202020_1/DAC/SIJOGA/src/java/mb/PhaseMB.java</file>
-            <file>file:/C:/Users/Lucas/Documents/TADS%202020_1/DAC/SIJOGA/web/Cadastro.xhtml</file>
-            <file>file:/C:/Users/Lucas/Documents/TADS%202020_1/DAC/SIJOGA/web/css/estilos.css</file>
-            <file>file:/C:/Users/Lucas/Documents/TADS%202020_1/DAC/SIJOGA/src/java/mb/RegisterMB.java</file>
->>>>>>> a77fbf2c37ecebadd47ddd19c5288aa1b3ce9f0f
+            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/web/Home.xhtml</file>
+            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/ws/ApplicationConfig.java</file>
+            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/ws/PhaseWS.java</file>
+            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/mb/PhaseMB.java</file>
+            <file>file:/C:/Users/rafae/OneDrive/Faculdade/7%20Semestre/2%20DAC/Projects/SIJOGA/src/java/mb/LoginMB.java</file>
         </group>
     </open-files>
 </project-private>

@@ -33,7 +33,7 @@
                     <f:selectItem itemLabel="Processos ganhos/perdidos como promovente" itemValue="4"/>
                 </b:selectOneMenu>
                 <br />
-                <b:dataTable value="#{prosecutionMB.indexProsecution()}" var="prosecutions" id="prosecutions">
+                <b:dataTable value="#{prosecutionMB.indexProsecution()}" var="prosecutions" id="prosecutions" pdf="true">
                     <b:dataTableColumn  value="#{prosecutions[0]}" label="Id" width="1rem"/>
                     <b:dataTableColumn value="#{prosecutions[2]}" label="Data" width="10rem"/>
                     <b:dataTableColumn value="#{prosecutions[4]}" label="Juiz" width="10rem"/>
@@ -62,7 +62,7 @@
             <span styleClass="titlecadast"><b>Processos</b></span>
             <hr/>
             <h:form id="formIdJudge">
-                <b:dataTable value="#{prosecutionMB.indexProsecutionJudge()}" var="prosecutions" id="prosecutions">
+                <b:dataTable value="#{prosecutionMB.indexProsecutionJudge()}" var="prosecutions" id="prosecutions" pdf="true">
                     <b:dataTableColumn  value="#{prosecutions[0]}" label="Id" width="1rem"/>
                     <b:dataTableColumn value="#{prosecutions[2]}" label="Data" width="10rem"/>
                     <b:dataTableColumn width="5rem" label="#" style="text-align: center;">
