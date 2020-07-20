@@ -15,14 +15,11 @@ and open the template in the editor.
 
 .painelog{
     text-align: center;
-    margin-top: 50px;
-    margin-left: 33%;
-    width: 500px;
-    height: 255px;
     border: solid 2px;
     padding: 20px;
     background-color: #fbfbfb;
     border-radius: 5px;
+        margin-top: 80px;
 }
 
 .btn-entrar{
@@ -100,7 +97,7 @@ and open the template in the editor.
 
 .img{
     width: 540px;
-    height: 290px;
+    height: 270px !important;
 }
 
 #j_idt5 {

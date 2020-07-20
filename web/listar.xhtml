@@ -22,7 +22,7 @@
             </b:navbarLinks>
         </b:navBar>
         <b:row rendered="#{loginMB.idUserType == 3 ? 'false' : 'true'}" styleClass="box-cadastroproc">
-            <span styleClass="titlecadast"><b>Processos</b></span>
+            <h3><b>Perfil</b></h3>
             <hr/>
             <h:form id="formId">
                 <b:selectOneMenu value="#{prosecutionMB.filter}" onchange="ajax:prosecutionMB.indexProsecution()" update="prosecutions">

@@ -3,16 +3,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">     
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">     
     <h:head>
         <title>Cadastro</title>
         <link rel="StyleSheet" type="text/css" href="css/estilos.css" media="screen" />
     </h:head>
     <h:body>
         <b:row styleClass="box-cadastro">
-            <span styleClass="titlecadast"><b>Cadastro</b></span>
+            <h3><b>Cadastrar</b></h3>
             <hr/>
             <b:form >
+                <p:messages id="messages"/>
                 <b:panelGrid columns="2">
                     <b:inputText value="#{registerMB.name}" label="Nome Completo" render-label="true"/>
                     <b:inputText value="#{registerMB.cpf}" styleClass="inputcadast" mask="999.999.999-99" label="CPF " />

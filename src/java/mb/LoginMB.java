@@ -6,6 +6,7 @@ import javax.enterprise.context.*;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 import model.User;
 import org.hibernate.*;
 import util.HibernateUtil;
@@ -15,12 +16,13 @@ import validator.LoginValidator;
 @Named(value = "loginMB")
 @SessionScoped
 public class LoginMB implements Serializable {
+
     private String email;
     private String password;
     private String name;
     private Long idUser;
     private Integer idUserType;
-    
+
     public LoginMB() {
     }
 
@@ -63,50 +65,61 @@ public class LoginMB implements Serializable {
     public void setIdUserType(Integer idUserType) {
         this.idUserType = idUserType;
     }
-    
+
     public String logar() throws NoSuchAlgorithmException {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        
+
         boolean valid = true;
         String response = "";
-        
+
         User user = null;
-                
+
         LoginValidator loginValidator = new LoginValidator(valid);
-        
+
         response = loginValidator.validateLogin(email, password, user);
-        
+
         valid = loginValidator.isValid();
-        
+
         if (!valid) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(response));
             return response;
         }
-        
+
         String encryptedPassword = new PasswordUtil().encryptPassword(password);
-        
+
         String hql = "select * from tb_user where user_email = :email and user_password = :password";
-        
+
         Query query = session.createSQLQuery(hql).addEntity(User.class);
         query.setParameter("email", email);
         query.setParameter("password", encryptedPassword);
-        
-        user = (User)query.uniqueResult();
-        
+
+        user = (User) query.uniqueResult();
+
         session.getTransaction().commit();
         session.close();
-        
+
         response = loginValidator.validateLogin(email, password, user);
-        
+
         if (response.equals("E-mail ou senha incorretos")) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(response));
         }
-        
+
         setIdUser(user.getId());
         setIdUserType(user.getUserType().getId());
         setName(user.getName());
-        
+
         return response;
+    }
+
+    public String Deslogar() throws NoSuchAlgorithmException {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getSessionMap().remove("#{LoginMB}");
+
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+                .getExternalContext().getSession(true);
+        session.invalidate();
+
+        return "";
     }
 }
