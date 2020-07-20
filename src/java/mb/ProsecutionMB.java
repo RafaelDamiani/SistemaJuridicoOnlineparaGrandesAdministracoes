@@ -436,7 +436,7 @@ public class ProsecutionMB implements Serializable {
         session.getTransaction().commit();
         session.close();
         
-        return "/EditarProcesso.xhtml";
+        return "EditarProcesso.xhtml";
     }
     
     public String updateProsecution() {

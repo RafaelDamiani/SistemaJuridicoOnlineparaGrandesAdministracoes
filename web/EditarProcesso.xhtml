@@ -30,38 +30,37 @@
                 <b:panelGrid columns="2">
                     <b:inputText value="#{prosecutionMB.prosecutionDTO.formattedDate}" mask="dd/mm/yyyy" label="Data do Processo" render-label="true" readonly="true" />
                     <b:inputText value="#{prosecutionMB.prosecutionDTO.judge}" label="Juiz" render-label="true" readonly="true" />
-                    <b:selectOneMenu id="idpromovente" value="#{prosecutionMB.prosecutionDTO.idPromovente}" label="Promovente" onchange="validateUser()">
+                    <b:selectOneMenu disabled="#{loginMB.idUserType == 2 ? 'false' : 'true'}" id="idpromovente" value="#{prosecutionMB.prosecutionDTO.idPromovente}" label="Promovente" onchange="validateUser()">
                         <f:selectItems value="#{prosecutionMB.parts}" var="promovente" itemValue="#{promovente.id}" itemLabel="#{promovente.name}" />
                     </b:selectOneMenu>
                     <b:inputText value="#{prosecutionMB.prosecutionDTO.promoventeLawyer}" label="Advogado do Promovente" render-label="true" readonly="true" />
-                    <b:selectOneMenu id="idpromovido" value="#{prosecutionMB.prosecutionDTO.idPromovido}" label="Promovido:" >
+                    <b:selectOneMenu disabled="#{loginMB.idUserType == 2 ? 'false' : 'true'}" id="idpromovido" value="#{prosecutionMB.prosecutionDTO.idPromovido}" label="Promovido:" >
                         <f:selectItems value="#{prosecutionMB.parts}" var="promovido" itemValue="#{promovido.id}" itemLabel="#{promovido.name}" />
                     </b:selectOneMenu>
-                    <b:selectOneMenu value="#{prosecutionMB.prosecutionDTO.idPromovidoLawyer}" label="Promovido:" >
+                    <b:selectOneMenu disabled="#{loginMB.idUserType == 2 ? 'false' : 'true'}" value="#{prosecutionMB.prosecutionDTO.idPromovidoLawyer}" label="Promovido:" >
                         <f:selectItems value="#{prosecutionMB.lawyers}" var="promovidoLawyer" itemValue="#{promovidoLawyer.id}" itemLabel="#{promovidoLawyer.name}" />
                     </b:selectOneMenu>
                 </b:panelGrid>
                 <b:commandButton action="#{prosecutionMB.updateProsecution()}" styleClass="btn-salvar" style="float: right;" look="#c2c2c2" value="Salvar" size="sm"/>
             </b:form>
-            <b:dataTable value="#{phaseMB.indexPhase()}" var="phase">
-                <b:dataTableColumn value="#{phase[0]}" label="Id" width="1rem"/>
-                <b:dataTableColumn value="#{phase[2]}" label="Data" width="10rem"/>
-                <b:dataTableColumn value="#{phase[3]}" label="Título" width="10rem"/>
-                <b:dataTableColumn value="#{phase[4]}" label="Descrição" width="10rem"/>
-                <b:dataTableColumn value="#{phase[5]}" label="Tipo" width="10rem"/>
-                <b:dataTableColumn value="#{phase[6]}" label="Status" width="10rem"/>
-                <b:dataTableColumn value="#{phase[7]}" label="Justificativa" width="10rem"/>
-                <b:dataTableColumn value="#{phase[8]}" label="Advogado criador" width="10rem"/>
-                <b:dataTableColumn rendered="#{loginMB.idUserType == 3 ? 'true' : 'false'}"  width="5rem" label="#" style="text-align: center;">
-                    <b:commandButton disabled="#{phase[6] != null && phase[6] != '' ? 'false' : 'true'}" action="#{phaseMB.
-                                                   editPhase(
-                                                        phase[0],
-                                                        phase[6],
-                                                        phase[7]
-                                                    )}" value="Editar" size="sm" />
-                    </b:commandButton>
-                </b:dataTableColumn>
-            </b:dataTable>
+            <b:form id="formDataTable">
+                <b:dataTable value="#{phaseMB.indexPhase()}" var="phase">
+                    <b:dataTableColumn value="#{phase[0]}" label="Id" width="1rem"/>
+                    <b:dataTableColumn value="#{phase[2]}" label="Data" width="10rem"/>
+                    <b:dataTableColumn value="#{phase[3]}" label="Título" width="10rem"/>
+                    <b:dataTableColumn value="#{phase[4]}" label="Descrição" width="10rem"/>
+                    <b:dataTableColumn value="#{phase[5]}" label="Tipo" width="10rem"/>
+                    <b:dataTableColumn value="#{phase[6]}" label="Status" width="10rem"/>
+                    <b:dataTableColumn value="#{phase[7]}" label="Justificativa" width="10rem"/>
+                    <b:dataTableColumn value="#{phase[8]}" label="Advogado criador" width="10rem"/>
+                    <b:dataTableColumn rendered="#{loginMB.idUserType == 3 ? 'true' : 'false'}"  width="5rem" label="#" style="text-align: center;">
+                        <b:commandButton disabled="#{phase[6] != null and phase[6] != '' ? true : false}" action="#{phaseMB.
+                                                       editPhase(
+                                                            phase[0]
+                                                        )}" value="Editar" size="sm" />
+                    </b:dataTableColumn>
+                </b:dataTable>
+            </b:form>
             <b:button rendered="#{loginMB.idUserType == 3 ? 'false' : 'true'}" disabled="#{prosecutionMB.canInsertPhase ? 'false' : 'true'}" styleClass="btn-cadast" href="./CadastroFase.xhtml" style="float: right;" value="Cadastrar Fase" size="sm"/>
         </b:row>
     </h:body>

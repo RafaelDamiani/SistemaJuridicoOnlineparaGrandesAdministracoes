@@ -25,23 +25,72 @@
             <span styleClass="titlecadast"><b>Cadastro Fase</b></span>
             <hr/>
             <b:alert rendered="#{phaseMB.error}" closable="true" severity="danger">#{phaseMB.responseMessage}</b:alert>
-            <b:form >
+            <b:alert rendered="#{phaseMB.success}" closable="true" severity="success">#{phaseMB.responseMessage}</b:alert>
+            <b:form id="formPhase">
                 <b:panelGrid columns="2">
-                    <b:inputText value="#{phaseMB.title}" label="Título da Fase" render-label="true"/>
-                    <b:selectOneMenu value="#{phaseMB.idPhaseType}" label="Tipo" >
+                    <b:inputText disabled="#{loginMB.idUserType == 3 ? 'true' : 'false'}" value="#{phaseMB.title}" label="Título da Fase" render-label="true"/>
+                    <b:selectOneMenu disabled="#{loginMB.idUserType == 3 ? 'true' : 'false'}" value="#{phaseMB.idPhaseType}" label="Tipo" >
                         <f:selectItem itemLabel="Selecionar" itemValue="" />
                         <f:selectItem itemLabel="Informativa" itemValue="1" />
                         <f:selectItem itemLabel="Deliberativa" itemValue="2" />
-                    </b:selectOneMenu>  
-                    <b:inputTextarea value="#{phaseMB.description}" label="Descrição">
+                    </b:selectOneMenu>
+                    <b:selectOneMenu rendered="#{loginMB.idUserType == 3 ? 'true' : 'false'}" value="#{phaseMB.idPhaseStatus}" onchange="checkType(this.value)" label="Status" >
+                        <f:selectItem itemLabel="Selecionar" itemValue="" />
+                        <f:selectItem itemLabel="Pedido Aceito" itemValue="1" />
+                        <f:selectItem itemLabel="Pedido Negado" itemValue="2" />
+                        <f:selectItem itemLabel="Intimação" itemValue="3" />
+                    </b:selectOneMenu>
+                    <b:selectOneMenu id="probationOfficer" rendered="#{loginMB.idUserType == 3 ? 'true' : 'false'}" value=" phaseMB.probationOfficers" onchange="checkType(this.value)" label="Oficial de Justiça" >
+                    </b:selectOneMenu>
+                    <b:inputTextarea disabled="#{loginMB.idUserType == 3 ? 'true' : 'false'}" value="#{phaseMB.description}" label="Descrição">
                     </b:inputTextarea>
-                    <b:inputTextarea rendered="false" value="#{phaseMB.justification}" label="Justificativa">
+                    <b:inputTextarea id="justification" rendered="#{loginMB.idUserType == 3 ? 'true' : 'false'}" value="#{phaseMB.justification}" label="Justificativa">
                     </b:inputTextarea>
                 </b:panelGrid>
                 <b:button outcome="EditarProcesso" styleClass="btn-voltar" style="float: left;" value="Voltar" size="sm"/>
-                <b:commandButton action="#{phaseMB.insertPhase()}" styleClass="btn-salvar" style="float: right;" look="#c2c2c2" value="Cadastrar Fase" size="sm"/>
+                <b:commandButton rendered="#{loginMB.idUserType == 3 ? 'true' : 'false'}" action="#{phaseMB.updatePhase()}" styleClass="btn-salvar" style="float: right;" look="#c2c2c2" value="Salvar Fase" size="sm" onclick="sendRequest()" />
+                <b:commandButton rendered="#{loginMB.idUserType == 3 ? 'false' : 'true'}" action="#{phaseMB.insertPhase()}" styleClass="btn-salvar" style="float: right;" look="#c2c2c2" value="Cadastrar Fase" size="sm"/>
             </b:form>
         </b:row>
     </h:body>
+    <script>
+        function checkType(type) {
+            if (type != 3)
+                return;
+            $.ajax({
+                url: "http://localhost:8080/SOSIFOD/webresources/subpoena/probationofficers"
+            }).then(function(data) {
+                #{phaseMB.probationOfficers}
+                
+                data.map(function(d) {
+                    var value = d.id;
+                    var text = d.name;
+                    var option = $("<option>" + text + "</option>");
+                    option.attr("value", value);
+                    document.getElementById('formPhase:probationOfficer').append(option)
+                })               
+                
+                console.log('data: ', data)
+            });
+        }
+        
+        function sendRequest() {
+            $.ajax({
+                url: "http://localhost:8080/SOSIFOD/webresources/subpoena/probationofficers"
+            }).then(function(data) {
+                #{phaseMB.probationOfficers}
+                
+                data.map(function(d) {
+                    var value = d.id;
+                    var text = d.name;
+                    var option = $("<option>" + text + "</option>");
+                    option.attr("value", value);
+                    document.getElementById('formPhase:probationOfficer').append(option)
+                })               
+                
+                console.log('data: ', data)
+            });
+        }
+    </script>
 </html>
 

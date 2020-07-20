@@ -31,7 +31,7 @@
                             <b:image styleClass="img" name="Processos" value="./imagens/processos-juridicos.jpg"  tooltip="Processos" tooltipPosition="right"/>
                         </b:row>
                     </b:navLink>
-                    <b:navLink styleClass="process" value="" href="./CadastroProcesso.xhtml">
+                    <b:navLink rendered="#{loginMB.idUserType == 3 ? 'false' : 'true'}" styleClass="process" value="" href="./CadastroProcesso.xhtml">
                         <b:row styleClass="boxhome">
                             <b style="padding: 10px; font-size: 20px">Novo Processo</b><br/>
                             <b:image styleClass="img" name="Novo Processo" value="./imagens/cadast-de-processos.jpg"  tooltip="Novo Processo" tooltipPosition="right"/>
