@@ -2,6 +2,8 @@ package mb;
 
 import java.security.NoSuchAlgorithmException;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import model.Address;
 import model.User;
@@ -16,18 +18,19 @@ import validator.UserValidator;
 @Named(value = "registerMB")
 @RequestScoped
 public class RegisterMB {
+
     private String email;
     private String password;
     private String name;
     private String cpf;
     private Integer idUserType;
-    
+
     private String zipCode;
     private String street;
     private Short number;
     private String city;
     private String state;
-    
+
     public RegisterMB() {
     }
 
@@ -110,57 +113,65 @@ public class RegisterMB {
     public void setState(String state) {
         this.state = state;
     }
-    
+
     public String registerUser() throws NoSuchAlgorithmException {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        
+
         boolean valid = true;
         String response = "";
-        
+
         UserTypeValidator userTypeValidator = new UserTypeValidator(valid);
         response = userTypeValidator.validateId(idUserType);
         valid = userTypeValidator.isValid();
-        
-        if (!valid)
+
+        if (!valid) {
             return response;
+        }
 
         UserType userType = new UserType();
         userType.setId(idUserType);
-        
+
         UserValidator userValidator = new UserValidator(valid);
         response = userValidator.validateUser(email, password, name, cpf);
         valid = userValidator.isValid();
-        
-        if (!valid)
+
+        if (!valid) {
             return response;
-        
+        }
+
         String encryptedPassword = new PasswordUtil().encryptPassword(password);
-        
+
         User user = new User(email, encryptedPassword, name, cpf, userType);
-        
+
         AddressValidator addressValidator = new AddressValidator(valid);
         response = addressValidator.validateAddress(zipCode, street, number, city, state);
         valid = addressValidator.isValid();
-        
-        if (!valid)
+
+        if (!valid) {
             return response;
-        
+        }
+
         Address address = new Address(zipCode, street, number, city, state, user);
         try {
-            session.save(user);    
+            session.save(user);
+            FacesContext.getCurrentInstance().addMessage(
+                    null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!", "Usuário cadastrado com sucesso!"
+                    ));
+        } catch (RuntimeException rex) {
+            if (rex.getClass().getCanonicalName().contains("ConstraintViolationException")) {
+                            FacesContext.getCurrentInstance().addMessage(
+                    null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro! Já existe um usuário cadastrado com este e-mail.", ""
+                    ));
+            }
+            return "";
         }
-        catch(RuntimeException rex) {
-            if (rex.getClass().getCanonicalName().contains("ConstraintViolationException"))
-                return "Já existe um usuário cadastrado com este e-mail";
-            return "Ocorreu um erro ao salvar o usuário. Entre em contato com o Administrador";
-        }
-        
+
         session.save(address);
-        
+
         session.getTransaction().commit();
         session.close();
-        
-        return "Cadastrado com sucesso!";
+
+        return "./index.xhtml";
     }
 }
