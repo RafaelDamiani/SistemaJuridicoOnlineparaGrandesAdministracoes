@@ -34,7 +34,7 @@
                     <b:selectOneMenu id="idpromovido" value="#{prosecutionMB.idPromovido}" label="Promovido:" >
                         <f:selectItems value="#{prosecutionMB.parts}" var="promovido" itemValue="#{promovido.id}" itemLabel="#{promovido.name}" />
                     </b:selectOneMenu>
-                    <b:selectOneMenu value="#{prosecutionMB.idPromovidoLawyer}" label="Promovido:" >
+                    <b:selectOneMenu value="#{prosecutionMB.idPromovidoLawyer}" label="Advogado Promovido:" >
                         <f:selectItems value="#{prosecutionMB.lawyers}" var="promovidoLawyer" itemValue="#{promovidoLawyer.id}" itemLabel="#{promovidoLawyer.name}" />
                     </b:selectOneMenu>
                 </b:panelGrid>

@@ -40,7 +40,7 @@
                         <f:selectItem itemLabel="Pedido Negado" itemValue="2" />
                         <f:selectItem itemLabel="Intimação" itemValue="3" />
                     </b:selectOneMenu>
-                    <b:selectOneMenu id="probationOfficer" rendered="#{loginMB.idUserType == 3 ? 'true' : 'false'}" value=" phaseMB.probationOfficers" onchange="checkType(this.value)" label="Oficial de Justiça" >
+                    <b:selectOneMenu id="probationOfficer" rendered="#{loginMB.idUserType == 3 ? 'true' : 'false'}" value="" onchange="checkType(this.value)" label="Oficial de Justiça" >
                     </b:selectOneMenu>
                     <b:inputTextarea disabled="#{loginMB.idUserType == 3 ? 'true' : 'false'}" value="#{phaseMB.description}" label="Descrição">
                     </b:inputTextarea>
@@ -60,8 +60,6 @@
             $.ajax({
                 url: "http://localhost:8080/SOSIFOD/webresources/subpoena/probationofficers"
             }).then(function(data) {
-                #{phaseMB.probationOfficers}
-                
                 data.map(function(d) {
                     var value = d.id;
                     var text = d.name;
@@ -78,8 +76,6 @@
             $.ajax({
                 url: "http://localhost:8080/SOSIFOD/webresources/subpoena/probationofficers"
             }).then(function(data) {
-                #{phaseMB.probationOfficers}
-                
                 data.map(function(d) {
                     var value = d.id;
                     var text = d.name;

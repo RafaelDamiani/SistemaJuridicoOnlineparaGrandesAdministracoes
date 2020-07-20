@@ -257,8 +257,6 @@ public class PhaseMB implements Serializable {
         setIdPhaseType(phase.getPhaseType().getId());
         setDescription(phase.getDescription());
         
-        session.beginTransaction();
-
         session.getTransaction().commit();
         session.close();
 

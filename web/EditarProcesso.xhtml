@@ -37,7 +37,7 @@
                     <b:selectOneMenu disabled="#{loginMB.idUserType == 2 ? 'false' : 'true'}" id="idpromovido" value="#{prosecutionMB.prosecutionDTO.idPromovido}" label="Promovido:" >
                         <f:selectItems value="#{prosecutionMB.parts}" var="promovido" itemValue="#{promovido.id}" itemLabel="#{promovido.name}" />
                     </b:selectOneMenu>
-                    <b:selectOneMenu disabled="#{loginMB.idUserType == 2 ? 'false' : 'true'}" value="#{prosecutionMB.prosecutionDTO.idPromovidoLawyer}" label="Promovido:" >
+                    <b:selectOneMenu disabled="#{loginMB.idUserType == 2 ? 'false' : 'true'}" value="#{prosecutionMB.prosecutionDTO.idPromovidoLawyer}" label="Advogado Promovido:" >
                         <f:selectItems value="#{prosecutionMB.lawyers}" var="promovidoLawyer" itemValue="#{promovidoLawyer.id}" itemLabel="#{promovidoLawyer.name}" />
                     </b:selectOneMenu>
                 </b:panelGrid>
